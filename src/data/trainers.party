@@ -5967,9 +5967,24 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Poochyena
-Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Sunkern
+Level: 10
+Ability: Solar Power
+Nature: Serious
+IVs: 0 HP / 0 Atk / 15 Def / 31 SpA / 15 SpD / 31 Spe
+- Leech Seed
+- Tackle
+- Absorb
+
+Litleo
+Level: 10
+Ability: Moxie
+Nature: Adamant
+IVs: 10 HP / 31 Atk / 8 Def / 18 SpA / 8 SpD / 22 Spe
+- Ember
+- Noble Roar
+- Tackle
+- Leer
 
 === TRAINER_BILLY ===
 Name: BILLY
@@ -11276,13 +11291,29 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Wurmple
-Level: 4
+Weedle
+Level: 8
+Ability: Shield Dust
+Nature: Serious
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Poison Sting
+- String Shot
 
-Wurmple
-Level: 4
+Kakuna
+Level: 9
+Ability: Shed Skin
+Nature: Serious
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Poison Sting
+- Iron Defense
+
+Beedrill
+Level: 10
+Ability: Swarm
+Nature: Serious
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Pin Missile
+- Harden
 
 === TRAINER_LYLE ===
 Name: LYLE
