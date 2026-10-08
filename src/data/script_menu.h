@@ -1127,10 +1127,18 @@ static const struct MenuAction MultichoiceList_Exit[] =
     {gText_Exit},
 };
 
-static const struct MenuAction MultichoiceList_FieldMenu[] =
+// Two variants so the REPEL entry can be red when off and green when on.
+static const struct MenuAction MultichoiceList_FieldMenu_RepelOff[] =
 {
     {COMPOUND_STRING("POKé VIAL")},
-    {COMPOUND_STRING("REPEL")},
+    {COMPOUND_STRING("{COLOR RED}{SHADOW LIGHT_RED}REPEL")},
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_FieldMenu_RepelOn[] =
+{
+    {COMPOUND_STRING("POKé VIAL")},
+    {COMPOUND_STRING("{COLOR GREEN}{SHADOW LIGHT_GREEN}REPEL")},
     {gText_Exit},
 };
 
@@ -1301,7 +1309,8 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_HOF_VICTORIES_QUIT]                         = MULTICHOICE(sMultichoiceList_HOF_Victories_Quit),
     [MULTI_EGGS_VICTORIES_QUIT]                        = MULTICHOICE(sMultichoiceList_Eggs_Victories_Quit),
     [MULTI_HOF_EGGS_VICTORIES_QUIT]                    = MULTICHOICE(sMultichoiceList_HOF_Eggs_Victories_Quit),
-    [MULTI_FIELD_MENU]                 = MULTICHOICE(MultichoiceList_FieldMenu),
+    [MULTI_FIELD_MENU_REPEL_OFF]       = MULTICHOICE(MultichoiceList_FieldMenu_RepelOff),
+    [MULTI_FIELD_MENU_REPEL_ON]        = MULTICHOICE(MultichoiceList_FieldMenu_RepelOn),
 };
 
 const u8 *const gStdStrings[] =
