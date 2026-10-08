@@ -156,6 +156,10 @@ void FieldGetPlayerInput(struct FieldInput *input, u16 newKeys, u16 heldKeys)
             input->DEBUG_OVERWORLD_TRIGGER_EVENT = FALSE;
         }
     }
+
+    // L opens the field menu (PokeVial / Repel toggle)
+    if (newKeys & L_BUTTON)
+        input->input_field_1_3 = TRUE;
 }
 
 int ProcessPlayerFieldInput(struct FieldInput *input)
@@ -245,6 +249,13 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
         PlaySE(SE_WIN_OPEN);
         FreezeObjectEvents();
         Debug_ShowMainMenu();
+        return TRUE;
+    }
+
+    if (input->input_field_1_3)
+    {
+        PlaySE(SE_WIN_OPEN);
+        ScriptContext_SetupScript(FieldMenu_EventScript_Open);
         return TRUE;
     }
 
