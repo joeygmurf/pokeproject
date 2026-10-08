@@ -3098,7 +3098,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .baseAttack    = 30,
         .baseDefense   = 30,
         .baseSpeed     = 30,
-        .baseSpAttack  = 30,
+        .baseSpAttack  = 35,
         .baseSpDefense = 30,
         .types = MON_TYPES(TYPE_GRASS),
         .catchRate = 235,
@@ -3110,7 +3110,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_GRASS),
     #if P_UPDATED_ABILITIES >= GEN_4
-        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_SOLAR_POWER, ABILITY_EARLY_BIRD },
+        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_SOLAR_POWER, ABILITY_FLASH_FIRE },
     #else
         .abilities = { ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_EARLY_BIRD },
     #endif
@@ -3174,7 +3174,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .baseAttack    = 75,
         .baseDefense   = 55,
         .baseSpeed     = 30,
-        .baseSpAttack  = 105,
+        .baseSpAttack  = 110,
         .baseSpDefense = 85,
         .types = MON_TYPES(TYPE_GRASS),
         .catchRate = 120,
@@ -3186,7 +3186,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_GRASS),
     #if P_UPDATED_ABILITIES >= GEN_4
-        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_SOLAR_POWER, ABILITY_EARLY_BIRD },
+        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_SOLAR_POWER, ABILITY_FLASH_FIRE },
     #else
         .abilities = { ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_EARLY_BIRD },
     #endif

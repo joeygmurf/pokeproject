@@ -1969,6 +1969,24 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_RareCandy,
     },
 
+    [ITEM_INFINITE_CANDY] =
+    {
+        .name = ITEM_NAME("Infinite Candy"),
+        .pluralName = ITEM_PLURAL_NAME("Infinite Candies"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Raises a Pokémon\n"
+            "to the level cap.\n"
+            "Never runs out."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_RareCandy,
+        .effect = gItemEffect_RareCandy,
+        .iconPic = gItemIcon_RareCandy,
+        .iconPalette = gItemIconPalette_RareCandy,
+    },
+
     [ITEM_EXP_CANDY_XS] =
     {
         .name = ITEM_NAME("Exp. Candy XS"),

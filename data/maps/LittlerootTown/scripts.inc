@@ -899,10 +899,17 @@ LittlerootTown_EventScript_GiveRunningShoes::
 	waitfanfare
 	setflag FLAG_RECEIVED_RUNNING_SHOES
 	msgbox LittlerootTown_Text_ExplainRunningShoes, MSGBOX_DEFAULT
+	msgbox LittlerootTown_Text_MomGivesInfiniteCandy, MSGBOX_DEFAULT
+	giveitem ITEM_INFINITE_CANDY
 	msgbox LittlerootTown_Text_ComeHomeIfAnythingHappens, MSGBOX_DEFAULT
 	closemessage
 	delay 30
 	return
+
+LittlerootTown_Text_MomGivesInfiniteCandy:
+	.string "And also! Here is an INFINITE CANDY!\p"
+	.string "This will let you level your POKéMON\n"
+	.string "up to the level cap whenever you like!$"
 
 LittlerootTown_Text_OurNewHomeLetsGoInside:
 	.string "MOM: {PLAYER}, we're here, honey!\p"
