@@ -11105,13 +11105,23 @@ Music: Female
 Double Battle: No
 AI: Check Bad Move
 
-Zigzagoon
-Level: 4
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Skitty @ Wide Lens
+Level: 13
+Ability: Cute Charm
+Nature: Timid
+IVs: 20 HP / 0 Atk / 5 Def / 17 SpA / 9 SpD / 31 Spe
+- Water Pulse
+- Disarming Voice
+- Sing
 
-Shroomish
-Level: 4
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Klink
+Level: 14
+Ability: Clear Body
+Nature: Timid
+IVs: 15 HP / 0 Atk / 15 Def / 15 SpA / 16 SpD / 11 Spe
+- Charge Beam
+- Bind
+- Mirror Shot
 
 === TRAINER_HALEY_1 ===
 Name: HALEY
