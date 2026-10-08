@@ -446,10 +446,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     [SPECIES_CHARMELEON] =
     {
         .baseHP        = 58,
-        .baseAttack    = 64,
+        .baseAttack    = 70,
         .baseDefense   = 58,
         .baseSpeed     = 80,
-        .baseSpAttack  = P_UPDATED_STATS >= GEN_2 ? 80 : 65,
+        .baseSpAttack  = P_UPDATED_STATS >= GEN_2 ? 74 : 65,
         .baseSpDefense = 65,
         .types = MON_TYPES(TYPE_FIRE),
         .catchRate = 45,
@@ -512,7 +512,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_CHARIZARD}),
     },
 
-#define CHARIZARD_SP_ATK (P_UPDATED_STATS >= GEN_2 ? 109 : 85)
+#define CHARIZARD_SP_ATK (P_UPDATED_STATS >= GEN_2 ? 100 : 85)
 
 #if P_UPDATED_EXP_YIELDS >= GEN_8
     #define CHARIZARD_EXP_YIELD 267
@@ -525,7 +525,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     [SPECIES_CHARIZARD] =
     {
         .baseHP        = 78,
-        .baseAttack    = 84,
+        .baseAttack    = 93,
         .baseDefense   = 78,
         .baseSpeed     = 100,
         .baseSpAttack  = CHARIZARD_SP_ATK,

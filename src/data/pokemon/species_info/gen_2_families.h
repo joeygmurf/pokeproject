@@ -294,10 +294,10 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
     [SPECIES_CYNDAQUIL] =
     {
         .baseHP        = 39,
-        .baseAttack    = 52,
+        .baseAttack    = 45,
         .baseDefense   = 43,
         .baseSpeed     = 65,
-        .baseSpAttack  = 60,
+        .baseSpAttack  = 67,
         .baseSpDefense = 50,
         .types = MON_TYPES(TYPE_FIRE),
         .catchRate = 45,
@@ -436,10 +436,10 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
     [SPECIES_TYPHLOSION] =
     {
         .baseHP        = 78,
-        .baseAttack    = 84,
+        .baseAttack    = 77,
         .baseDefense   = 78,
         .baseSpeed     = 100,
-        .baseSpAttack  = 109,
+        .baseSpAttack  = 116,
         .baseSpDefense = 85,
         .types = MON_TYPES(TYPE_FIRE),
         .catchRate = 45,

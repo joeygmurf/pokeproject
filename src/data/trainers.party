@@ -5968,7 +5968,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Sunkern
-Level: 10
+Level: 12
 Ability: Solar Power
 Nature: Serious
 IVs: 0 HP / 0 Atk / 15 Def / 31 SpA / 15 SpD / 31 Spe
@@ -5977,7 +5977,7 @@ IVs: 0 HP / 0 Atk / 15 Def / 31 SpA / 15 SpD / 31 Spe
 - Absorb
 
 Litleo
-Level: 10
+Level: 13
 Ability: Moxie
 Nature: Adamant
 IVs: 10 HP / 31 Atk / 8 Def / 18 SpA / 8 SpD / 22 Spe
@@ -5995,13 +5995,34 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Zigzagoon
-Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Fletchling
+Level: 13
+Ability: Gale Wings
+Nature: Timid
+IVs: 5 HP / 31 Atk / 10 Def / 22 SpA / 28 SpD / 31 Spe
+- Peck
+- Tailwind
+- Quick Attack
+- Ember
 
-Seedot
-Level: 7
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Munna
+Level: 13
+Ability: Trace
+Nature: Timid
+IVs: 31 HP / 0 Atk / 31 Def / 0 SpA / 31 SpD / 0 Spe
+- Curse
+- Hypnosis
+- Stored Power
+
+Chespin @ Bright Powder
+Level: 13
+Ability: Bulletproof
+Nature: Timid
+IVs: 10 HP / 31 Atk / 7 Def / 0 SpA / 28 SpD / 31 Spe
+- Bite
+- Rollout
+- Mud Slap
+- Vine Whip
 
 === TRAINER_JOSH ===
 Name: JOSH
@@ -11320,7 +11341,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Weedle
-Level: 8
+Level: 9
 Ability: Shield Dust
 Nature: Serious
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
@@ -11336,7 +11357,7 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Iron Defense
 
 Beedrill
-Level: 10
+Level: 12
 Ability: Swarm
 Nature: Serious
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
