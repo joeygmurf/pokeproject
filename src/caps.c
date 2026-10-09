@@ -7,17 +7,20 @@
 
 u32 GetCurrentLevelCap(void)
 {
+    // Each entry is {milestone flag, cap while that milestone is still pending}.
+    // The first unset flag decides the cap, so these must be earned in order.
+    //
+    // This hack reorders the gyms, so the cap cannot key off badge flags: the
+    // first gym is Wattson (FLAG_BADGE03_GET), which would leave
+    // FLAG_BADGE01_GET unset and pin the cap at its first value forever.
+    // Milestone flags also let rival fights and story beats raise the cap.
+    // See docs/progression.md.
     static const u32 sLevelCapFlagMap[][2] =
     {
-        {FLAG_BADGE01_GET, 15},
-        {FLAG_BADGE02_GET, 19},
-        {FLAG_BADGE03_GET, 24},
-        {FLAG_BADGE04_GET, 29},
-        {FLAG_BADGE05_GET, 31},
-        {FLAG_BADGE06_GET, 33},
-        {FLAG_BADGE07_GET, 42},
-        {FLAG_BADGE08_GET, 46},
-        {FLAG_IS_CHAMPION, 58},
+        {FLAG_CAP_RIVAL_ROUTE110,    15}, // opening, up to the Route 110 rival
+        {FLAG_CAP_WATTSON,           19}, // rival beaten, up to Wattson
+        {FLAG_CAP_TBD_AFTER_WATTSON, 24}, // after Wattson - placeholder, never set yet
+        {FLAG_IS_CHAMPION,           58},
     };
 
     u32 i;

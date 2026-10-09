@@ -52,9 +52,12 @@
 #else
 
 #define FLAG_INFINITE_REPEL  0x20 // Toggled by the L-button field menu; suppresses wild encounters
-#define FLAG_UNUSED_0x021    0x21 // Unused Flag
-#define FLAG_UNUSED_0x022    0x22 // Unused Flag
-#define FLAG_UNUSED_0x023    0x23 // Unused Flag
+// Level-cap ladder (see docs/progression.md and sLevelCapFlagMap in src/caps.c).
+// These are milestones, not badges, so the cap can advance on rival fights and
+// story beats as well as gyms. They must be set in ladder order.
+#define FLAG_CAP_RIVAL_ROUTE110  0x21 // Route 110 rival defeated
+#define FLAG_CAP_WATTSON         0x22 // Wattson defeated (first gym in this hack)
+#define FLAG_CAP_TBD_AFTER_WATTSON 0x23 // placeholder: next milestone, not yet designed
 #define FLAG_UNUSED_0x024    0x24 // Unused Flag
 #define FLAG_UNUSED_0x025    0x25 // Unused Flag
 #define FLAG_UNUSED_0x026    0x26 // Unused Flag

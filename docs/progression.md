@@ -88,17 +88,30 @@ the first *unset* flag, so with Wattson first (`FLAG_BADGE03_GET`) and
 `sLevelCapFlagMap` accepts **any** flags, so the fix is a ladder of custom
 progression flags, letting rival fights and story beats raise the cap too:
 
-| Milestone | Flag | Cap |
-|---|---|---|
-| Game start | — | TBD |
-| Petalburg intro / Wally | `FLAG_CAP_...` | TBD |
-| Route 110 rival | `FLAG_CAP_...` | TBD |
-| Wattson | `FLAG_CAP_...` | TBD |
+Each row is `{flag, cap while that milestone is still pending}` — the same
+semantics vanilla used, where `{FLAG_BADGE01_GET, 15}` meant "cap 15 until
+Roxanne falls".
+
+| Cap | Applies during | Flag | Set by |
+|---|---|---|---|
+| 15 | opening → Route 110 rival | `FLAG_CAP_RIVAL_ROUTE110` | `Route110_EventScript_RivalExit` |
+| 19 | rival beaten → Wattson | `FLAG_CAP_WATTSON` | `MauvilleCity_Gym` badge block |
+| 24 | after Wattson | `FLAG_CAP_TBD_AFTER_WATTSON` | **nothing yet — placeholder** |
+| 58 | post-Champion | `FLAG_IS_CHAMPION` | vanilla |
+
+The cap therefore holds at 24 after Wattson until the next milestone is
+designed. Fine while only the opening is reordered; revisit before extending
+play past Mauville.
 
 Constraint: flags must be set in list order, which holds as long as the spine is
 linear. If a stretch ever becomes non-linear, switch to `LEVEL_CAP_VARIABLE`
 (`B_LEVEL_CAP_TYPE` in `include/config/caps.h`) and have each milestone
 `setvar` the cap directly.
+
+**Dormant landmine:** `sEvCapFlagMap` (`src/caps.c:92`) still assumes badges are
+earned in numerical order and has the same flaw. It is unreachable today because
+`B_EV_CAP_TYPE` is `EV_CAP_NO_GAIN`. If EV caps are ever re-enabled, remap it
+the same way.
 
 ---
 
