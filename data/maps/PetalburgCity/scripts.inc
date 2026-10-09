@@ -9,7 +9,39 @@ PetalburgCity_OnTransition:
 	call_if_eq VAR_PETALBURG_CITY_STATE, 2, PetalburgCity_EventScript_DisableMapNameAndMusic
 	call_if_eq VAR_PETALBURG_CITY_STATE, 4, PetalburgCity_EventScript_DisableMapNameAndMusic
 	call_if_eq VAR_PETALBURG_GYM_STATE, 8, PetalburgCity_EventScript_SetGymDoorsUnlocked
+	call PetalburgCity_EventScript_UpdateAquaBlockade
 	end
+
+@ Gate A (see docs/progression.md): two Aqua grunts on (1,12) and (1,13) seal
+@ Petalburg's west exit to Route 104 - the only walkable tiles on that edge are
+@ (0,12) and (0,13), so the pair closes it completely. They clear out once
+@ Roxanne has been beaten.
+PetalburgCity_EventScript_UpdateAquaBlockade::
+	goto_if_lt VAR_STORY_PROGRESS, STORY_ROXANNE_DEFEATED, PetalburgCity_EventScript_AquaBlockadeMigrate
+	setflag FLAG_HIDE_PETALBURG_AQUA_BLOCKADE
+	return
+
+@ Catch-up for saves that beat Roxanne before VAR_STORY_PROGRESS existed.
+PetalburgCity_EventScript_AquaBlockadeMigrate::
+	goto_if_unset FLAG_BADGE01_GET, PetalburgCity_EventScript_AquaBlockadeReturn
+	setvar VAR_STORY_PROGRESS, STORY_ROXANNE_DEFEATED
+	setflag FLAG_HIDE_PETALBURG_AQUA_BLOCKADE
+PetalburgCity_EventScript_AquaBlockadeReturn::
+	return
+
+PetalburgCity_EventScript_AquaBlockade::
+	lock
+	faceplayer
+	msgbox PetalburgCity_Text_AquaBlockade, MSGBOX_DEFAULT
+	closemessage
+	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFasterLeft
+	waitmovement 0
+	release
+	end
+
+PetalburgCity_Text_AquaBlockade:
+	.string "Beat it, kid. TEAM AQUA business.\p"
+	.string "Nobody gets through here.$"
 
 PetalburgCity_EventScript_MoveGymBoyToWestEntrance::
 	setobjectxyperm LOCALID_GYM_BOY, 5, 11

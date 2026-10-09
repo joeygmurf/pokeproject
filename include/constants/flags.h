@@ -58,7 +58,7 @@
 #define FLAG_CAP_RIVAL_ROUTE110  0x21 // Route 110 rival defeated
 #define FLAG_CAP_WATTSON         0x22 // Wattson defeated (first gym in this hack)
 #define FLAG_CAP_TBD_AFTER_WATTSON 0x23 // placeholder: next milestone, not yet designed
-#define FLAG_UNUSED_0x024    0x24 // Unused Flag
+#define FLAG_HIDE_PETALBURG_AQUA_BLOCKADE 0x24 // Gate A: hides the two Aqua grunts sealing Petalburg's west exit
 #define FLAG_UNUSED_0x025    0x25 // Unused Flag
 #define FLAG_UNUSED_0x026    0x26 // Unused Flag
 #define FLAG_UNUSED_0x027    0x27 // Unused Flag
