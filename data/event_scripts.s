@@ -63,6 +63,7 @@
 #include "constants/secret_bases.h"
 #include "constants/siirtc.h"
 #include "constants/songs.h"
+#include "constants/story_progress.h"
 #include "constants/sound.h"
 #include "constants/species.h"
 #include "constants/trade.h"

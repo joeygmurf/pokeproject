@@ -45,6 +45,7 @@ PetalburgCity_EventScript_WallyTutorial::
 	closemessage
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
 	setvar VAR_PETALBURG_CITY_STATE, 3
+	setvar VAR_STORY_PROGRESS, STORY_WALLY_TUTORIAL_DONE
 	fadedefaultbgm
 	clearflag FLAG_DONT_TRANSITION_MUSIC
 	special LoadPlayerParty

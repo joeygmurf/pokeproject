@@ -93,6 +93,7 @@ MauvilleCity_Gym_EventScript_WattsonDefeated::
 	setflag FLAG_DEFEATED_MAUVILLE_GYM
 	setflag FLAG_BADGE03_GET
 	setflag FLAG_CAP_WATTSON
+	setvar VAR_STORY_PROGRESS, STORY_WATTSON_DEFEATED
 	addvar VAR_PETALBURG_GYM_STATE, 1
 	call_if_eq VAR_PETALBURG_GYM_STATE, 6, Common_EventScript_ReadyPetalburgGymForBattle
 	setvar VAR_0x8008, 3
