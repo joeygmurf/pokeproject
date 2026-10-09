@@ -43,11 +43,16 @@ opens after the Petalburg intro.
 
 ## 3. Gates
 
-### Gate A — Route 104, west of Petalburg
+### Gate A — Route 104, west of Petalburg — **BUILT**
 - **Blocks:** Petalburg → Route 104, and therefore Petalburg Woods, Rustboro,
   Dewford, Mr. Briney, and the whole western half of the early game.
-- **Opens:** much later — after Roxanne (TBD, needs its own gate entry).
-- **Enforced by:** Team Aqua NPC(s) on Petalburg's west exit.
+- **Opens:** `VAR_STORY_PROGRESS >= STORY_ROXANNE_DEFEATED`, set by Rustboro
+  Gym alongside the Stone Badge.
+- **Enforced by:** two Team Aqua grunts at **(1,12)** and **(1,13)**. Petalburg's
+  west edge has exactly two walkable tiles, (0,12) and (0,13), so the pair
+  closes it completely — verified by flood fill. They face left, turn to the
+  player when spoken to, refuse passage, and turn back. Hidden by
+  `FLAG_HIDE_PETALBURG_AQUA_BLOCKADE`, set from Petalburg's `ON_TRANSITION`.
 - **Why it can't be routed around:** Route 104 is reachable only from Petalburg
   (right), Rustboro (up) and Route 105 (down, requires Surf). Rustboro is itself
   gated by Gate D. Surf is locked behind Norman's badge.
