@@ -295,6 +295,14 @@ ifeq ($(SETUP_PREREQS),1)
   ifneq ($(.SHELLSTATUS),0)
     $(error Errors occurred while building tools. See error messages above for more details)
   endif
+  # Porymap runs on Windows and writes into this tree over the \\wsl.localhost
+  # share, which can leave a write partially flushed - typically one byte near
+  # the 8 KB mark, turning a "}," into a "}". jsonproc then dies with an opaque
+  # JSONPROC_ERROR. Repair that first so a known-recoverable glitch does not
+  # cost a build. Only repairs; never discards files. See
+  # tools/porymap_cleanup.py.
+  $(foreach line, $(shell python3 tools/porymap_cleanup.py --repair-only 2>&1 | sed "s/ /__SPACE__/g"), $(info $(subst __SPACE__, ,$(line))))
+
   # Oh and also generate mapjson sources before we use `SCANINC`.
   $(foreach line, $(shell $(MAKE) MAP_VERSION=$(MAP_VERSION) generated | sed "s/ /__SPACE__/g"), $(info $(subst __SPACE__, ,$(line))))
   ifneq ($(.SHELLSTATUS),0)

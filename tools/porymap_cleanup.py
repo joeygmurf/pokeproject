@@ -40,7 +40,12 @@ def repair(text):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--apply", action="store_true", help="write changes instead of reporting")
+    ap.add_argument("--repair-only", action="store_true",
+                    help="only repair corrupt files; never restore formatting-only ones. "
+                         "Safe to run from the Makefile, where discarding files would surprise.")
     args = ap.parse_args()
+    if args.repair_only:
+        args.apply = True
 
     changed = [f for f in git("diff", "--name-only").split() if f.endswith(".json")]
     if not changed:
@@ -64,6 +69,8 @@ def main():
                 open(f, "w", encoding="utf-8").write(fixed)
             text = fixed
 
+        if args.repair_only:
+            continue
         try:
             if json.loads(git("show", f"HEAD:{f}")) == parsed:
                 noise.append(f)
