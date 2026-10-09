@@ -52,14 +52,29 @@ opens after the Petalburg intro.
   (right), Rustboro (up) and Route 105 (down, requires Surf). Rustboro is itself
   gated by Gate D. Surf is locked behind Norman's badge.
 
-### Gate B — Route 103 crossing
+### Gate B — Route 103 crossing — **BUILT**
 - **Blocks:** Route 103 → Route 110, i.e. the entire new critical path.
-- **Opens:** once the Petalburg intro (step 3) is complete.
-- **Enforced by:** NPC on the Oldale side of the new sand path: *"you should
-  check out the gym in Petalburg first."*
+- **Opens:** `VAR_PETALBURG_CITY_STATE >= 3`.
+- **Enforced by:** the boy at **(24,11)**, verified to be a single tile that
+  seals the sand crossing on its own. He steps up to (24,10) when it opens.
+  Position is driven from `Route103_OnTransition` with `setobjectxyperm`.
+- **Dialogue:** no Pokédex → *"I wouldn't go further than this without a
+  POKéDEX!"*; intro unfinished → points back at the Petalburg Gym; open →
+  *"Lots of strong TRAINERS are ahead."*
 - **Why it can't be routed around:** Route 110 connects only to Route 103
   (left), Mauville (up) and Slateport (down). Mauville is behind this gate;
   Slateport is behind Gate C.
+
+> **Trap, learned the hard way.** `VAR_PETALBURG_CITY_STATE` spans two
+> unrelated story beats. 2 and 3 are the early intro (3 is set the instant
+> Wally catches his Ralts); **4 and 5 are the POST-Norman sequence**, where
+> Wally's dad walks the player home and hands over HM Surf. Gating on 5 meant
+> the crossing only opened after Norman was beaten and Surf obtained - the
+> exact progression this design exists to prevent.
+>
+> This is the argument for a dedicated `VAR_STORY_PROGRESS`: vanilla state
+> vars get reused across beats, so a numeric comparison can silently span a
+> gap you did not intend. Adopt it before Gate A.
 
 ### Gate C — Slateport
 - **Blocks:** Route 110 → Slateport.
