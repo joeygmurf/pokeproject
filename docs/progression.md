@@ -163,12 +163,17 @@ not be beatable early.
 
 ## 7. Open problems
 
-1. **The Devon Goods questline is the spine of early Hoenn** — Aqua grunt steals
-   the goods on Route 116, chase through Rusturf Tunnel, deliver to Devon in
-   Rustboro, carry the parcel to Slateport. Rustboro now comes *late*, so this
-   whole chain needs rehoming or rewriting. **Largest unsolved piece.**
-2. **Gate C and Gate D opening conditions** are undefined.
-3. **Gate A's opening condition** ("after Roxanne") needs a concrete flag.
+1. **Devon Goods questline — deferred to mid-story (decided 2026-10-09).**
+   In vanilla it is the spine of the *early* game: an Aqua grunt steals the
+   goods on Route 116, you chase him through Rusturf Tunnel, deliver to Devon in
+   Rustboro, then carry the parcel to Slateport. Rustboro now comes late, so the
+   chain moves with it and becomes mid-game content rather than the opening.
+   Nothing to solve before Gates A/C/D — just do not let the opening depend on
+   any of its flags.
+2. **Gate C and Gate D opening conditions** are undefined. Both can now be
+   written against `VAR_STORY_PROGRESS`; `STORY_GATE_D_OPEN` is reserved.
+3. **Gate A** opens at `STORY_ROXANNE_DEFEATED`, which is reserved but not yet
+   set anywhere — Rustboro Gym needs to set it when that stage is built.
 4. **NPC dialogue across the region** will reference the vanilla order. Long tail,
    not hard, but wide.
 5. **Match Call / TV / rival systems** assume vanilla progression.
