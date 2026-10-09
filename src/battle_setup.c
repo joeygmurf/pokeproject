@@ -56,6 +56,7 @@
 #include "constants/game_stat.h"
 #include "constants/items.h"
 #include "constants/songs.h"
+#include "constants/region_map_sections.h"
 #include "constants/trainers.h"
 #include "constants/trainer_hill.h"
 #include "constants/weather.h"
@@ -1007,10 +1008,18 @@ void ChooseStarter(void)
 static void CB2_GiveStarter(void)
 {
     u16 starterMon;
+    u8 metLocation = METLOC_FATEFUL_ENCOUNTER;
 
     *GetVarPointer(VAR_STARTER_MON) = gSpecialVar_Result;
     starterMon = GetStarterPokemon(gSpecialVar_Result);
     ScriptGiveMon(starterMon, 5, ITEM_NONE);
+
+    // Record the starter as a fateful encounter rather than Route 101. In a
+    // Nuzlocke the met location is what decides which encounter a route has
+    // already spent, so otherwise the starter burns Route 101's.
+    if (gPartiesCount[B_TRAINER_PLAYER] > 0)
+        SetMonData(&gParties[B_TRAINER_PLAYER][gPartiesCount[B_TRAINER_PLAYER] - 1],
+                   MON_DATA_MET_LOCATION, &metLocation);
     ResetTasks();
     PlayBattleBGM();
     SetMainCallback2(CB2_StartFirstBattle);

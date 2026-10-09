@@ -77,6 +77,144 @@
       ],
       "encounters": [
         {
+          "map": "MAP_LITTLEROOT_TOWN",
+          "base_label": "gLittlerootTown",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 2,
+                "max_level": 3,
+                "species": "SPECIES_ZIGZAGOON"
+              },
+              {
+                "min_level": 2,
+                "max_level": 3,
+                "species": "SPECIES_POOCHYENA"
+              },
+              {
+                "min_level": 2,
+                "max_level": 3,
+                "species": "SPECIES_WURMPLE"
+              },
+              {
+                "min_level": 2,
+                "max_level": 3,
+                "species": "SPECIES_ZIGZAGOON"
+              },
+              {
+                "min_level": 2,
+                "max_level": 3,
+                "species": "SPECIES_POOCHYENA"
+              },
+              {
+                "min_level": 2,
+                "max_level": 3,
+                "species": "SPECIES_WURMPLE"
+              },
+              {
+                "min_level": 2,
+                "max_level": 3,
+                "species": "SPECIES_ZIGZAGOON"
+              },
+              {
+                "min_level": 2,
+                "max_level": 3,
+                "species": "SPECIES_POOCHYENA"
+              },
+              {
+                "min_level": 2,
+                "max_level": 3,
+                "species": "SPECIES_WURMPLE"
+              },
+              {
+                "min_level": 2,
+                "max_level": 3,
+                "species": "SPECIES_ZIGZAGOON"
+              },
+              {
+                "min_level": 2,
+                "max_level": 3,
+                "species": "SPECIES_POOCHYENA"
+              },
+              {
+                "min_level": 2,
+                "max_level": 3,
+                "species": "SPECIES_WURMPLE"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_OLDALE_TOWN",
+          "base_label": "gOldaleTown",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 2,
+                "max_level": 4,
+                "species": "SPECIES_ZIGZAGOON"
+              },
+              {
+                "min_level": 2,
+                "max_level": 4,
+                "species": "SPECIES_POOCHYENA"
+              },
+              {
+                "min_level": 2,
+                "max_level": 4,
+                "species": "SPECIES_WURMPLE"
+              },
+              {
+                "min_level": 2,
+                "max_level": 4,
+                "species": "SPECIES_ZIGZAGOON"
+              },
+              {
+                "min_level": 2,
+                "max_level": 4,
+                "species": "SPECIES_POOCHYENA"
+              },
+              {
+                "min_level": 2,
+                "max_level": 4,
+                "species": "SPECIES_WURMPLE"
+              },
+              {
+                "min_level": 2,
+                "max_level": 4,
+                "species": "SPECIES_ZIGZAGOON"
+              },
+              {
+                "min_level": 2,
+                "max_level": 4,
+                "species": "SPECIES_POOCHYENA"
+              },
+              {
+                "min_level": 2,
+                "max_level": 4,
+                "species": "SPECIES_WURMPLE"
+              },
+              {
+                "min_level": 2,
+                "max_level": 4,
+                "species": "SPECIES_ZIGZAGOON"
+              },
+              {
+                "min_level": 2,
+                "max_level": 4,
+                "species": "SPECIES_POOCHYENA"
+              },
+              {
+                "min_level": 2,
+                "max_level": 4,
+                "species": "SPECIES_WURMPLE"
+              }
+            ]
+          }
+        },
+        {
           "map": "MAP_ROUTE101",
           "base_label": "gRoute101",
           "land_mons": {
