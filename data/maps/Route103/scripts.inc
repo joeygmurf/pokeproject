@@ -6,7 +6,21 @@ Route103_MapScripts::
 Route103_OnTransition:
 	call Common_EventScript_SetupRivalGfxId
 	call ProfBirch_EventScript_UpdateLocation
+	call Route103_EventScript_PlaceGateBoy
 	end
+
+@ Gate B (see docs/progression.md): the boy stands on (24,11), the one tile
+@ that seals the sand crossing, until the Petalburg/Wally sequence is done
+@ (VAR_PETALBURG_CITY_STATE reaches 5 in Wally's house). After that he steps
+@ up onto (24,10) and the crossing is open.
+Route103_EventScript_PlaceGateBoy::
+	goto_if_lt VAR_PETALBURG_CITY_STATE, 5, Route103_EventScript_GateBoyBlocking
+	setobjectxyperm LOCALID_ROUTE103_GATE_BOY, 24, 10
+	return
+
+Route103_EventScript_GateBoyBlocking::
+	setobjectxyperm LOCALID_ROUTE103_GATE_BOY, 24, 11
+	return
 
 Route103_OnLoad:
 	call_if_set FLAG_SYS_GAME_CLEAR, Route103_EventScript_OpenAlteringCave
@@ -188,8 +202,37 @@ Route103_Movement_WatchRivalExitFacingEastOrWest:
 	step_end
 
 Route103_EventScript_Boy::
-	msgbox Route103_Text_ShouldHaveBroughtPotion, MSGBOX_NPC
+	lock
+	faceplayer
+	goto_if_unset FLAG_SYS_POKEDEX_GET, Route103_EventScript_BoyNoPokedex
+	goto_if_lt VAR_PETALBURG_CITY_STATE, 5, Route103_EventScript_BoySeeYourDad
+	msgbox Route103_Text_BoyTrainersAhead, MSGBOX_DEFAULT
+	release
 	end
+
+Route103_EventScript_BoyNoPokedex::
+	msgbox Route103_Text_BoyNoPokedex, MSGBOX_DEFAULT
+	release
+	end
+
+Route103_EventScript_BoySeeYourDad::
+	msgbox Route103_Text_BoySeeYourDad, MSGBOX_DEFAULT
+	release
+	end
+
+Route103_Text_BoyNoPokedex:
+	.string "I wouldn't go further than this\n"
+	.string "without a POKéDEX!$"
+
+Route103_Text_BoySeeYourDad:
+	.string "Hey, {PLAYER}! Your DAD was looking\n"
+	.string "for you.\p"
+	.string "He said he was heading back to the\n"
+	.string "PETALBURG GYM!$"
+
+Route103_Text_BoyTrainersAhead:
+	.string "Lots of strong TRAINERS are ahead.\n"
+	.string "Make sure you're ready!$"
 
 Route103_EventScript_Man::
 	msgbox Route103_Text_ShortcutToOldale, MSGBOX_NPC
