@@ -10,11 +10,14 @@ Route103_OnTransition:
 	end
 
 @ Gate B (see docs/progression.md): the boy stands on (24,11), the one tile
-@ that seals the sand crossing, until the Petalburg/Wally sequence is done
-@ (VAR_PETALBURG_CITY_STATE reaches 5 in Wally's house). After that he steps
-@ up onto (24,10) and the crossing is open.
+@ that seals the sand crossing, until the Wally catching tutorial is done.
+@ VAR_PETALBURG_CITY_STATE reaches 3 the moment Wally catches his Ralts.
+@ After that he steps up onto (24,10) and the crossing is open.
+@
+@ Do NOT key this off state 4 or 5: those belong to the POST-Norman
+@ sequence, where Wally's dad takes the player home and hands over HM Surf.
 Route103_EventScript_PlaceGateBoy::
-	goto_if_lt VAR_PETALBURG_CITY_STATE, 5, Route103_EventScript_GateBoyBlocking
+	goto_if_lt VAR_PETALBURG_CITY_STATE, 3, Route103_EventScript_GateBoyBlocking
 	setobjectxyperm LOCALID_ROUTE103_GATE_BOY, 24, 10
 	return
 
@@ -205,7 +208,7 @@ Route103_EventScript_Boy::
 	lock
 	faceplayer
 	goto_if_unset FLAG_SYS_POKEDEX_GET, Route103_EventScript_BoyNoPokedex
-	goto_if_lt VAR_PETALBURG_CITY_STATE, 5, Route103_EventScript_BoySeeYourDad
+	goto_if_lt VAR_PETALBURG_CITY_STATE, 3, Route103_EventScript_BoySeeYourDad
 	msgbox Route103_Text_BoyTrainersAhead, MSGBOX_DEFAULT
 	release
 	end
