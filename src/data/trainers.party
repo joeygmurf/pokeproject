@@ -5528,11 +5528,28 @@ Pic: Pokefan M
 Gender: Male
 Music: Twins
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
-Skitty @ Oran Berry
+Igglybuff
 Level: 15
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Ability: Cute Charm
+Nature: Timid
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Metronome
+
+Cleffa
+Level: 15
+Ability: Cute Charm
+Nature: Timid
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Metronome
+
+Pichu
+Level: 15
+Ability: Cute Charm
+Nature: Timid
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Metronome
 
 === TRAINER_COLTON ===
 Name: COLTON
@@ -6378,19 +6395,35 @@ Pic: Fisherman
 Gender: Male
 Music: Hiker
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
-Magikarp
-Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Staryu
+Level: 13
+Ability: Analytic
+Nature: Quiet
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Confusion
+- Water Gun
+- Dazzling Gleam
+- Confuse Ray
 
-Tentacool
-Level: 10
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Tympole
+Level: 14
+Ability: Water Absorb
+Nature: Timid
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Mud Shot
+- Surf
 
-Magikarp
-Level: 15
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Inkay
+Level: 14
+Ability: Contrary
+Nature: Timid
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Pluck
+- Payback
+- Hypnosis
+- Wrap
 
 === TRAINER_IVAN ===
 Name: IVAN
@@ -8842,15 +8875,26 @@ Pic: Twins
 Gender: Male
 Music: Twins
 Double Battle: Yes
-AI: Check Bad Move
+AI: Basic Trainer
 
-Plusle
+Elekid @ Punching Glove
 Level: 15
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Ability: Static
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Fire Punch
+- Thunder Punch
+- Ice Punch
+- Swift
 
-Minun
+Magby
 Level: 15
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Ability: Flame Body
+Nature: Bold
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Follow Me
+- Heat Wave
+- Helping Hand
 
 === TRAINER_AMY_AND_LIV_2 ===
 Name: AMY & LIV
