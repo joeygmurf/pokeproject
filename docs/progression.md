@@ -59,7 +59,9 @@ opens after the Petalburg intro.
 
 ### Gate B — Route 103 crossing — **BUILT**
 - **Blocks:** Route 103 → Route 110, i.e. the entire new critical path.
-- **Opens:** `VAR_PETALBURG_CITY_STATE >= 3`.
+- **Opens:** `VAR_STORY_PROGRESS >= STORY_WALLY_TUTORIAL_DONE`, set in Petalburg
+  the instant Wally catches his Ralts. (`Route103_EventScript_MigrateStoryProgress`
+  brings pre-existing saves up to date; removable once none matter.)
 - **Enforced by:** the boy at **(24,11)**, verified to be a single tile that
   seals the sand crossing on its own. He steps up to (24,10) when it opens.
   Position is driven from `Route103_OnTransition` with `setobjectxyperm`.
@@ -158,11 +160,20 @@ not be beatable early.
 
 ## 6. Other edits
 
-- **Wally's Mauville pre-gym scene** — remove; the player just saw him in
+- **Route 103 terrain — DONE.** The water crossing is now a sand beach at
+  y10–12, x22–48. Shoreline follows the tileset's own convention (see
+  `docs/PROJECT.md`, "Hoenn shoreline tiling").
+- **Old Rod fisherman — DONE.** Moved from Dewford to Petalburg (10,22);
+  Dewford is behind Gate A, so the rod would have been unobtainable.
+- **Early-game encounters — DONE.** Grass patches added to Littleroot (fenced,
+  gated on owning a Pokémon) and Oldale, both with their own wild data, because
+  only five species were reachable before the Route 103 crossing.
+- **Starter met location — DONE.** Recorded as `METLOC_FATEFUL_ENCOUNTER`
+  instead of Route 101, so a Nuzlocke still gets a Route 101 encounter.
+- **Wally's Mauville pre-gym scene** — TODO: remove; the player just saw him in
   Petalburg. Relocate the encounter later.
-- **Scott** — reuse the vanilla trigger, new dialogue referencing the blockade
-  and pointing at Route 103.
-- **Route 103 terrain** — replace the water crossing with a sand path.
+- **Scott** — TODO: reuse the vanilla trigger, new dialogue referencing the
+  blockade and pointing at Route 103.
 
 ---
 
