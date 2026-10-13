@@ -297,7 +297,7 @@ PetalburgCity_Gym_EventScript_NormanNoBadges::
 	end
 
 PetalburgCity_Gym_EventScript_NormanOneBadge::
-	msgbox PetalburgCity_Gym_Text_NormanGoToDewford, MSGBOX_DEFAULT
+	msgbox PetalburgCity_Gym_Text_NormanGoToFallarbor, MSGBOX_DEFAULT
 	release
 	end
 
@@ -1236,14 +1236,14 @@ PetalburgCity_Gym_Text_NormanGoToMauville:
 	.string "I'll battle you, {PLAYER}, when you\n"
 	.string "can show me four GYM BADGES, okay?$"
 
-PetalburgCity_Gym_Text_NormanGoToDewford:
+PetalburgCity_Gym_Text_NormanGoToFallarbor:
 	.string "DAD: I see… So, you've beaten\n"
-	.string "the GYM LEADER in RUSTBORO CITY.\p"
+	.string "the GYM LEADER in MAUVILLE CITY.\p"
 	.string "But there are many more TRAINERS\n"
 	.string "who are stronger than you, {PLAYER}.\p"
-	.string "Across the sea in DEWFORD TOWN is a\n"
-	.string "GYM LEADER named BRAWLY.\p"
-	.string "You should go challenge him.$"
+	.string "In FALLARBOR TOWN is a\n"
+	.string "GYM LEADER named LUCY.\p"
+	.string "You should go challenge her.$"
 
 PetalburgCity_Gym_Text_YouHaveGottenStronger:
 	.string "DAD: Hm… {PLAYER}, you have gotten\n"
