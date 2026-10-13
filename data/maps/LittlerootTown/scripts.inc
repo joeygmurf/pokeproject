@@ -46,7 +46,16 @@ LittlerootTown_OnTransition:
 	call_if_eq VAR_LITTLEROOT_RIVAL_STATE, 3, LittlerootTown_EventScript_SetRivalLeftForRoute103
 	call_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1, LittlerootTown_EventScript_HideMapNamePopup
 	call_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 2, LittlerootTown_EventScript_LeftLabAfterDexUpgrade
+	call_if_set FLAG_SYS_POKEMON_GET, LittlerootTown_EventScript_MoveGrassGirlAside
 	end
+
+@ The girl stands on (16,14), the only gap in the fence around the wild-grass
+@ patch, so the player cannot reach it before owning a Pokemon. Once they do
+@ (FLAG_SYS_POKEMON_GET, set on Route 101 when Birch is rescued) she steps up
+@ and to the right and the patch opens.
+LittlerootTown_EventScript_MoveGrassGirlAside::
+	setobjectxyperm LOCALID_LITTLEROOT_GRASS_GIRL, 18, 12
+	return
 
 LittlerootTown_EventScript_LeftLabAfterDexUpgrade::
 	setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 3
@@ -1021,3 +1030,25 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 	.string "I have something to show you.\n"
 	.string "Let's go to my LAB.$"
 
+
+LittlerootTown_EventScript_GrassGirl::
+	lock
+	faceplayer
+	goto_if_set FLAG_SYS_POKEMON_GET, LittlerootTown_EventScript_GrassGirlHasPokemon
+	msgbox LittlerootTown_Text_GrassGirlNoPokemon, MSGBOX_DEFAULT
+	release
+	end
+
+LittlerootTown_EventScript_GrassGirlHasPokemon::
+	msgbox LittlerootTown_Text_GrassGirlCutePokemon, MSGBOX_DEFAULT
+	release
+	end
+
+LittlerootTown_Text_GrassGirlNoPokemon:
+	.string "Hey, {PLAYER}! You shouldn't go in\n"
+	.string "here without a POKéMON!$"
+
+LittlerootTown_Text_GrassGirlCutePokemon:
+	.string "Hey, {PLAYER}! Cute POKéMON!\p"
+	.string "Did you get that from\n"
+	.string "PROF. BIRCH?$"
