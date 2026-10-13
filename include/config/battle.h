@@ -380,7 +380,16 @@
 #define B_LAST_USED_BALL            TRUE       // If set to TRUE, the "last used Ball" feature from Gen7+ will be implemented
 #define B_LAST_USED_BALL_BUTTON     R_BUTTON   // If last used Ball is implemented, this button (or button combination) will trigger throwing the last used Ball.
 #define B_LAST_USED_BALL_CYCLE      TRUE       // If set to TRUE, then holding B_LAST_USED_BALL_BUTTON while pressing the D-Pad cycles through the Balls.
-#define B_CATCH_SWAP_INTO_PARTY     GEN_LATEST // In Gen7+, the option to swap caught Pokémon into the party will appear, allowing you to send a different Pokémon to the Box.
+// Disabled (was GEN_LATEST) after a crash: catching with a full party opened the
+// swap menu, which rendered six copies of the party's first species and then
+// locked up. The path is upstream's - battle_script_commands.c, pokemon.c and
+// party_menu.c's catch handling are all unmodified here - and the symptom (every
+// slot showing index 0) points at the party-index handling in
+// BufferBattlePartyOrderBySide, cf. rh-hideout issue #10893. Not reproducible on
+// demand, so there is nothing to verify a real fix against. With this at GEN_6,
+// a catch on a full party goes straight to the PC as in vanilla. Revisit when
+// upstream addresses it.
+#define B_CATCH_SWAP_INTO_PARTY     GEN_6 // In Gen7+, the option to swap caught Pokémon into the party will appear, allowing you to send a different Pokémon to the Box.
 #define B_CATCH_SWAP_CHECK_HMS      TRUE       // If set to TRUE, the catch swap feature above will prevent returning Pokémon to the Box if they know HMs.
 
 // Other settings
