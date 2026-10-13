@@ -292,7 +292,7 @@ PetalburgCity_Gym_EventScript_WallyFaceDown::
 	return
 
 PetalburgCity_Gym_EventScript_NormanNoBadges::
-	msgbox PetalburgCity_Gym_Text_NormanGoToRustboro, MSGBOX_DEFAULT
+	msgbox PetalburgCity_Gym_Text_NormanGoToMauville, MSGBOX_DEFAULT
 	release
 	end
 
@@ -1214,11 +1214,10 @@ PetalburgCity_Gym_Text_DadGoCollectBadges:
 	.string "DAD: Now…\p"
 	.string "{PLAYER}, if you want to become a\n"
 	.string "strong TRAINER, here's my advice.\p"
-	.string "Head for RUSTBORO CITY beyond this\n"
-	.string "town.\p"
+	.string "Head east to MAUVILLE CITY.\p"
 	.string "There, you should challenge\n"
-	.string "the GYM LEADER, ROXANNE.\p"
-	.string "After her, go on to other POKéMON\n"
+	.string "the GYM LEADER, WATTSON.\p"
+	.string "After him, go on to other POKéMON\n"
 	.string "GYMS and defeat their LEADERS.\p"
 	.string "Collect BADGES from them,\n"
 	.string "understood?\p"
@@ -1227,9 +1226,9 @@ PetalburgCity_Gym_Text_DadGoCollectBadges:
 	.string "But that's only after you become\n"
 	.string "stronger.$"
 
-PetalburgCity_Gym_Text_NormanGoToRustboro:
+PetalburgCity_Gym_Text_NormanGoToMauville:
 	.string "DAD: Hm? Aren't you going to the\n"
-	.string "POKéMON GYM in RUSTBORO CITY?\p"
+	.string "POKéMON GYM in MAUVILLE CITY?\p"
 	.string "There's no challenge for me to\n"
 	.string "battle a greenhorn TRAINER.\p"
 	.string "{PLAYER}, I want you to challenge me\n"
