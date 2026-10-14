@@ -601,6 +601,10 @@ Route110_EventScript_BirchScene5::
 	goto Route110_EventScript_BirchScene
 
 Route110_EventScript_BirchScene::
+	@ Spawn him off the right edge of the screen so he walks into view rather
+	@ than popping into it. The player triggers this at x=3, and the camera
+	@ shows x=-4 to x=10, so x=12 is clear with a column to spare.
+	setobjectxyperm LOCALID_ROUTE110_BIRCH, 12, 70
 	addobject LOCALID_ROUTE110_BIRCH
 	applymovement LOCALID_ROUTE110_BIRCH, Route110_Movement_BirchEntrance
 	waitmovement 0
@@ -614,6 +618,10 @@ Route110_EventScript_BirchScene::
 	call_if_eq VAR_0x8008, 3, Route110_EventScript_BirchApproachPlayer3
 	call_if_eq VAR_0x8008, 4, Route110_EventScript_BirchApproachPlayer4
 	call_if_eq VAR_0x8008, 5, Route110_EventScript_BirchApproachPlayer5
+	@ Each approach ends on a different side of the player, so let the engine
+	@ work the facing out rather than baking a direction into each movement.
+	applymovement LOCALID_ROUTE110_BIRCH, Common_Movement_FacePlayer
+	waitmovement 0
 	msgbox Route110_Text_ImagineSeeingYouHere, MSGBOX_DEFAULT
 	closemessage
 	delay 20
@@ -623,7 +631,9 @@ Route110_EventScript_BirchScene::
 	applymovement LOCALID_ROUTE110_BIRCH, Common_Movement_WalkInPlaceFasterRight
 	waitmovement 0
 	delay 20
-	applymovement LOCALID_ROUTE110_BIRCH, Common_Movement_WalkInPlaceFasterDown
+	@ Vanilla ended this "thinking" beat facing down, which was right when he
+	@ stood above the player. He is beside them now, so turn back to them.
+	applymovement LOCALID_ROUTE110_BIRCH, Common_Movement_FacePlayer
 	waitmovement 0
 	delay 30
 	msgbox Route110_Text_RustboroBlockedHaveAPokenav, MSGBOX_DEFAULT
@@ -694,7 +704,7 @@ Route110_EventScript_BirchApproachPlayer5::
 	return
 
 Route110_EventScript_BirchExit1::
-	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
+	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterRight
 	applymovement LOCALID_ROUTE110_BIRCH, Route110_Movement_BirchExit1
 	waitmovement 0
 	return
@@ -706,29 +716,32 @@ Route110_EventScript_BirchExit2::
 	return
 
 Route110_EventScript_BirchExit3::
-	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
+	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterRight
 	applymovement LOCALID_ROUTE110_BIRCH, Route110_Movement_BirchExit3
 	waitmovement 0
 	return
 
 Route110_EventScript_BirchExit4::
-	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
+	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterRight
 	applymovement LOCALID_ROUTE110_BIRCH, Route110_Movement_BirchExit4
 	waitmovement 0
 	return
 
-@ Birch now spawns at (9,70) and intercepts the player on the trigger column
-@ at x=3, y=67-70, where they arrive from ROUTE 103. He leaves to the WEST.
-@ Terrain note: (4,67) is blocked, so scene 1 is met from below at (3,68)
-@ rather than from the right. Walking down 3 from the spawn - what vanilla
-@ did - would now land him on the Team Aqua grunt at (9,73).
 Route110_EventScript_BirchExit5::
-	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
+	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterRight
 	applymovement LOCALID_ROUTE110_BIRCH, Route110_Movement_BirchExit5
 	waitmovement 0
 	return
 
+@ Birch spawns off-screen at (12,70) and walks west into view. The player
+@ triggers this from the column at x=3, arriving from ROUTE 103.
+@
+@ Terrain constraints behind the odd-looking paths: (4,67) is blocked, so
+@ scene 2 is met from below at (3,68); (4,72) is blocked, so scene 5 steps up
+@ rather than down to get clear of the player on its way out.
 Route110_Movement_BirchEntrance:
+	walk_left
+	walk_left
 	walk_left
 	walk_left
 	walk_left
@@ -736,88 +749,109 @@ Route110_Movement_BirchEntrance:
 
 @ Scene 1 fires on (3,68); Birch stops right of the player at (4,68).
 Route110_Movement_BirchApproachPlayer1:
-	walk_left
-	walk_left
 	walk_up
 	walk_up
-	face_left
+	walk_left
+	walk_left
+	walk_left
 	step_end
 
-@ Scene 2 fires on (3,67) - a dead-end alcove, and (4,67) is blocked - so
-@ Birch stops below the player at (3,68) and looks up instead.
+@ Scene 2 fires on (3,67), a dead-end alcove with (4,67) blocked, so Birch
+@ stops below the player at (3,68).
 Route110_Movement_BirchApproachPlayer2:
-	walk_left
-	walk_left
 	walk_up
 	walk_up
 	walk_left
-	face_up
+	walk_left
+	walk_left
+	walk_left
 	step_end
 
-@ Player on (3,69); Birch stops right of them at (4,69).
+@ Scene 3 fires on (3,69); Birch stops right of the player at (4,69).
 Route110_Movement_BirchApproachPlayer3:
-	walk_left
-	walk_left
 	walk_up
-	face_left
+	walk_left
+	walk_left
+	walk_left
 	step_end
 
-@ Player on (3,70); Birch stops right of them at (4,70).
+@ Scene 4 fires on (3,70); Birch stops right of the player at (4,70).
 Route110_Movement_BirchApproachPlayer4:
 	walk_left
 	walk_left
-	face_left
+	walk_left
 	step_end
 
 @ Scene 5 fires on (3,71); Birch stops right of the player at (4,71).
 Route110_Movement_BirchApproachPlayer5:
-	walk_left
-	walk_left
 	walk_down
-	face_left
+	walk_left
+	walk_left
+	walk_left
 	step_end
 
-@ Exits step around the player first - they are standing on the tile
-@ immediately west of Birch in scenes 2-4.
+@ Exits head back east, the way he arrived. The camera's right edge is x=10
+@ while the player stands at x=3, so walking to x=12 clears the screen with a
+@ column to spare before removeobject fires. Rows 68-71 are all walkable out
+@ to x=13, and the wandering woman at (14,69) is never reached.
+@
+@ He cannot leave to the WEST: x=0 is the map edge but the screen shows down
+@ to x=-4, so he would still be in plain view when removed.
 Route110_Movement_BirchExit1:
-	walk_down
-	walk_left
-	walk_left
-	walk_left
-	walk_left
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
 	step_end
 
-@ Scene 2 leaves Birch on (3,68) with the player above him, so he is already
-@ clear to head straight west.
 Route110_Movement_BirchExit2:
-	walk_left
-	walk_left
-	walk_left
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
 	step_end
 
 Route110_Movement_BirchExit3:
-	walk_down
-	walk_left
-	walk_left
-	walk_left
-	walk_left
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
 	step_end
 
 Route110_Movement_BirchExit4:
-	walk_down
-	walk_left
-	walk_left
-	walk_left
-	walk_left
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
 	step_end
 
-@ (4,72) is blocked, so scene 5 steps up instead of down to get clear.
 Route110_Movement_BirchExit5:
-	walk_up
-	walk_left
-	walk_left
-	walk_left
-	walk_left
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
 	step_end
 
 Route110_Text_WeCantTalkAboutAquaActivities:
