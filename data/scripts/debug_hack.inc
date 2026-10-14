@@ -137,7 +137,7 @@ Debug_Hack_Warp_Petalburg::             @ east of the Scott trigger; walk west
 	end
 
 Debug_Hack_Warp_Route110Birch::         @ west of the Birch trigger; walk east
-	warp MAP_ROUTE110, 0, 70
+	warp MAP_ROUTE110, 6, 70
 	waitstate
 	releaseall
 	end
