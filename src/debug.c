@@ -378,6 +378,18 @@ extern const u8 Debug_EventScript_SetHiddenNature[];
 extern const u8 Debug_EventScript_SetAbility[];
 extern const u8 Debug_EventScript_SetFriendship[];
 extern const u8 Debug_EventScript_Script_1[];
+extern const u8 Debug_Hack_Story_Start[];
+extern const u8 Debug_Hack_Story_WallyDone[];
+extern const u8 Debug_Hack_Story_RivalRoute110[];
+extern const u8 Debug_Hack_Story_WattsonDefeated[];
+extern const u8 Debug_Hack_Story_RoxanneDefeated[];
+extern const u8 Debug_Hack_Warp_Littleroot[];
+extern const u8 Debug_Hack_Warp_Route102[];
+extern const u8 Debug_Hack_Warp_Route103[];
+extern const u8 Debug_Hack_Warp_Petalburg[];
+extern const u8 Debug_Hack_Warp_Route110Birch[];
+extern const u8 Debug_Hack_Warp_Route110Rival[];
+extern const u8 Debug_Hack_Warp_MauvilleGym[];
 extern const u8 Debug_EventScript_Script_2[];
 extern const u8 Debug_EventScript_Script_3[];
 extern const u8 Debug_EventScript_Script_4[];
@@ -767,8 +779,38 @@ static const u8 *const sDebugMenu_Actions_BagUse_Options[] =
     COMPOUND_STRING("No Bag: {STR_VAR_1}Invalid value"),
 };
 
+static const struct DebugMenuOption sDebugMenu_Actions_HackStory[] =
+{
+    { COMPOUND_STRING("Start (spine 0)"),      DebugAction_ExecuteScript, Debug_Hack_Story_Start },
+    { COMPOUND_STRING("Wally done (10)"),      DebugAction_ExecuteScript, Debug_Hack_Story_WallyDone },
+    { COMPOUND_STRING("R110 rival (20)"),      DebugAction_ExecuteScript, Debug_Hack_Story_RivalRoute110 },
+    { COMPOUND_STRING("Wattson (30)"),         DebugAction_ExecuteScript, Debug_Hack_Story_WattsonDefeated },
+    { COMPOUND_STRING("Roxanne (40)"),         DebugAction_ExecuteScript, Debug_Hack_Story_RoxanneDefeated },
+    { NULL }
+};
+
+static const struct DebugMenuOption sDebugMenu_Actions_HackWarp[] =
+{
+    { COMPOUND_STRING("Littleroot grass"),     DebugAction_ExecuteScript, Debug_Hack_Warp_Littleroot },
+    { COMPOUND_STRING("Route 102 trees"),      DebugAction_ExecuteScript, Debug_Hack_Warp_Route102 },
+    { COMPOUND_STRING("Route 103 Gate B"),     DebugAction_ExecuteScript, Debug_Hack_Warp_Route103 },
+    { COMPOUND_STRING("Petalburg Scott"),      DebugAction_ExecuteScript, Debug_Hack_Warp_Petalburg },
+    { COMPOUND_STRING("Route 110 Birch"),      DebugAction_ExecuteScript, Debug_Hack_Warp_Route110Birch },
+    { COMPOUND_STRING("Route 110 rival"),      DebugAction_ExecuteScript, Debug_Hack_Warp_Route110Rival },
+    { COMPOUND_STRING("Mauville Gym"),         DebugAction_ExecuteScript, Debug_Hack_Warp_MauvilleGym },
+    { NULL }
+};
+
+static const struct DebugMenuOption sDebugMenu_Actions_Hack[] =
+{
+    { COMPOUND_STRING("Story jump…"),      DebugAction_OpenSubMenu, sDebugMenu_Actions_HackStory, },
+    { COMPOUND_STRING("Warp…"),            DebugAction_OpenSubMenu, sDebugMenu_Actions_HackWarp, },
+    { NULL }
+};
+
 static const struct DebugMenuOption sDebugMenu_Actions_Main[] =
 {
+    { COMPOUND_STRING("Hack…"),         DebugAction_OpenSubMenu, sDebugMenu_Actions_Hack, },
     { COMPOUND_STRING("Utilities…"),    DebugAction_OpenSubMenu, sDebugMenu_Actions_Utilities, },
     { COMPOUND_STRING("PC/Bag…"),       DebugAction_OpenSubMenu, sDebugMenu_Actions_PCBag, },
     { COMPOUND_STRING("Party…"),        DebugAction_OpenSubMenu, sDebugMenu_Actions_Party, },
