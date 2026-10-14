@@ -617,7 +617,17 @@ Route110_EventScript_BirchScene::
 	applymovement LOCALID_ROUTE110_BIRCH, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
 	delay 30
-	msgbox Route110_Text_HeardYouInstallMatchCall, MSGBOX_DEFAULT
+	msgbox Route110_Text_RustboroBlockedHaveAPokenav, MSGBOX_DEFAULT
+	closemessage
+	delay 30
+	playfanfare MUS_OBTAIN_ITEM
+	message Route110_Text_ReceivedPokenav
+	waitfanfare
+	closemessage
+	setflag FLAG_SYS_POKENAV_GET
+	setflag FLAG_RECEIVED_POKENAV
+	delay 30
+	msgbox Route110_Text_LetMeRegisterMyself, MSGBOX_DEFAULT
 	closemessage
 	delay 30
 	playfanfare MUS_REGISTER_MATCH_CALL
@@ -625,6 +635,7 @@ Route110_EventScript_BirchScene::
 	waitfanfare
 	closemessage
 	delay 30
+	setflag FLAG_ADDED_MATCH_CALL_TO_POKENAV
 	setflag FLAG_ENABLE_PROF_BIRCH_MATCH_CALL
 	msgbox Route110_Text_KeepAnEyeOutForRival, MSGBOX_DEFAULT
 	closemessage
@@ -640,104 +651,133 @@ Route110_EventScript_BirchScene::
 Route110_EventScript_BirchApproachPlayer1::
 	applymovement LOCALID_ROUTE110_BIRCH, Route110_Movement_BirchApproachPlayer1
 	waitmovement 0
+	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterRight
+	waitmovement 0
 	return
 
 Route110_EventScript_BirchApproachPlayer2::
 	applymovement LOCALID_ROUTE110_BIRCH, Route110_Movement_BirchApproachPlayer2
+	waitmovement 0
+	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
 	return
 
 Route110_EventScript_BirchApproachPlayer3::
 	applymovement LOCALID_ROUTE110_BIRCH, Route110_Movement_BirchApproachPlayer3
 	waitmovement 0
+	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterRight
+	waitmovement 0
 	return
 
 Route110_EventScript_BirchApproachPlayer4::
 	applymovement LOCALID_ROUTE110_BIRCH, Route110_Movement_BirchApproachPlayer4
 	waitmovement 0
+	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterRight
+	waitmovement 0
 	return
 
 Route110_EventScript_BirchExit1::
+	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
 	applymovement LOCALID_ROUTE110_BIRCH, Route110_Movement_BirchExit1
 	waitmovement 0
 	return
 
 Route110_EventScript_BirchExit2::
+	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterDown
 	applymovement LOCALID_ROUTE110_BIRCH, Route110_Movement_BirchExit2
 	waitmovement 0
 	return
 
 Route110_EventScript_BirchExit3::
+	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
 	applymovement LOCALID_ROUTE110_BIRCH, Route110_Movement_BirchExit3
 	waitmovement 0
 	return
 
 Route110_EventScript_BirchExit4::
+	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
 	applymovement LOCALID_ROUTE110_BIRCH, Route110_Movement_BirchExit4
 	waitmovement 0
 	return
 
+@ Birch now spawns at (9,70) and intercepts the player on the trigger column
+@ at x=3, y=67-70, where they arrive from ROUTE 103. He leaves to the WEST.
+@ Terrain note: (4,67) is blocked, so scene 1 is met from below at (3,68)
+@ rather than from the right. Walking down 3 from the spawn - what vanilla
+@ did - would now land him on the Team Aqua grunt at (9,73).
 Route110_Movement_BirchEntrance:
-	walk_down
-	walk_down
-	walk_down
+	walk_left
+	walk_left
+	walk_left
 	step_end
 
+@ Scene 1 fires on (3,68); Birch stops right of the player at (4,68).
 Route110_Movement_BirchApproachPlayer1:
-	walk_down
 	walk_left
 	walk_left
-	walk_down
+	walk_up
+	walk_up
+	face_left
 	step_end
 
+@ Scene 2 fires on (3,67) - a dead-end alcove, and (4,67) is blocked - so
+@ Birch stops below the player at (3,68) and looks up instead.
 Route110_Movement_BirchApproachPlayer2:
+	walk_left
+	walk_left
+	walk_up
+	walk_up
+	walk_left
+	face_up
+	step_end
+
+@ Player on (3,69); Birch stops right of them at (4,69).
+Route110_Movement_BirchApproachPlayer3:
+	walk_left
+	walk_left
+	walk_up
+	face_left
+	step_end
+
+@ Player on (3,70); Birch stops right of them at (4,70).
+Route110_Movement_BirchApproachPlayer4:
+	walk_left
+	walk_left
+	face_left
+	step_end
+
+@ Exits step around the player first - they are standing on the tile
+@ immediately west of Birch in scenes 2-4.
+Route110_Movement_BirchExit1:
 	walk_down
 	walk_left
-	walk_down
+	walk_left
+	walk_left
+	walk_left
 	step_end
 
-Route110_Movement_BirchApproachPlayer3:
-	walk_down
-	walk_down
-	step_end
-
-Route110_Movement_BirchApproachPlayer4:
-	walk_down
-	walk_right
-	walk_down
-	step_end
-
-Route110_Movement_BirchExit1:
-	walk_up
-	walk_up
-	walk_right
-	walk_up
-	walk_up
-	walk_up
-	step_end
-
+@ Scene 2 leaves Birch on (3,68) with the player above him, so he is already
+@ clear to head straight west.
 Route110_Movement_BirchExit2:
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
+	walk_left
+	walk_left
+	walk_left
 	step_end
 
 Route110_Movement_BirchExit3:
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
+	walk_down
+	walk_left
+	walk_left
+	walk_left
+	walk_left
 	step_end
 
 Route110_Movement_BirchExit4:
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
+	walk_down
+	walk_left
+	walk_left
+	walk_left
+	walk_left
 	step_end
 
 Route110_Text_WeCantTalkAboutAquaActivities:
@@ -966,14 +1006,27 @@ Route110_Text_ImagineSeeingYouHere:
 	.string "Imagine seeing you here!\p"
 	.string "And where might my {RIVAL} be?$"
 
-Route110_Text_HeardYouInstallMatchCall:
+Route110_Text_RustboroBlockedHaveAPokenav:
 	.string "Oh, I see!\n"
 	.string "You two are running separately.\l"
 	.string "Well, that's fine.\p"
-	.string "Oh, yes, I heard that your POKéNAV\n"
-	.string "had the MATCH CALL system installed.\p"
-	.string "Well, then, I should register you in\n"
-	.string "my POKéNAV as well.\p"
+	.string "Say, have you tried to head west\n"
+	.string "lately?\p"
+	.string "TEAM AQUA has RUSTBORO CITY sealed\n"
+	.string "off tight. Nobody gets through.\p"
+	.string "DEVON CORP. hands out POKéNAVs there,\n"
+	.string "and with the road shut, well…\p"
+	.string "So I pulled a few strings and had one\n"
+	.string "sent out to me. Here, it's yours!$"
+
+Route110_Text_ReceivedPokenav:
+	.string "{PLAYER} received a POKéNAV!$"
+
+Route110_Text_LetMeRegisterMyself:
+	.string "PROF. BIRCH: It has the MATCH CALL\n"
+	.string "system installed, too.\p"
+	.string "Well, then, I should register myself\n"
+	.string "in your POKéNAV right away.\p"
 	.string "That way, even when we're apart,\n"
 	.string "I can rate your POKéDEX anytime.\p"
 	.string "… … … … … …$"

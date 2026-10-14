@@ -78,6 +78,9 @@ PetalburgCity_EventScript_WallyTutorial::
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
 	setvar VAR_PETALBURG_CITY_STATE, 3
 	setvar VAR_STORY_PROGRESS, STORY_WALLY_TUTORIAL_DONE
+	@ Arms the Route 110 Birch scene, which now hands over the POKeNAV.
+	@ Vanilla armed it from the Slateport museum, far too late for this order.
+	setvar VAR_REGISTER_BIRCH_STATE, 1
 	fadedefaultbgm
 	clearflag FLAG_DONT_TRANSITION_MUSIC
 	special LoadPlayerParty
@@ -632,20 +635,26 @@ PetalburgCity_Movement_ScottApproachPlayer:
 	walk_left
 	step_end
 
+@ Scott leaves to the EAST, not the west - the west exit is sealed by the
+@ Team Aqua blockade in this hack, and he used to walk straight through it.
+@ All four exits funnel onto row y=12, which is clear from x=2 to x=23 and
+@ has no wandering NPCs in it. He is out of view by x=12; the walk continues
+@ to x=17 before the caller's removeobject fires.
 PetalburgCity_Movement_ScottExit0:
 	walk_down
 	walk_down
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
 	step_end
 
 PetalburgCity_Movement_PlayerWatchScottExit0:
@@ -654,22 +663,23 @@ PetalburgCity_Movement_PlayerWatchScottExit0:
 	delay_16
 	delay_16
 	delay_8
-	walk_in_place_faster_left
+	walk_in_place_faster_right
 	step_end
 
 PetalburgCity_Movement_ScottExit1:
 	walk_down
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
 	step_end
 
 PetalburgCity_Movement_PlayerWatchScottExit1:
@@ -677,45 +687,43 @@ PetalburgCity_Movement_PlayerWatchScottExit1:
 	walk_in_place_faster_down
 	delay_16
 	delay_8
-	walk_in_place_faster_left
+	walk_in_place_faster_right
 	step_end
 
 PetalburgCity_Movement_ScottExit2:
-	walk_down
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
 	step_end
 
 PetalburgCity_Movement_PlayerWatchScottExit2:
 	delay_16
-	walk_in_place_faster_down
-	delay_16
-	delay_8
-	walk_in_place_faster_left
+	walk_in_place_faster_right
 	step_end
 
 PetalburgCity_Movement_ScottExit3:
 	walk_up
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
 	step_end
 
 PetalburgCity_Movement_PlayerWatchScottExit3:
@@ -723,7 +731,7 @@ PetalburgCity_Movement_PlayerWatchScottExit3:
 	walk_in_place_faster_up
 	delay_16
 	delay_8
-	walk_in_place_faster_left
+	walk_in_place_faster_right
 	step_end
 
 PetalburgCity_EventScript_GymBoy::
