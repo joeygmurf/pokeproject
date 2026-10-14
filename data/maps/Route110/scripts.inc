@@ -592,6 +592,14 @@ Route110_EventScript_BirchScene4::
 	setvar VAR_0x8008, 4
 	goto Route110_EventScript_BirchScene
 
+@ Added: the player can enter ROUTE 110 from ROUTE 103 on row y=71, which
+@ the original four triggers did not cover. Without this they would walk
+@ past Birch and never receive the POKeNAV.
+Route110_EventScript_BirchScene5::
+	lockall
+	setvar VAR_0x8008, 5
+	goto Route110_EventScript_BirchScene
+
 Route110_EventScript_BirchScene::
 	addobject LOCALID_ROUTE110_BIRCH
 	applymovement LOCALID_ROUTE110_BIRCH, Route110_Movement_BirchEntrance
@@ -605,6 +613,7 @@ Route110_EventScript_BirchScene::
 	call_if_eq VAR_0x8008, 2, Route110_EventScript_BirchApproachPlayer2
 	call_if_eq VAR_0x8008, 3, Route110_EventScript_BirchApproachPlayer3
 	call_if_eq VAR_0x8008, 4, Route110_EventScript_BirchApproachPlayer4
+	call_if_eq VAR_0x8008, 5, Route110_EventScript_BirchApproachPlayer5
 	msgbox Route110_Text_ImagineSeeingYouHere, MSGBOX_DEFAULT
 	closemessage
 	delay 20
@@ -643,6 +652,7 @@ Route110_EventScript_BirchScene::
 	call_if_eq VAR_0x8008, 2, Route110_EventScript_BirchExit2
 	call_if_eq VAR_0x8008, 3, Route110_EventScript_BirchExit3
 	call_if_eq VAR_0x8008, 4, Route110_EventScript_BirchExit4
+	call_if_eq VAR_0x8008, 5, Route110_EventScript_BirchExit5
 	removeobject LOCALID_ROUTE110_BIRCH
 	setvar VAR_REGISTER_BIRCH_STATE, 2
 	releaseall
@@ -671,6 +681,13 @@ Route110_EventScript_BirchApproachPlayer3::
 
 Route110_EventScript_BirchApproachPlayer4::
 	applymovement LOCALID_ROUTE110_BIRCH, Route110_Movement_BirchApproachPlayer4
+	waitmovement 0
+	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterRight
+	waitmovement 0
+	return
+
+Route110_EventScript_BirchApproachPlayer5::
+	applymovement LOCALID_ROUTE110_BIRCH, Route110_Movement_BirchApproachPlayer5
 	waitmovement 0
 	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterRight
 	waitmovement 0
@@ -705,6 +722,12 @@ Route110_EventScript_BirchExit4::
 @ Terrain note: (4,67) is blocked, so scene 1 is met from below at (3,68)
 @ rather than from the right. Walking down 3 from the spawn - what vanilla
 @ did - would now land him on the Team Aqua grunt at (9,73).
+Route110_EventScript_BirchExit5::
+	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
+	applymovement LOCALID_ROUTE110_BIRCH, Route110_Movement_BirchExit5
+	waitmovement 0
+	return
+
 Route110_Movement_BirchEntrance:
 	walk_left
 	walk_left
@@ -746,6 +769,14 @@ Route110_Movement_BirchApproachPlayer4:
 	face_left
 	step_end
 
+@ Scene 5 fires on (3,71); Birch stops right of the player at (4,71).
+Route110_Movement_BirchApproachPlayer5:
+	walk_left
+	walk_left
+	walk_down
+	face_left
+	step_end
+
 @ Exits step around the player first - they are standing on the tile
 @ immediately west of Birch in scenes 2-4.
 Route110_Movement_BirchExit1:
@@ -774,6 +805,15 @@ Route110_Movement_BirchExit3:
 
 Route110_Movement_BirchExit4:
 	walk_down
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+@ (4,72) is blocked, so scene 5 steps up instead of down to get clear.
+Route110_Movement_BirchExit5:
+	walk_up
 	walk_left
 	walk_left
 	walk_left
