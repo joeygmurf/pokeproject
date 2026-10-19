@@ -9299,18 +9299,25 @@ void TryRestoreHeldItems(void)
 
     bool32 returnNPCItems = B_RETURN_STOLEN_NPC_ITEMS >= GEN_5 && gBattleTypeFlags & BATTLE_TYPE_TRAINER;
 
+    // Hack change: held consumables are never spent. Upstream restored only
+    // non-Berry items, and only when they were stolen or the fight was against
+    // a trainer - so an eaten Berry was gone for good, and so was a Focus Sash
+    // used up against a wild Pokemon. Here the party's held items are simply
+    // put back the way they started the battle.
     for (u32 i = 0; i < PARTY_SIZE; i++)
     {
-        if (gBattleStruct->itemLost[B_TRAINER_PLAYER][i].stolen || returnNPCItems)
-        {
-            enum Item lostItem = gBattleStruct->itemLost[B_TRAINER_PLAYER][i].originalItem;
+        enum Item originalItem = gBattleStruct->itemLost[B_TRAINER_PLAYER][i].originalItem;
+        enum Item heldItem = GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_HELD_ITEM);
 
-            if (GetItemPocket(lostItem) == POCKET_BERRIES && GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_HELD_ITEM) != lostItem)
-                lostItem = ITEM_NONE;
+        if (heldItem == originalItem)
+            continue;
 
-            if ((lostItem != ITEM_NONE || returnNPCItems) && GetItemPocket(lostItem) != POCKET_BERRIES)
-                SetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_HELD_ITEM, &lostItem);
-        }
+        // Against a trainer the party is reset exactly as it started, which
+        // also hands back anything taken off the opponent.
+        // Against a wild Pokemon only an emptied slot is refilled, so an item
+        // won with Thief or Covet - or swapped in by Trick - is still kept.
+        if (returnNPCItems || heldItem == ITEM_NONE)
+            SetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_HELD_ITEM, &originalItem);
     }
 }
 
