@@ -33,7 +33,8 @@ opens after the Petalburg intro.
 | 6 | Back east to Route 103 | sand path across the former water |
 | 7 | Route 103 crossing | **BLOCKED until step 3 is done** (Gate B) |
 | 8 | Route 103 → Route 110 | south to Slateport is **BLOCKED** (Gate C) |
-| 9 | Route 110: rival battle | unchanged from vanilla |
+| 9 | Route 110: **Birch hands over the POKéNAV** | replaces Mr. Stone in Rustboro, which is sealed. See §6 |
+| 9b | Route 110: rival battle | unchanged from vanilla. Raises the cap to 19 |
 | 10 | Route 110 → Mauville | |
 | 11 | **Wattson — first gym.** Dynamo Badge | Wally's pre-gym scene **removed** (see §6) |
 | 12 | Rock Smash becomes usable; Route 111 north opens | works unmodified — see §5 |
@@ -119,6 +120,13 @@ Roxanne falls".
 | 15 | opening → Route 110 rival | `FLAG_CAP_RIVAL_ROUTE110` | `Route110_EventScript_RivalExit` |
 | 19 | rival beaten → Wattson | `FLAG_CAP_WATTSON` | `MauvilleCity_Gym` badge block |
 | 24 | after Wattson | `FLAG_CAP_TBD_AFTER_WATTSON` | **nothing yet — placeholder** |
+
+> **Reading the table.** The number is the cap *while that flag is still
+> pending*, not the cap you get when you earn it. `GetCurrentLevelCap` returns
+> the value on the first **unset** flag. So beating the Route 110 rival sets
+> `FLAG_CAP_RIVAL_ROUTE110`, which makes `FLAG_CAP_WATTSON` the first unset row
+> — and the cap becomes **19**. This is vanilla's own convention, where
+> `{FLAG_BADGE01_GET, 15}` meant "15 until Roxanne falls".
 | 58 | post-Champion | `FLAG_IS_CHAMPION` | vanilla |
 
 The cap therefore holds at 24 after Wattson until the next milestone is
@@ -170,14 +178,67 @@ not be beatable early.
   only five species were reachable before the Route 103 crossing.
 - **Starter met location — DONE.** Recorded as `METLOC_FATEFUL_ENCOUNTER`
   instead of Route 101, so a Nuzlocke still gets a Route 101 encounter.
+- **Norman's advice — DONE.** Both no-badge lines now send the player east to
+  Wattson in Mauville; the one-badge line points at Lucy in Fallarbor. His
+  "come back with four badges" condition is untouched and still needs a
+  decision (see §9).
+- **Scott's exit — DONE.** He used to walk west straight through the Gate A
+  blockade. All four exit variants now run east along row y=12, which is clear
+  from x=2 to x=23 and holds no wandering NPCs.
+- **POKéNAV moved to Birch on Route 110 — DONE.** Vanilla gives it via Mr.
+  Stone in Rustboro, which is behind Gate A, so the player would reach Mauville
+  without one. The scene is armed from the Petalburg Wally tutorial rather than
+  the Slateport museum; the museum's own `setvar` is already guarded on state 0
+  so it no longer fires.
+  - Trigger column is **x=13, rows 68-71** — verified by flood fill to be a
+    genuine cut point (blocking it drops reachability 1197 → 67 tiles). Note
+    the cut depends on the Team Aqua grunts holding (8..11, 73); terrain alone
+    leaks south through rows 73-75. They do not vanish until Slateport.
+  - Birch spawns off-screen at (22,71) and exits west to x=4. The woman at
+    (14,69) is pinned for the scene because she strays onto his path.
+- **99 Poké Balls — DONE.** Both gender branches in Birch's lab.
 - **Wally's Mauville pre-gym scene** — TODO: remove; the player just saw him in
   Petalburg. Relocate the encounter later.
-- **Scott** — TODO: reuse the vanilla trigger, new dialogue referencing the
-  blockade and pointing at Route 103.
+- **Scott dialogue** — TODO: reuse the vanilla trigger, new text referencing the
+  blockade and pointing at Route 103. (His *movement* is done, his *words* are
+  not.)
+- **Birch's farewell** — TODO: `Route110_Text_KeepAnEyeOutForRival` is still
+  vanilla and asks the player to watch for the rival, before the rival fight.
+- **Mr. Stone** — TODO: his Rustboro scene still gives a second POKéNAV with
+  the full "I want you to have this" speech. Harmless flag-wise, odd to read.
 
 ---
 
-## 7. Open problems
+## 7. Gym order
+
+Decided so far. Everything past gym 2 is still vanilla ordering by default.
+
+| # | Leader | Town | Badge flag | Status |
+|---|---|---|---|---|
+| 1 | **Wattson** | Mauville | `FLAG_BADGE03_GET` | built (vanilla gym, reached first) |
+| 2 | **Lucy** | **Fallarbor** | TBD | **named in dialogue only — nothing built** |
+
+**Lucy, open questions:**
+- She already exists as the Pike Queen (`TRAINER_PIKE_QUEEN_LUCY`,
+  `FRONTIER_BRAIN_PIKE`) with her own pic and Frontier dialogue. Decide whether
+  gym-Lucy reuses that trainer entry or gets a separate one. Separate is
+  cleaner if the Battle Frontier stays in the game.
+- **Fallarbor has no gym map.** Needs building.
+- **Which badge flag she grants decides which HM she unlocks**, because the
+  HM↔badge mapping in `src/field_move.c` is by badge number, not by leader. If
+  she takes `FLAG_BADGE02_GET` she hands out Flash.
+- **Reaching Fallarbor as gym 2 is the real problem.** It sits behind Route 112
+  / the Fiery Path / Mt. Chimney from the Mauville side. That approach needs
+  tracing before anything is built: confirm a path exists from Mauville that
+  does not also open the western half of the map.
+
+Norman's "come back with four GYM BADGES" line is still vanilla. With the order
+reshuffled, decide what that number should be — and note Surf sits on his
+badge, which §5 flags as the single most dangerous item in this design.
+
+---
+
+## 8. Open problems
 
 1. **Devon Goods questline — deferred to mid-story (decided 2026-10-09).**
    In vanilla it is the spine of the *early* game: an Aqua grunt steals the
@@ -196,7 +257,7 @@ not be beatable early.
 
 ---
 
-## 8. Working rules
+## 9. Working rules
 
 - Add **one gate at a time**, verify it, commit. Never leave the game
   half-reordered.

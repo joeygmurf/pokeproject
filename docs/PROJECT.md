@@ -49,7 +49,7 @@ Toolchain is modern `arm-none-eabi-gcc`; no agbcc or devkitARM.
 
 ```bash
 make -j16                 # ~2.5 min cold, seconds for data-only edits
-make check                # expansion's battle test suite
+make check                # expansion's battle test suite (builds ALL species)
 make release              # strips debug features for distribution
 ```
 
@@ -70,6 +70,17 @@ without replaying.
 Git Credential Manager is a Windows GUI app and cannot prompt when git is
 invoked from a non-console context, so it hangs silently instead.
 
+**Merge before asking for a push.** `git push origin master` pushes whatever
+local `master` points at. Work sitting on an unmerged feature branch is simply
+not included, and git reports success — "everything up-to-date" — having sent
+nothing. This has bitten three times. Fast-forward master *without* checking it
+out, so a dirty working tree is untouched:
+
+```bash
+git fetch . <feature-branch>:master     # only if master is an ancestor
+git rev-list --count origin/master..master   # confirm it moved, THEN ask
+```
+
 ---
 
 ## 4. Tooling built for this project
@@ -79,6 +90,24 @@ invoked from a non-console context, so it hangs silently instead.
 | `tools/mapview.py` | ASCII map: collision, grass, ledges with jump arrows, NPCs, and each trainer's computed sight line. Read-only. |
 | `tools/maprender.py` | Renders a map region to **PNG using the real tiles/palettes/metatiles**. Use this to *check map edits by looking* rather than inferring from metatile IDs. |
 | `tools/porymap_cleanup.py` | Repairs Porymap's partial writes and drops its formatting churn. The Makefile runs `--repair-only` automatically before generating map sources. |
+
+**In-game: the `Hack…` debug menu** (R + START, first entry), defined in
+`data/scripts/debug_hack.inc` + the tables in `src/debug.c`.
+
+- **Story jump…** moves `VAR_STORY_PROGRESS` and everything riding on it to a
+  milestone. Cumulative: the Wattson entry also applies Wally and the rival.
+  Deliberately gives no Pokémon or items — stock *Cheat start* and *Give X…*
+  already do that, and mixing them makes the state hard to reason about.
+- **Warp…** lands a short walk from each custom event, so the trigger still
+  has to fire normally. Adding one is two lines; the pattern is commented.
+
+Other stock debug entries worth knowing: **Party… → Set Party** loads the
+party from `src/data/debug_trainers.party` (Showdown syntax, same as
+`trainers.party`), and **Start Debug Battle** loads both sides from that file
+and starts the fight — the fastest way to iterate a trainer's party.
+**Flags & Vars… → All badges** is the quickest obedience override, because
+`FLAG_BADGE08_GET` short-circuits the check outright; *Trainer See OFF*,
+*Collision OFF* and *Encounter OFF* live in the same submenu.
 
 ```bash
 python3 tools/mapview.py Route103 --range 18,8,52,14
@@ -118,6 +147,11 @@ one byte near the 8 KB mark in `heal_locations.json` three times — a `},` losi
 its comma. It happens whether or not Porymap is running, so "close it first" is
 not a fix. The build repairs it automatically now.
 
+A **different** shape has since appeared: the file losing its whole tail (66
+lines, including the closing bracket), which `porymap_cleanup.py` does **not**
+repair. Symptom is `JSONPROC_ERROR: ... unexpected end of input`. The file is
+tracked, so `git checkout -- src/data/heal_locations.json` fixes it.
+
 **Porymap defaults new objects to `elevation: 0`.** Hoenn ground is elevation 3.
 An NPC at 0 does not reliably block the player — it looks fine on the map and
 only shows up as "the blocker doesn't block."
@@ -141,6 +175,29 @@ turns up, `11B`/`11D` coast turns down, `12B`/`12D` outer diagonals. There is no
 south-facing sand edge. Avoid 1-tile-tall features; the corner set can't resolve
 them.
 
+**The camera is 15x10 tiles with the player centred**, so visible x runs
+`playerX-7 .. playerX+7`. Work this out *before* choosing which way a cutscene
+NPC walks off: "off screen" means out of that window, not the map edge. On
+Route 110 a westward exit was impossible because the player stood at x=3 and
+the map stopped at x=0 — the fix was to move the trigger column east, not to
+add more steps.
+
+**`include/constants/map_event_ids.h` is generated and gitignored.** A
+hand-written `LOCALID_*` there survives until the next `mapjson` run, then
+vanishes. Declare it as a `local_id` field on the object in `map.json`; the
+define is emitted from that.
+
+**`make check` builds every species; the normal build does not.** With Gen 7-9
+families compiled out, a typo'd constant in their data is completely silent
+until the test suite runs. `MOVE_ACCELROCK` (for `MOVE_ACCELEROCK`) sat
+committed in four Rockruff/Lycanroc learnsets exactly this way.
+
+**Flood fills must exclude water.** Water has collision 0, so a terrain-only
+fill walks across it and reports leaks that do not exist for a player without
+Surf. Check the metatile behaviour for `WATER`/`DEEP` as well as collision, and
+remember NPC-occupied tiles block too — the Route 110 cut point only holds
+because the Team Aqua grunts stand on (8..11, 73).
+
 **`trainerproc` does not validate move legality.** A species can be given a move
 it could never learn and the build will accept it silently.
 
@@ -163,6 +220,9 @@ straight to the PC. Re-enable if upstream fixes it.
 | Level caps | `src/caps.c` + `include/config/caps.h` |
 | HM → badge gating | `src/field_move.c` (one table) |
 | Trainer parties | `src/data/trainers.party` (Showdown syntax, 855 trainers) |
+| Debug test parties | `src/data/debug_trainers.party` — player + AI side for *Set Party* / *Start Debug Battle* |
+| Hack debug menu | `data/scripts/debug_hack.inc` + tables in `src/debug.c` |
+| Held-item restore | `TryRestoreHeldItems` in `src/battle_util.c` |
 | AI flag composites | `include/constants/battle_ai.h` |
 | Wild encounters | `src/data/wild_encounters.json` |
 | Species data | `src/data/pokemon/species_info/gen_N_families.h` — named for the *family's* origin gen |
@@ -183,14 +243,30 @@ crossing · Gate A (Aqua blockade) · Gate B (Route 103 blocker) · Infinite Can
 key item · L-button field menu (PokéVial + Infinite Repel) · Old Rod moved to
 Petalburg · Littleroot and Oldale grass with wild data · Littleroot patch gated
 behind owning a Pokémon · starter as a fateful encounter · Roxanne and Tiana
-rebuilt · Route 102/103/104 NPC and terrain work.
+rebuilt · Route 102/103/104 NPC and terrain work · Norman's advice points east
+to Wattson and on to Lucy · Scott leaves Petalburg eastward instead of walking
+through the Aqua blockade · **Birch hands over the PokéNav on Route 110** ·
+`Hack…` debug menu · 99 Poké Balls from the rival · held consumables are never
+spent.
 
 **Open:**
 - **Gate D (Rusturf Tunnel)** — highest risk. Wattson-first means Rock Smash
   arrives first, so the tunnel's rock barrier gates nothing.
 - **Gate C (Slateport)** — condition undefined.
 - Wally's Mauville scene, Scott dialogue.
+- **Gym 2: Lucy in Fallarbor** — named in Norman's dialogue, nothing built.
+  See `progression.md` §7.
+- Birch's farewell line on Route 110 is still vanilla, and still asks the
+  player to look out for the rival.
+- Mr. Stone's Rustboro scene still hands out a second PokéNav.
 - The remaining ~850 trainers *(user-owned)*.
 - New rivals, new Megas, new gyms.
 - `FLAG_CAP_TBD_AFTER_WATTSON` is a placeholder — the cap holds at 24 after
   Wattson until the next milestone is designed.
+
+**Known test state.** `make check` reports **5395 passed / 14 failed**. All 14
+are consequences of this hack's config, not regressions: hard level caps break
+`test/battle/exp.c`, the added story var shifts `SaveBlock1` by 4 bytes
+(`test/save.c`), disabled EVs break the Embargo EV test, and several AI and
+multi-hit tests are randomness-sensitive. Treat that set as the baseline and
+diff against it rather than reading a red number as breakage.
