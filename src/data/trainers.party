@@ -632,15 +632,35 @@ Pic: Aroma Lady
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
-Shroomish
+Stunky
 Level: 14
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Ability: Stench
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Trailblaze
+- Sucker Punch
+- Astonish
 
-Roselia
+Trubbish
 Level: 14
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Ability: Stench
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bullet Seed
+- Drain Punch
+- Headbutt
+
+Eevee
+Level: 14
+Ability: Adaptability
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Wish
+- Dig
+- Facade
+- Mimic
 
 === TRAINER_ROSE_1 ===
 Name: ROSE
@@ -4109,10 +4129,35 @@ Music: Intense
 Double Battle: No
 AI: Check Bad Move
 
-Abra
-Level: 15
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Hidden Power
+Spoink @ Berry Juice
+Level: 16
+Ability: Thick Fat
+Nature: Modest
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Psybeam
+- Hex
+- Thunder Wave
+- Chilling Water
+
+Cubone @ Thick Club
+Level: 16
+Ability: Battle Armor
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Brick Break
+- Headbutt
+- Mud-Slap
+- Iron Head
+
+Kadabra @ Expert Belt
+Level: 17
+Ability: Magic Guard
+Nature: Timid
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Psybeam
+- Shadow Ball
+- Dazzling Gleam
+- Tri Attack
 
 === TRAINER_PRESTON ===
 Name: PRESTON
@@ -6321,13 +6366,41 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Aron
-Level: 15
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Electrike
+Buneary @ Oran Berry
 Level: 13
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Ability: Limber
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Power-Up Punch
+- Quick Attack
+- Triple Axel
+
+Swinub @ Wise Glasses
+Level: 13
+Ability: Thick Fat
+Nature: Timid
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Mud-Slap
+- Powder Snow
+- Ancient Power
+
+Joltik @ Silver Powder
+Level: 13
+Ability: Compound Eyes
+Nature: Timid
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Infestation
+- Bug Bite
+- Thunder Wave
+- Electroweb
+
+Timburr @ Flame Orb
+Level: 12
+Ability: Guts
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Low Kick
+- Rock Tomb
 
 === TRAINER_WALLACE ===
 Name: WALLACE
@@ -8878,7 +8951,7 @@ Double Battle: Yes
 AI: Basic Trainer
 
 Elekid @ Punching Glove
-Level: 15
+Level: 14
 Ability: Static
 Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -8888,7 +8961,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Swift
 
 Magby
-Level: 15
+Level: 14
 Ability: Flame Body
 Nature: Bold
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -9451,15 +9524,36 @@ Pic: Collector
 Gender: Male
 Music: Suspicious
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
-Lombre
-Level: 14
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Solosis
+Level: 16
+Ability: Magic Guard
+Nature: Relaxed
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Psybeam
+- Recover
+- Light Screen
+- Reflect
 
-Nuzleaf
-Level: 14
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Gulpin
+Level: 16
+Ability: Innards Out
+Nature: Serious
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Sludge
+- Yawn
+- Fire Punch
+
+Duskull
+Level: 16
+Ability: Levitate
+Nature: Modest
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Hex
+- Icy Wind
+- Will-o-wisp
+- Disable
 
 === TRAINER_HECTOR ===
 Name: HECTOR
@@ -9640,17 +9734,44 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Slugma
-Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Axew @ Berry Juice
+Level: 13
+Ability: Mold Breaker
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bulldoze
+- Dragon Claw
+- Taunt
+- Counter
 
-Wingull
-Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Taillow @ Flame Orb
+Level: 14
+Ability: Guts
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Steel Wing
+- Wing Attack
+- Facade
+- Quick Attack
 
-Grovyle
-Level: 20
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Froakie @ Berry Juice
+Level: 15
+Ability: Torrent
+Nature: Timid
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Water Pulse
+- Icy Wind
+- Grass Knot
+- Rest
+
+Treecko @ Absorb Bulb
+Level: 15
+Ability: Overgrow
+Nature: Serious
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Mega Drain
+- Drain Punch
+- Rock Slide
 
 === TRAINER_BRENDAN_ROUTE_119_MUDKIP ===
 Name: BRENDAN
@@ -9695,17 +9816,44 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Wingull
-Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Axew @ Berry Juice
+Level: 13
+Ability: Mold Breaker
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bulldoze
+- Dragon Claw
+- Taunt
+- Counter
 
-Lombre
-Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Taillow @ Flame Orb
+Level: 14
+Ability: Guts
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Steel Wing
+- Wing Attack
+- Facade
+- Quick Attack
 
-Combusken
-Level: 20
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Chespin @ Berry Juice
+Level: 15
+Ability: Overgrow
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Leech Seed
+- Bite
+- Spikes
+- Roar
+
+Torchic @ Berry Juice
+Level: 15
+Ability: Blaze
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Pluck
+- Wild Charge
+- Flame Charge
 
 === TRAINER_BRENDAN_ROUTE_119_TREECKO ===
 Name: BRENDAN
@@ -9750,17 +9898,44 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Lombre
-Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Axew @ Berry Juice
+Level: 13
+Ability: Mold Breaker
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bulldoze
+- Dragon Claw
+- Taunt
+- Counter
 
-Slugma
-Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Taillow @ Flame Orb
+Level: 14
+Ability: Guts
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Steel Wing
+- Wing Attack
+- Facade
+- Quick Attack
 
-Marshtomp
-Level: 20
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Fennekin @ Berry Juice
+Level: 15
+Ability: Blaze
+Nature: Timid
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Will-o-Wisp
+- Calm Mind
+- Psyshock
+- Fire Spin
+
+Mudkip @ Expert Belt
+Level: 15
+Ability: Torrent
+Nature: Serious
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Mud Shot
+- Ice Punch
+- Water Pulse
 
 === TRAINER_BRENDAN_ROUTE_119_TORCHIC ===
 Name: BRENDAN
@@ -9805,17 +9980,44 @@ Music: Female
 Double Battle: No
 AI: Basic Trainer
 
-Wingull
-Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Axew @ Berry Juice
+Level: 13
+Ability: Mold Breaker
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bulldoze
+- Dragon Claw
+- Taunt
+- Counter
 
-Slugma
-Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Taillow @ Flame Orb
+Level: 14
+Ability: Guts
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Steel Wing
+- Wing Attack
+- Facade
+- Quick Attack
 
-Grovyle
-Level: 20
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Froakie @ Berry Juice
+Level: 15
+Ability: Torrent
+Nature: Timid
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Water Pulse
+- Icy Wind
+- Grass Knot
+- Rest
+
+Treecko @ Absorb Bulb
+Level: 15
+Ability: Overgrow
+Nature: Serious
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Mega Drain
+- Drain Punch
+- Rock Slide
 
 === TRAINER_MAY_ROUTE_119_MUDKIP ===
 Name: MAY
@@ -9860,17 +10062,44 @@ Music: Female
 Double Battle: No
 AI: Basic Trainer
 
-Wingull
-Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Axew @ Berry Juice
+Level: 13
+Ability: Mold Breaker
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bulldoze
+- Dragon Claw
+- Taunt
+- Counter
 
-Lombre
-Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Taillow @ Flame Orb
+Level: 14
+Ability: Guts
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Steel Wing
+- Wing Attack
+- Facade
+- Quick Attack
 
-Combusken
-Level: 20
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Chespin @ Berry Juice
+Level: 15
+Ability: Overgrow
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Leech Seed
+- Bite
+- Spikes
+- Roar
+
+Torchic @ Berry Juice
+Level: 15
+Ability: Blaze
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Pluck
+- Wild Charge
+- Flame Charge
 
 === TRAINER_MAY_ROUTE_119_TREECKO ===
 Name: MAY
@@ -9915,17 +10144,44 @@ Music: Female
 Double Battle: No
 AI: Basic Trainer
 
-Lombre
-Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Axew @ Berry Juice
+Level: 13
+Ability: Mold Breaker
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bulldoze
+- Dragon Claw
+- Taunt
+- Counter
 
-Slugma
-Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Taillow @ Flame Orb
+Level: 14
+Ability: Guts
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Steel Wing
+- Wing Attack
+- Facade
+- Quick Attack
 
-Marshtomp
-Level: 20
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Fennekin @ Berry Juice
+Level: 15
+Ability: Blaze
+Nature: Timid
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Will-o-Wisp
+- Calm Mind
+- Psyshock
+- Fire Spin
+
+Mudkip @ Expert Belt
+Level: 15
+Ability: Torrent
+Nature: Serious
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Mud Shot
+- Ice Punch
+- Water Pulse
 
 === TRAINER_MAY_ROUTE_119_TORCHIC ===
 Name: MAY
@@ -13177,15 +13433,36 @@ Pic: Guitarist
 Gender: Male
 Music: Intense
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
-Electrike
-Level: 14
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Blitzle
+Level: 16
+Ability: Sap Sipper
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Stomp
+- Flame Charge
+- Spark
 
-Voltorb
-Level: 14
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Slowpoke
+Level: 16
+Ability: Own Tempo
+Nature: Bold
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Water Pulse
+- Disable
+- Confusion
+- Mud Shot
+
+Herdier
+Level: 16
+Ability: Scrappy
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Psychic Fangs
+- Crunch
+- Fire Fang
+- Ice Fang
 
 === TRAINER_ALYSSA ===
 Name: ALYSSA
@@ -13196,9 +13473,24 @@ Music: Female
 Double Battle: No
 AI: Check Bad Move
 
-Magnemite
-Level: 15
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Flaaffy @ Magnet
+Level: 17
+Ability: Fluffy
+Nature: Modest
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Power Gem
+- Charge Beam
+- Thunder Wave
+
+Vigoroth
+Level: 18
+Ability: Vital Spirit
+Nature: Jolly
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- Bulldoze
+- Zen Headbutt
+- Shadow Claw
+- Slash
 
 === TRAINER_MARCOS ===
 Name: MARCOS

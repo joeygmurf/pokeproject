@@ -18,25 +18,32 @@ Pic: Brendan
 Gender: Male
 Music: Male
 
-Buffie (Wobbuffet)
-Brave Nature
-Level: 100
+Bill (Dusknoir)
+Serious Nature
+Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Def / 252 SpD / 6 Spe
-- Brutal Swing
-- Water Gun
-- Bubble
-- Sleep Talk
+- Shadow Ball
+- Psychic
+- Thunder Punch
+- Fire Punch
 
-Wynaut
-Brave Nature
-Level: 100
+Leonidas (Raichu)
+Serious Nature
+Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Def / 252 SpD / 6 Spe
-- Brutal Swing
-- Fly
-- Bubble
-- Sleep Talk
+- Thunderbolt
+- Surf
+- Iron Tail
+- Volt Switch
+
+Dunc (Sceptile)
+Serious Nature
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Leaf Blade
+- Dragon Claw
+- Brick Break
+- Synthesis
 
 === DEBUG_TRAINER_AI ===
 Name: Debugger
