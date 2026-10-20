@@ -120,6 +120,7 @@ Roxanne falls".
 | 15 | opening → Route 110 rival | `FLAG_CAP_RIVAL_ROUTE110` | `Route110_EventScript_RivalExit` |
 | 19 | rival beaten → Wattson | `FLAG_CAP_WATTSON` | `MauvilleCity_Gym` badge block |
 | 24 | after Wattson | `FLAG_CAP_TBD_AFTER_WATTSON` | **nothing yet — placeholder** |
+| 58 | post-Champion | `FLAG_IS_CHAMPION` | vanilla |
 
 > **Reading the table.** The number is the cap *while that flag is still
 > pending*, not the cap you get when you earn it. `GetCurrentLevelCap` returns
@@ -127,7 +128,6 @@ Roxanne falls".
 > `FLAG_CAP_RIVAL_ROUTE110`, which makes `FLAG_CAP_WATTSON` the first unset row
 > — and the cap becomes **19**. This is vanilla's own convention, where
 > `{FLAG_BADGE01_GET, 15}` meant "15 until Roxanne falls".
-| 58 | post-Champion | `FLAG_IS_CHAMPION` | vanilla |
 
 The cap therefore holds at 24 after Wattson until the next milestone is
 designed. Fine while only the opening is reordered; revisit before extending
@@ -181,7 +181,7 @@ not be beatable early.
 - **Norman's advice — DONE.** Both no-badge lines now send the player east to
   Wattson in Mauville; the one-badge line points at Lucy in Fallarbor. His
   "come back with four badges" condition is untouched and still needs a
-  decision (see §9).
+  decision (see §7).
 - **Scott's exit — DONE.** He used to walk west straight through the Gate A
   blockade. All four exit variants now run east along row y=12, which is clear
   from x=2 to x=23 and holds no wandering NPCs.
