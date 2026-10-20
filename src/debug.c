@@ -381,6 +381,8 @@ extern const u8 Debug_EventScript_Script_1[];
 extern const u8 Debug_Hack_Story_Start[];
 extern const u8 Debug_Hack_Story_WallyDone[];
 extern const u8 Debug_Hack_Story_RivalRoute110[];
+extern const u8 Debug_Hack_Story_MauvillePreWattson[];
+extern const u8 Debug_Hack_Story_VerdanturfPreWally[];
 extern const u8 Debug_Hack_Story_WattsonDefeated[];
 extern const u8 Debug_Hack_Story_RoxanneDefeated[];
 extern const u8 Debug_Hack_Warp_Littleroot[];
@@ -390,6 +392,8 @@ extern const u8 Debug_Hack_Warp_Petalburg[];
 extern const u8 Debug_Hack_Warp_Route110Birch[];
 extern const u8 Debug_Hack_Warp_Route110Rival[];
 extern const u8 Debug_Hack_Warp_MauvilleGym[];
+extern const u8 Debug_Hack_Warp_MauvillePC[];
+extern const u8 Debug_Hack_Warp_VerdanturfPC[];
 extern const u8 Debug_EventScript_Script_2[];
 extern const u8 Debug_EventScript_Script_3[];
 extern const u8 Debug_EventScript_Script_4[];
@@ -784,6 +788,8 @@ static const struct DebugMenuOption sDebugMenu_Actions_HackStory[] =
     { COMPOUND_STRING("Start (spine 0)"),      DebugAction_ExecuteScript, Debug_Hack_Story_Start },
     { COMPOUND_STRING("Wally done (10)"),      DebugAction_ExecuteScript, Debug_Hack_Story_WallyDone },
     { COMPOUND_STRING("R110 rival (20)"),      DebugAction_ExecuteScript, Debug_Hack_Story_RivalRoute110 },
+    { COMPOUND_STRING("Mauville pre-Wattson"), DebugAction_ExecuteScript, Debug_Hack_Story_MauvillePreWattson },
+    { COMPOUND_STRING("Verdanturf pre-Wally"), DebugAction_ExecuteScript, Debug_Hack_Story_VerdanturfPreWally },
     { COMPOUND_STRING("Wattson (30)"),         DebugAction_ExecuteScript, Debug_Hack_Story_WattsonDefeated },
     { COMPOUND_STRING("Roxanne (40)"),         DebugAction_ExecuteScript, Debug_Hack_Story_RoxanneDefeated },
     { NULL }
@@ -798,6 +804,8 @@ static const struct DebugMenuOption sDebugMenu_Actions_HackWarp[] =
     { COMPOUND_STRING("Route 110 Birch"),      DebugAction_ExecuteScript, Debug_Hack_Warp_Route110Birch },
     { COMPOUND_STRING("Route 110 rival"),      DebugAction_ExecuteScript, Debug_Hack_Warp_Route110Rival },
     { COMPOUND_STRING("Mauville Gym"),         DebugAction_ExecuteScript, Debug_Hack_Warp_MauvilleGym },
+    { COMPOUND_STRING("Mauville PC"),          DebugAction_ExecuteScript, Debug_Hack_Warp_MauvillePC },
+    { COMPOUND_STRING("Verdanturf PC"),        DebugAction_ExecuteScript, Debug_Hack_Warp_VerdanturfPC },
     { NULL }
 };
 

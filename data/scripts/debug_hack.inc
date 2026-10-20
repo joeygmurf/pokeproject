@@ -30,6 +30,23 @@ Debug_Hack_Done::
 	releaseall
 	end
 
+@ Rewinds the Verdanturf Wally errand: his uncle back on the Mauville Gym door,
+@ Wally back in Wanda's House and re-fightable.
+Debug_Hack_Rewind_WallyErrand::
+	clearflag FLAG_CHEERED_UP_WALLY
+	clearflag FLAG_HIDE_MAUVILLE_CITY_WALLYS_UNCLE
+	clearflag FLAG_DEFEATED_WALLY_MAUVILLE
+	clearflag FLAG_WALLY_SPEECH
+	cleartrainerflag TRAINER_WALLY_MAUVILLE
+	@ Wally is normally revealed here by MauvilleCity_OnTransition. The warps
+	@ below can drop the player straight into Verdanturf, which would otherwise
+	@ find Wanda's House empty and the errand impossible to finish.
+	setflag FLAG_HIDE_MAUVILLE_CITY_WALLY
+	clearflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLY
+	@ The uncle cannot be in both places at once - he is still in Mauville.
+	setflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLYS_UNCLE
+	return
+
 @ ---------------------------------------------------------------------------
 @ Story jumps
 @ ---------------------------------------------------------------------------
@@ -40,14 +57,10 @@ Debug_Hack_Story_Start::
 	setvar VAR_STORY_PROGRESS, STORY_START
 	call Debug_Hack_ClearCapFlags
 	setvar VAR_REGISTER_BIRCH_STATE, 0
-	@ Re-close the Mauville Gym door. Clearing the hide flag alone is not
-	@ enough - MauvilleCity_OnTransition re-applies it from this one.
-	clearflag FLAG_CHEERED_UP_WALLY
-	clearflag FLAG_HIDE_MAUVILLE_CITY_WALLYS_UNCLE
-	@ So the Verdanturf Wally battle is available again.
-	clearflag FLAG_DEFEATED_WALLY_MAUVILLE
-	clearflag FLAG_WALLY_SPEECH
-	cleartrainerflag TRAINER_WALLY_MAUVILLE
+	@ Re-closes the Mauville Gym door. Clearing the uncle's hide flag alone is
+	@ not enough - MauvilleCity_OnTransition re-applies it from
+	@ FLAG_CHEERED_UP_WALLY.
+	call Debug_Hack_Rewind_WallyErrand
 	goto Debug_Hack_Done
 
 @ Wally has caught his Ralts. Gate B (Route 103 crossing) opens and the
@@ -83,6 +96,33 @@ Debug_Hack_Beat_RivalRoute110::
 	setflag FLAG_ADDED_MATCH_CALL_TO_POKENAV
 	setflag FLAG_ENABLE_PROF_BIRCH_MATCH_CALL
 	return
+
+@ The two halves of the Wally errand, each setting the state AND warping to it.
+@ Both share the same flags - talking to the uncle sets nothing, so "before the
+@ uncle" and "before Wally" are the same save state, only a different place to
+@ stand. Story-wise both sit at STORY_RIVAL_ROUTE110: PokeNav in hand, cap 19,
+@ Wattson not yet challenged.
+
+@ Outside the Mauville POKeMON CENTER, with the uncle still on the gym door.
+Debug_Hack_Story_MauvillePreWattson::
+	call Debug_Hack_Beat_WallyDone
+	call Debug_Hack_Beat_RivalRoute110
+	call Debug_Hack_Rewind_WallyErrand
+	warp MAP_MAUVILLE_CITY, 22, 6
+	waitstate
+	releaseall
+	end
+
+@ Outside the Verdanturf POKeMON CENTER, with Wally waiting in Wanda's House
+@ and the battle not yet fought.
+Debug_Hack_Story_VerdanturfPreWally::
+	call Debug_Hack_Beat_WallyDone
+	call Debug_Hack_Beat_RivalRoute110
+	call Debug_Hack_Rewind_WallyErrand
+	warp MAP_VERDANTURF_TOWN, 16, 4
+	waitstate
+	releaseall
+	end
 
 @ Wattson beaten - first gym of this hack. Dynamo Badge, Rock Smash usable,
 @ level cap 24. Mirrors MauvilleCity_Gym_EventScript_WattsonDefeated.
@@ -164,6 +204,21 @@ Debug_Hack_Warp_Route110Rival::         @ below the rival trigger row; walk up
 
 Debug_Hack_Warp_MauvilleGym::           @ two tiles below the gym door
 	warp MAP_MAUVILLE_CITY, 8, 7
+	waitstate
+	releaseall
+	end
+
+@ These two leave every flag alone - use the matching "Story jump..." entries
+@ when the state needs setting as well.
+
+Debug_Hack_Warp_MauvillePC::            @ step in front of the POKeMON CENTER
+	warp MAP_MAUVILLE_CITY, 22, 6
+	waitstate
+	releaseall
+	end
+
+Debug_Hack_Warp_VerdanturfPC::          @ step in front of the POKeMON CENTER
+	warp MAP_VERDANTURF_TOWN, 16, 4
 	waitstate
 	releaseall
 	end
