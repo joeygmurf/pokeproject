@@ -5,21 +5,31 @@ VerdanturfTown_MapScripts::
 VerdanturfTown_OnTransition:
 	setflag FLAG_VISITED_VERDANTURF_TOWN
 	setvar VAR_CONTEST_HALL_STATE, 0
+	call VerdanturfTown_EventScript_UpdateAquaBlockade
 	end
 
-VerdanturfTown_EventScript_Twin::
+@ Gate D (see docs/progression.md): one Aqua grunt on (8,2) seals Verdanturf's
+@ Rusturf Tunnel entrance. The tunnel warp at (8,1) can only be entered from
+@ (8,2) - y1 is blocked either side of it - so he closes it on his own.
+@
+@ This matters more here than the rock barrier ever did: Wattson is the first
+@ gym in this hack, so Rock Smash arrives long before vanilla intended and the
+@ barrier gates nothing.
+@
+@ Nothing sets STORY_GATE_D_OPEN yet, so he never leaves. That milestone is
+@ reserved in include/constants/story_progress.h and still needs designing.
+VerdanturfTown_EventScript_UpdateAquaBlockade::
+	goto_if_lt VAR_STORY_PROGRESS, STORY_GATE_D_OPEN, VerdanturfTown_EventScript_AquaBlockadeReturn
+	setflag FLAG_HIDE_VERDANTURF_AQUA_GRUNT
+VerdanturfTown_EventScript_AquaBlockadeReturn::
+	return
+
+VerdanturfTown_EventScript_AquaGrunt::
 	lock
 	faceplayer
-	goto_if_set FLAG_RUSTURF_TUNNEL_OPENED, VerdanturfTown_EventScript_TwinTunnelOpen
-	msgbox VerdanturfTown_Text_ManTryingToDigTunnel, MSGBOX_DEFAULT
-	applymovement LOCALID_VERDANTURF_TWIN, Common_Movement_FaceOriginalDirection
-	waitmovement 0
-	release
-	end
-
-VerdanturfTown_EventScript_TwinTunnelOpen::
-	msgbox VerdanturfTown_Text_ManDugTunnelForLove, MSGBOX_DEFAULT
-	applymovement LOCALID_VERDANTURF_TWIN, Common_Movement_FaceOriginalDirection
+	msgbox VerdanturfTown_Text_AquaScramKid, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_VERDANTURF_AQUA_GRUNT, Common_Movement_FaceOriginalDirection
 	waitmovement 0
 	release
 	end
@@ -61,21 +71,9 @@ VerdanturfTown_EventScript_RusturfTunnelSign::
 	msgbox VerdanturfTown_Text_RusturfTunnelSign, MSGBOX_SIGN
 	end
 
-VerdanturfTown_Text_ManTryingToDigTunnel:
-	.string "My papa told me.\p"
-	.string "He says this tunnel is full of\n"
-	.string "timid POKéMON.\p"
-	.string "They get all scared of loud noise and\n"
-	.string "make a big uproar.\p"
-	.string "So they had to stop the big tunnel\n"
-	.string "project.\p"
-	.string "But there's one man. He's trying to dig\n"
-	.string "the tunnel by himself!$"
-
-VerdanturfTown_Text_ManDugTunnelForLove:
-	.string "There was a man who dug a tunnel for\n"
-	.string "a lady he loved.\p"
-	.string "I don't really get it, but hey!$"
+VerdanturfTown_Text_AquaScramKid:
+	.string "Scram, kid.\n"
+	.string "Official TEAM AQUA business ahead.$"
 
 VerdanturfTown_Text_AirCleanHere:
 	.string "The way the winds blow, volcanic ash\n"

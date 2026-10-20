@@ -39,7 +39,7 @@
       "flag": "0"
     },
     {
-      "local_id": "LOCALID_VERDANTURF_TWIN",
+      "local_id": "LOCALID_VERDANTURF_AQUA_GRUNT",
       "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
       "x": 8,
       "y": 2,
@@ -49,8 +49,8 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "VerdanturfTown_EventScript_Twin",
-      "flag": "0"
+      "script": "VerdanturfTown_EventScript_AquaGrunt",
+      "flag": "FLAG_HIDE_VERDANTURF_AQUA_GRUNT"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BOY_1",
