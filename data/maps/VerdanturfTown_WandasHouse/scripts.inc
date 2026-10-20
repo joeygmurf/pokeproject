@@ -1,11 +1,28 @@
 VerdanturfTown_WandasHouse_MapScripts::
 	.byte 0
 
+@ Hack change: Wally is here from the moment the player first reaches Mauville,
+@ having already lost to Wattson. His uncle is blocking the Mauville Gym door
+@ until this conversation happens - see MauvilleCity_EventScript_WallysUncle.
 VerdanturfTown_WandasHouse_EventScript_Wally::
 	lock
 	faceplayer
+	goto_if_unset FLAG_CHEERED_UP_WALLY, VerdanturfTown_WandasHouse_EventScript_WallyLostToWattson
 	goto_if_set FLAG_WALLY_SPEECH, VerdanturfTown_WandasHouse_EventScript_WallyShortSpeech
 	msgbox VerdanturfTown_WandasHouse_Text_StrongerSpeech, MSGBOX_DEFAULT
+	setflag FLAG_WALLY_SPEECH
+	release
+	end
+
+@ Setting FLAG_CHEERED_UP_WALLY is what clears the Mauville Gym door. It takes
+@ effect on the next ON_TRANSITION into Mauville, which the player cannot avoid
+@ on the way back.
+VerdanturfTown_WandasHouse_EventScript_WallyLostToWattson::
+	msgbox VerdanturfTown_WandasHouse_Text_WallyLostToWattson, MSGBOX_DEFAULT
+	setflag FLAG_CHEERED_UP_WALLY
+	@ Skip Text_StrongerSpeech on later visits - it opens with "I lost to you,
+	@ {PLAYER}", and the Mauville battle that made that true is gone. The short
+	@ version makes no such claim.
 	setflag FLAG_WALLY_SPEECH
 	release
 	end
@@ -81,6 +98,19 @@ VerdanturfTown_WandasHouse_EventScript_WallysAuntEverGrande::
 	msgbox VerdanturfTown_WandasHouse_Text_WallyWasInEverGrande, MSGBOX_DEFAULT
 	release
 	end
+
+VerdanturfTown_WandasHouse_Text_WallyLostToWattson:
+	.string "WALLY: Oh… {PLAYER}…\p"
+	.string "I challenged the MAUVILLE GYM, and\n"
+	.string "WATTSON beat me soundly.\p"
+	.string "I thought living here had made me\n"
+	.string "stronger, but I wasn't ready at all…\p"
+	.string "…Thank you for coming all this way.\n"
+	.string "I feel a little better already.\p"
+	.string "I'm going to keep training with my\n"
+	.string "RALTS until I can face him again.\p"
+	.string "You should go and challenge WATTSON\n"
+	.string "yourself, {PLAYER}. Good luck!$"
 
 VerdanturfTown_WandasHouse_Text_StrongerSpeech:
 	.string "WALLY: I lost to you, {PLAYER}, but I'm\n"

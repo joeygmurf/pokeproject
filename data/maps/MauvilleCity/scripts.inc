@@ -10,7 +10,35 @@ MauvilleCity_OnTransition:
 	clearflag FLAG_MAUVILLE_GYM_BARRIERS_STATE
 	setvar VAR_MAUVILLE_GYM_STATE, 0
 	call_if_set FLAG_GOT_TM_THUNDERBOLT_FROM_WATTSON, MauvilleCity_EventScript_MoveWattsonBackToGym
+	call MauvilleCity_EventScript_SetUpWallysUncle
 	end
+
+@ Hack change: vanilla had WALLY blocking the gym door at (8,6) with his uncle
+@ standing beside him, and the gym only opened once you beat Wally here. Now
+@ Wally has already lost to Wattson and gone home, so the UNCLE holds the door
+@ and sends you to Verdanturf to cheer him up.
+@
+@ (8,6) is the only tile the gym warp at (8,5) can be entered from - (7,5) and
+@ (9,5) are both blocked - so one NPC there seals it completely.
+MauvilleCity_EventScript_SetUpWallysUncle::
+	@ Wally is never in Mauville in this hack. Setting the hide flag rather
+	@ than deleting the object keeps LOCALID_MAUVILLE_WALLY valid, and the
+	@ Match Call code reads this same flag to place him in Verdanturf.
+	setflag FLAG_HIDE_MAUVILLE_CITY_WALLY
+	@ Put him in Wanda's House now. Vanilla did this from the Wally battle
+	@ below, which no longer runs. Verdanturf is only reachable through
+	@ Mauville (Route 117, or Rusturf Tunnel behind Gate D), so arriving here
+	@ is guaranteed to come first.
+	clearflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLY
+	goto_if_unset FLAG_CHEERED_UP_WALLY, MauvilleCity_EventScript_UncleStillBlockingGym
+	@ Errand done: the uncle has gone home to Verdanturf too, and the gym
+	@ door is clear.
+	setflag FLAG_HIDE_MAUVILLE_CITY_WALLYS_UNCLE
+	clearflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLYS_UNCLE
+	return
+
+MauvilleCity_EventScript_UncleStillBlockingGym::
+	return
 
 MauvilleCity_EventScript_MoveWattsonBackToGym::
 	clearflag FLAG_HIDE_MAUVILLE_GYM_WATTSON
@@ -64,19 +92,25 @@ MauvilleCity_EventScript_TVExplained::
 	release
 	end
 
+@ He is standing on the gym door, so this is the only thing between the player
+@ and Wattson. He never moves aside while you are in the room - he is hidden on
+@ the next entry to Mauville once FLAG_CHEERED_UP_WALLY is set, by
+@ MauvilleCity_EventScript_SetUpWallysUncle above.
 MauvilleCity_EventScript_WallysUncle::
 	lock
 	faceplayer
-	goto_if_set FLAG_DECLINED_WALLY_BATTLE_MAUVILLE, MauvilleCity_EventScript_UncleAskPlayerToBattleWally
-	msgbox MauvilleCity_Text_UncleHesTooPeppy, MSGBOX_DEFAULT
+	goto_if_set FLAG_CHEERED_UP_WALLY, MauvilleCity_EventScript_UncleThanksForCheeringWally
+	msgbox MauvilleCity_Text_UncleGoCheerUpWally, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_MAUVILLE_WALLYS_UNCLE, Common_Movement_FaceOriginalDirection
 	waitmovement 0
 	release
 	end
 
-MauvilleCity_EventScript_UncleAskPlayerToBattleWally::
-	msgbox MauvilleCity_Text_UncleCanYouBattleWally, MSGBOX_DEFAULT
+@ Only reachable if the player somehow cheers Wally up and gets back here
+@ without a map transition. Harmless safety net.
+MauvilleCity_EventScript_UncleThanksForCheeringWally::
+	msgbox MauvilleCity_Text_UncleThankYouForCheeringWally, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_MAUVILLE_WALLYS_UNCLE, Common_Movement_FaceOriginalDirection
 	waitmovement 0
@@ -458,6 +492,19 @@ MauvilleCity_EventScript_RegisterWallyCall::
 	clearflag FLAG_ENABLE_FIRST_WALLY_POKENAV_CALL
 	releaseall
 	end
+
+MauvilleCity_Text_UncleGoCheerUpWally:
+	.string "UNCLE: {PLAYER}! Just the person I\n"
+	.string "wanted to see!\p"
+	.string "WALLY just lost to WATTSON and\n"
+	.string "could really use some cheering up.\p"
+	.string "He just went back to VERDANTURF\n"
+	.string "TOWN. Would you mind going and\l"
+	.string "talking to him?$"
+
+MauvilleCity_Text_UncleThankYouForCheeringWally:
+	.string "UNCLE: Thank you for going to see\n"
+	.string "WALLY. You're a good friend to him.$"
 
 MauvilleCity_Text_UncleHesTooPeppy:
 	.string "UNCLE: It's because of POKéMON that\n"

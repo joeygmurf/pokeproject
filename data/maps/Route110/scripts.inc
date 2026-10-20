@@ -611,7 +611,8 @@ Route110_EventScript_BirchScene4::
 	goto Route110_EventScript_BirchScene
 
 Route110_EventScript_BirchScene::
-	setobjectxy LOCALID_ROUTE110_OLD_WOMAN, 14, 69
+	@ The wandering woman who used to be pinned to (14,69) here has since been
+	@ deleted from the map, so there is nothing left to move off Birch's path.
 	setobjectxyperm LOCALID_ROUTE110_BIRCH, 22, 71
 	addobject LOCALID_ROUTE110_BIRCH
 	applymovement LOCALID_ROUTE110_BIRCH, Route110_Movement_BirchEntrance

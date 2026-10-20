@@ -40,6 +40,10 @@ Debug_Hack_Story_Start::
 	setvar VAR_STORY_PROGRESS, STORY_START
 	call Debug_Hack_ClearCapFlags
 	setvar VAR_REGISTER_BIRCH_STATE, 0
+	@ Re-close the Mauville Gym door. Clearing the hide flag alone is not
+	@ enough - MauvilleCity_OnTransition re-applies it from this one.
+	clearflag FLAG_CHEERED_UP_WALLY
+	clearflag FLAG_HIDE_MAUVILLE_CITY_WALLYS_UNCLE
 	goto Debug_Hack_Done
 
 @ Wally has caught his Ralts. Gate B (Route 103 crossing) opens and the
@@ -86,6 +90,10 @@ Debug_Hack_Story_WattsonDefeated::
 
 Debug_Hack_Beat_WattsonDefeated::
 	setvar VAR_STORY_PROGRESS, STORY_WATTSON_DEFEATED
+	@ Wattson cannot have been beaten with his uncle still on the gym door, so
+	@ clear that errand too. MauvilleCity_OnTransition acts on this flag.
+	setflag FLAG_CHEERED_UP_WALLY
+	setflag FLAG_WALLY_SPEECH
 	setflag FLAG_BADGE03_GET
 	setflag FLAG_DEFEATED_MAUVILLE_GYM
 	setflag FLAG_CAP_WATTSON
