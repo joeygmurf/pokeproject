@@ -4014,15 +4014,45 @@ Pic: Bug Maniac
 Gender: Male
 Music: Suspicious
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
-Dustox
+Venipede @ Wide Lens
 Level: 16
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+Ability: Speed Boost
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Rollout
+- Poison Tail
+- Defense Curl
 
-Beautifly
+Burmy-trash
 Level: 16
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+Ability: Shed Skin
+Nature: Sassy
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Protect
+- Toxic
+- Bug Bite
+
+Trapinch @ Expert Belt
+Level: 16
+Ability: Arena Trap
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bulldoze
+- Bite
+- Astonish
+- Ice Fang
+
+Volbeat @ Focus Sash
+Level: 16
+Ability: Prankster
+Nature: Timid
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Tail Glow
+- Bug Buzz
+- Shock Wave
+- Dazzling Gleam
 
 === TRAINER_JEFFREY_2 ===
 Name: JEFFREY
@@ -4127,7 +4157,7 @@ Pic: Psychic M
 Gender: Male
 Music: Intense
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
 Spoink @ Berry Juice
 Level: 16
@@ -5436,22 +5466,45 @@ Pic: Sr And Jr
 Gender: Male
 Music: Twins
 Double Battle: Yes
-AI: Check Bad Move
+AI: Basic Trainer
 
-Zigzagoon
-Level: 15
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Growl
-- Tail Whip
-- Headbutt
-- Odor Sleuth
+Pidove @ Scope Lens
+Level: 16
+Ability: Super Luck
+Nature: Timid
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Air Cutter
+- Quick Attack
+- Swift
+- Twister
 
-Makuhita
-Level: 17
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Tackle
-- Focus Energy
+Goldeen @ Quick Claw
+Level: 16
+Ability: Lightning Rod
+Nature: Timid
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Supersonic
+- Water Pulse
+- Icy Wind
+
+Patrat @ Berry Juice
+Level: 16
+Ability: Fur Coat
+Nature: Timid
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Snarl
+- Hypnosis
+- Detect
+- Leer
+
+Quilladin @ Loaded Dice
+Level: 16
+Ability: Bulletproof
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bullet Seed
 - Arm Thrust
+- Aerial Ace
 
 === TRAINER_ANNA_AND_MEG_2 ===
 Name: ANNA & MEG
@@ -6984,11 +7037,37 @@ Pic: Running Triathlete M
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
-Doduo
-Level: 17
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Phanpy @ Custap Berry
+Level: 19
+Ability: Battle Armor
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Endure
+- Flail
+- Bulldoze
+- Rock Smash
+
+Kirlia @ Berry Juice
+Level: 19
+Ability: Trace
+Nature: Timid
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Psybeam
+- Hypnosis
+- Hex
+- Draining Kiss
+
+Combusken @ Muscle Band
+Level: 19
+Ability: Speed Boost
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Thunder Punch
+- Flame Wheel
+- Aerial Ace
+- Poison Jab
 
 === TRAINER_DYLAN_2 ===
 Name: DYLAN
@@ -7049,11 +7128,35 @@ Pic: Running Triathlete F
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
-Doduo
-Level: 17
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Meowth @ Choice Band
+Level: 16
+Ability: Technician
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Pay Day
+- Bite
+
+Wooper @ Berry Juice
+Level: 16
+Ability: Water Absorb
+Nature: Timid
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Water Pulse
+- Mud Shot
+- Acid
+- Slam
+
+Nidorina
+Level: 16
+Ability: Multiscale
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bulldoze
+- Aerial Ace
+- Double Kick
+- Poison Jab
 
 === TRAINER_MARIA_2 ===
 Name: MARIA
@@ -10211,31 +10314,61 @@ Pic: Pokemon Breeder M
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move
-
-Whismur
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Zigzagoon
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+AI: Basic Trainer
 
 Aron
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 14
+Ability: Sturdy
+Nature: Serious
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Metal Claw
+- Rock Tomb
+- Shadow Claw
 
-Poochyena
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Pidgey
+Level: 14
+Ability: Sturdy
+Nature: Serious
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Wing Attack
+- Quick Attack
+- U-Turn
 
-Taillow
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Bonsly
+Level: 14
+Ability: Sturdy
+Nature: Serious
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Branch Poke
+- Rock Throw
+- Take Down
 
-Makuhita
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Pansage
+Level: 14
+Ability: Sturdy
+Nature: Serious
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Vine Whip
+- Bite
+- Lick
+
+Pansear
+Level: 14
+Ability: Sturdy
+Nature: Serious
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Ember
+- Mud Shot
+- Snarl
+
+Panpour
+Level: 14
+Ability: Sturdy
+Nature: Serious
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Icy Wind
+- Water Gun
+- Snarl
 
 === TRAINER_DAVIS ===
 Name: DAVIS
@@ -10414,31 +10547,27 @@ Pic: Pokemon Breeder F
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
-Wingull
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Riolu @ Focus Sash
+Level: 18
+Ability: Inner Focus
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Counter
+- Metal Claw
+- Bullet Punch
+- Brick Break
 
-Shroomish
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Marill
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Roselia
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Skitty
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Goldeen
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Zangoose @ Toxic Orb
+Level: 18
+Ability: Toxic Boost
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Swords Dance
+- Night Slash
+- Double Hit
+- Double Kick
 
 === TRAINER_HALLE ===
 Name: HALLE
@@ -14329,9 +14458,32 @@ Music: Female
 Double Battle: No
 AI: Check Bad Move
 
-Doduo
-Level: 17
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Voltorb @ Focus Sash
+Level: 19
+Ability: Static
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Self Destruct
+
+Ledian @ Wide Lens
+Level: 19
+Ability: Iron Fist
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Dynamic Punch
+- Mach Punch
+- Roost
+- Attack Order
+
+Simisage @ Berry Juice
+Level: 19
+Ability: Gorilla Tactics
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bullet Seed
+- Thunder Punch
+- X-Scissor
+- Brick Break
 
 === TRAINER_BRANDI ===
 Name: BRANDI
