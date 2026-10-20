@@ -14,16 +14,28 @@ VerdanturfTown_WandasHouse_EventScript_Wally::
 	release
 	end
 
-@ Setting FLAG_CHEERED_UP_WALLY is what clears the Mauville Gym door. It takes
-@ effect on the next ON_TRANSITION into Mauville, which the player cannot avoid
-@ on the way back.
+@ The Wally battle, moved here from Mauville. Everything after the battle only
+@ runs if the player WINS - losing whites you out and leaves every flag below
+@ untouched, so the gym door stays shut until Wally is actually beaten.
+@
+@ Setting FLAG_CHEERED_UP_WALLY is what clears that door. It takes effect on the
+@ next ON_TRANSITION into Mauville, which the player cannot avoid on the way
+@ back.
 VerdanturfTown_WandasHouse_EventScript_WallyLostToWattson::
-	msgbox VerdanturfTown_WandasHouse_Text_WallyLostToWattson, MSGBOX_DEFAULT
+	msgbox VerdanturfTown_WandasHouse_Text_WallyShowYouHowFarIveCome, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_WALLY_MAUVILLE, VerdanturfTown_WandasHouse_Text_WallyStillTrainingToDo
 	setflag FLAG_CHEERED_UP_WALLY
 	@ Skip Text_StrongerSpeech on later visits - it opens with "I lost to you,
-	@ {PLAYER}", and the Mauville battle that made that true is gone. The short
-	@ version makes no such claim.
+	@ {PLAYER}", which is true again now the battle happens here, but the rest of
+	@ it has him announcing he is off to challenge gyms. The short version is the
+	@ better fit.
 	setflag FLAG_WALLY_SPEECH
+	@ Both of these used to come from MauvilleCity_EventScript_DefeatedWally,
+	@ which no longer runs. Wanda introduces herself off the first one, and the
+	@ second starts the countdown to Wally's first Match Call.
+	setflag FLAG_DEFEATED_WALLY_MAUVILLE
+	setvar VAR_WALLY_CALL_STEP_COUNTER, 0
+	setflag FLAG_ENABLE_FIRST_WALLY_POKENAV_CALL
 	release
 	end
 
@@ -99,18 +111,18 @@ VerdanturfTown_WandasHouse_EventScript_WallysAuntEverGrande::
 	release
 	end
 
-VerdanturfTown_WandasHouse_Text_WallyLostToWattson:
-	.string "WALLY: Oh… {PLAYER}…\p"
-	.string "I challenged the MAUVILLE GYM, and\n"
-	.string "WATTSON beat me soundly.\p"
-	.string "I thought living here had made me\n"
-	.string "stronger, but I wasn't ready at all…\p"
-	.string "…Thank you for coming all this way.\n"
-	.string "I feel a little better already.\p"
-	.string "I'm going to keep training with my\n"
-	.string "RALTS until I can face him again.\p"
-	.string "You should go and challenge WATTSON\n"
-	.string "yourself, {PLAYER}. Good luck!$"
+VerdanturfTown_WandasHouse_Text_WallyShowYouHowFarIveCome:
+	.string "WALLY: Hey, {PLAYER}! I've been\n"
+	.string "working hard on becoming a better\l"
+	.string "TRAINER!\p"
+	.string "I got SO close to beating WATTSON,\n"
+	.string "but I just couldn't do it.\p"
+	.string "It would really help if I could\n"
+	.string "show you how far I've come!$"
+
+VerdanturfTown_WandasHouse_Text_WallyStillTrainingToDo:
+	.string "WALLY: I guess I still have some\n"
+	.string "training to do…$"
 
 VerdanturfTown_WandasHouse_Text_StrongerSpeech:
 	.string "WALLY: I lost to you, {PLAYER}, but I'm\n"

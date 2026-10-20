@@ -44,6 +44,10 @@ Debug_Hack_Story_Start::
 	@ enough - MauvilleCity_OnTransition re-applies it from this one.
 	clearflag FLAG_CHEERED_UP_WALLY
 	clearflag FLAG_HIDE_MAUVILLE_CITY_WALLYS_UNCLE
+	@ So the Verdanturf Wally battle is available again.
+	clearflag FLAG_DEFEATED_WALLY_MAUVILLE
+	clearflag FLAG_WALLY_SPEECH
+	cleartrainerflag TRAINER_WALLY_MAUVILLE
 	goto Debug_Hack_Done
 
 @ Wally has caught his Ralts. Gate B (Route 103 crossing) opens and the
@@ -91,9 +95,11 @@ Debug_Hack_Story_WattsonDefeated::
 Debug_Hack_Beat_WattsonDefeated::
 	setvar VAR_STORY_PROGRESS, STORY_WATTSON_DEFEATED
 	@ Wattson cannot have been beaten with his uncle still on the gym door, so
-	@ clear that errand too. MauvilleCity_OnTransition acts on this flag.
+	@ run the Verdanturf errand too - including the Wally battle that opens it.
+	@ MauvilleCity_OnTransition acts on FLAG_CHEERED_UP_WALLY.
 	setflag FLAG_CHEERED_UP_WALLY
 	setflag FLAG_WALLY_SPEECH
+	setflag FLAG_DEFEATED_WALLY_MAUVILLE
 	setflag FLAG_BADGE03_GET
 	setflag FLAG_DEFEATED_MAUVILLE_GYM
 	setflag FLAG_CAP_WATTSON
