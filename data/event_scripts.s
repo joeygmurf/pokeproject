@@ -1741,3 +1741,4 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/scripts/apricorn_tree.inc"
 	.include "data/scripts/wild_encounter.inc"
 	.include "data/scripts/field_menu.inc"
+	.include "data/scripts/level_cap.inc"

@@ -110,6 +110,8 @@ MauvilleCity_Gym_EventScript_WattsonDefeated::
 	closemessage
 	delay 30
 	setflag FLAG_ENABLE_WATTSON_MATCH_CALL
+	@ Last, after the badge, the TM and the Match Call registration.
+	call Common_EventScript_LevelCapIncreased
 	release
 	end
 

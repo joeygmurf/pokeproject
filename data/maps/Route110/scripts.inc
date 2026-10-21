@@ -480,6 +480,7 @@ Route110_EventScript_RivalExit::
 	setvar VAR_ROUTE110_STATE, 1
 	savebgm MUS_DUMMY
 	fadedefaultbgm
+	call Common_EventScript_LevelCapIncreased
 	releaseall
 	end
 

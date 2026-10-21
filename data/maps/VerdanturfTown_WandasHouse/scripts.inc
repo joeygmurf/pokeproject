@@ -39,6 +39,7 @@ VerdanturfTown_WandasHouse_EventScript_WallyLostToWattson::
 	setflag FLAG_DEFEATED_WALLY_MAUVILLE
 	setvar VAR_WALLY_CALL_STEP_COUNTER, 0
 	setflag FLAG_ENABLE_FIRST_WALLY_POKENAV_CALL
+	call Common_EventScript_LevelCapIncreased
 	release
 	end
 

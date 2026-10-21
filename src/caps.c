@@ -3,6 +3,16 @@
 #include "event_data.h"
 #include "caps.h"
 #include "pokemon.h"
+#include "string_util.h"
+
+// Puts the current cap in gStringVar1 for Common_EventScript_LevelCapIncreased,
+// so the announcement always reports what sLevelCapFlagMap actually returns
+// rather than a number written out by hand at each milestone. Call it AFTER
+// setting the milestone flag.
+void BufferCurrentLevelCap(void)
+{
+    ConvertIntToDecimalStringN(gStringVar1, GetCurrentLevelCap(), STR_CONV_MODE_LEFT_ALIGN, 3);
+}
 
 
 u32 GetCurrentLevelCap(void)
