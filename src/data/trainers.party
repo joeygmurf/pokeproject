@@ -12569,9 +12569,45 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Ralts
-Level: 16
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
+Swablu @ Wacan Berry
+Level: 17
+Ability: Natural Cure
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Dragon Dance
+- Take Down
+- Aerial Ace
+- Steel Wing
+
+Eevee @ Silk Scarf
+Level: 17
+Ability: Adaptability
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Take Down
+- Covet
+- Charm
+- Wish
+
+Kirlia @ Expert Belt
+Level: 18
+Ability: Trace
+Nature: Timid
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Draining Kiss
+- Psybeam
+- Shock Wave
+- Vacuum Wave
+
+Carnivine @ Loaded Dice
+Level: 19
+Ability: Levitate
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Rock Blast
+- Bullet Seed
+- Dual Wingbeat
+- Leech Seed
 
 === TRAINER_WALLY_VR_2 ===
 Name: WALLY
