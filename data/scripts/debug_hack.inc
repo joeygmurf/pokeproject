@@ -21,6 +21,7 @@
 
 Debug_Hack_ClearCapFlags::
 	clearflag FLAG_CAP_RIVAL_ROUTE110
+	clearflag FLAG_CAP_WALLY_VERDANTURF
 	clearflag FLAG_CAP_WATTSON
 	clearflag FLAG_CAP_TBD_AFTER_WATTSON
 	return
@@ -33,6 +34,8 @@ Debug_Hack_Done::
 @ Rewinds the Verdanturf Wally errand: his uncle back on the Mauville Gym door,
 @ Wally back in Wanda's House and re-fightable.
 Debug_Hack_Rewind_WallyErrand::
+	@ Back down to cap 19 - Wally is unbeaten again.
+	clearflag FLAG_CAP_WALLY_VERDANTURF
 	clearflag FLAG_CHEERED_UP_WALLY
 	clearflag FLAG_HIDE_MAUVILLE_CITY_WALLYS_UNCLE
 	clearflag FLAG_DEFEATED_WALLY_MAUVILLE
@@ -140,6 +143,8 @@ Debug_Hack_Beat_WattsonDefeated::
 	setflag FLAG_CHEERED_UP_WALLY
 	setflag FLAG_WALLY_SPEECH
 	setflag FLAG_DEFEATED_WALLY_MAUVILLE
+	@ Ladder flags must be set in order, so this one precedes FLAG_CAP_WATTSON.
+	setflag FLAG_CAP_WALLY_VERDANTURF
 	setflag FLAG_BADGE03_GET
 	setflag FLAG_DEFEATED_MAUVILLE_GYM
 	setflag FLAG_CAP_WATTSON

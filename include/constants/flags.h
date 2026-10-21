@@ -57,6 +57,7 @@
 // story beats as well as gyms. They must be set in ladder order.
 #define FLAG_CAP_RIVAL_ROUTE110  0x21 // Route 110 rival defeated
 #define FLAG_CAP_WATTSON         0x22 // Wattson defeated (first gym in this hack)
+#define FLAG_CAP_WALLY_VERDANTURF 0x27 // Wally beaten in Wanda's House (out of numeric order; the ladder order is what counts)
 #define FLAG_CAP_TBD_AFTER_WATTSON 0x23 // placeholder: next milestone, not yet designed
 #define FLAG_HIDE_PETALBURG_AQUA_BLOCKADE 0x24 // Gate A: hides the two Aqua grunts sealing Petalburg's west exit
 #define FLAG_CHEERED_UP_WALLY 0x25 // Talked to Wally in Wanda's House; his uncle stops blocking the Mauville Gym

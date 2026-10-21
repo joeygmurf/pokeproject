@@ -36,7 +36,9 @@ opens after the Petalburg intro.
 | 9 | Route 110: **Birch hands over the POKéNAV** | replaces Mr. Stone in Rustboro, which is sealed. See §6 |
 | 9b | Route 110: rival battle | unchanged from vanilla. Raises the cap to 19 |
 | 10 | Route 110 → Mauville | |
-| 11 | **Wattson — first gym.** Dynamo Badge | Wally's pre-gym scene **removed** (see §6) |
+| 10b | Mauville: Wally's uncle blocks the gym, sends you to Verdanturf | see §6 |
+| 10c | Verdanturf (Wanda's House): **beat Wally.** Raises the cap to 22 | opens the gym door |
+| 11 | **Wattson — first gym.** Dynamo Badge | Wally's pre-gym scene **replaced** (see §6) |
 | 12 | Rock Smash becomes usable; Route 111 north opens | works unmodified — see §5 |
 | 13 | Rusturf Tunnel (Verdanturf → Route 116) | **BLOCKED** (Gate D) |
 
@@ -90,10 +92,17 @@ opens after the Petalburg intro.
 - **Enforced by:** the existing Team Aqua blockade — **needs verification** that
   vanilla's blockade sits where we need it and is driven by a flag we can hold.
 
-### Gate D — Rusturf Tunnel
+### Gate D — Rusturf Tunnel — **BUILT** (opening condition still TBD)
 - **Blocks:** Verdanturf → Route 116 → Rustboro.
-- **Opens:** TBD — must stay shut until the western half is meant to open.
-- **Enforced by:** NPC inside the tunnel.
+- **Opens:** `VAR_STORY_PROGRESS >= STORY_GATE_D_OPEN`, wired but **never set by
+  anything yet**, so today he never leaves. Must stay shut until the western
+  half is meant to open.
+- **Enforced by:** a Team Aqua grunt at **(8,2)** in Verdanturf, the former
+  "twin". The tunnel warp at (8,1) can only be entered from (8,2) — y1 is
+  blocked either side — so one NPC seals it. Hidden by
+  `FLAG_HIDE_VERDANTURF_AQUA_GRUNT` from `VerdanturfTown_OnTransition`, the
+  same shape as Gate A.
+- **Dialogue:** *"Scram, kid. Official TEAM AQUA business ahead."*
 - **Why this one matters most:** Wattson is now the *first* gym, so **Rock Smash
   arrives far earlier than vanilla**. The tunnel's vanilla rock barrier is no
   longer a gate at all — without an NPC the player smashes straight through to
@@ -118,7 +127,8 @@ Roxanne falls".
 | Cap | Applies during | Flag | Set by |
 |---|---|---|---|
 | 15 | opening → Route 110 rival | `FLAG_CAP_RIVAL_ROUTE110` | `Route110_EventScript_RivalExit` |
-| 19 | rival beaten → Wattson | `FLAG_CAP_WATTSON` | `MauvilleCity_Gym` badge block |
+| 19 | rival beaten → Wally | `FLAG_CAP_WALLY_VERDANTURF` | `VerdanturfTown_WandasHouse_EventScript_WallyLostToWattson` |
+| 22 | Wally beaten → Wattson | `FLAG_CAP_WATTSON` | `MauvilleCity_Gym` badge block |
 | 24 | after Wattson | `FLAG_CAP_TBD_AFTER_WATTSON` | **nothing yet — placeholder** |
 | 58 | post-Champion | `FLAG_IS_CHAMPION` | vanilla |
 
@@ -197,8 +207,23 @@ not be beatable early.
   - Birch spawns off-screen at (22,71) and exits west to x=4. The woman at
     (14,69) is pinned for the scene because she strays onto his path.
 - **99 Poké Balls — DONE.** Both gender branches in Birch's lab.
-- **Wally's Mauville pre-gym scene** — TODO: remove; the player just saw him in
-  Petalburg. Relocate the encounter later.
+- **Wally's Mauville scene — DONE, rebuilt.** Vanilla parked Wally on (8,6) —
+  the only tile the gym warp at (8,5) can be entered from — and opened the door
+  by beating him there. Now he has already lost to Wattson and gone home, and
+  his **uncle** holds that tile instead, sending the player to Verdanturf.
+  - The battle moved to Wanda's House, on the first conversation with Wally.
+    It runs `TRAINER_WALLY_MAUVILLE` unchanged. Everything after the battle
+    only executes on a **win**, so losing leaves the gym shut and the cap at 19.
+  - Winning sets `FLAG_CHEERED_UP_WALLY`; Mauville's `ON_TRANSITION` then
+    retires the uncle to Wanda's House and clears the door.
+  - Mauville's `ON_TRANSITION` is also what reveals Wally in Wanda's House.
+    Anything that warps straight to Verdanturf must clear
+    `FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLY` itself or the errand is
+    unfinishable — the debug jumps do this via `Debug_Hack_Rewind_WallyErrand`.
+  - **Still orphaned:** `MauvilleCity_EventScript_DefeatedWally` no longer runs,
+    and it owned **Scott's Mauville cameo** plus `VAR_SCOTT_STATE`. Wanda's
+    introduction and Wally's first Match Call were re-homed into the new battle
+    script; Scott still needs a new home.
 - **Scott dialogue** — TODO: reuse the vanilla trigger, new text referencing the
   blockade and pointing at Route 103. (His *movement* is done, his *words* are
   not.)

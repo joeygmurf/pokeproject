@@ -24,6 +24,9 @@ VerdanturfTown_WandasHouse_EventScript_Wally::
 VerdanturfTown_WandasHouse_EventScript_WallyLostToWattson::
 	msgbox VerdanturfTown_WandasHouse_Text_WallyShowYouHowFarIveCome, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_WALLY_MAUVILLE, VerdanturfTown_WandasHouse_Text_WallyStillTrainingToDo
+	@ Raises the level cap to 22. Only reached on a win, so losing leaves it
+	@ at 19 until Wally is actually beaten. See sLevelCapFlagMap in src/caps.c.
+	setflag FLAG_CAP_WALLY_VERDANTURF
 	setflag FLAG_CHEERED_UP_WALLY
 	@ Skip Text_StrongerSpeech on later visits - it opens with "I lost to you,
 	@ {PLAYER}", which is true again now the battle happens here, but the rest of
