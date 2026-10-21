@@ -3383,22 +3383,45 @@ Pic: Guitarist
 Gender: Male
 Music: Intense
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
-Electrike
-Level: 17
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Quick Attack
-- Thunder Wave
-- Spark
-- Leer
+Frogadier @ Rindo Berry
+Level: 20
+Ability: Torrent
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Rock Tomb
+- Ice Punch
+- U-Turn
+- Shadow Sneak
 
-Voltorb
-Level: 17
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Charge
+Bergmite @ Custap Berry
+Level: 20
+Ability: Sturdy
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Avalanche
+- Counter
+- Recover
+
+Jolteon @ Wise Glasses
+Level: 20
+Ability: Volt Absorb
+Nature: Timid
+IVs: 30 HP / 31 Atk / 30 Def / 30 SpA / 31 SpD / 31 Spe
+- Disarming Voice
+- Hyper Voice
 - Shock Wave
-- Screech
+- Hidden Power
+
+Ninjask @ Berry Juice
+Level: 20
+Ability: Speed Boost
+Nature: Careful
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Aerial Ace
+- Dig
+- Swords Dance
 
 === TRAINER_GRUNT_AQUA_HIDEOUT_7 ===
 Name: GRUNT
@@ -4959,37 +4982,55 @@ Items: Super Potion / Super Potion
 Double Battle: No
 AI: Basic Trainer
 
-Voltorb
+Emolga @ Terrain Extender
 Level: 20
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Rollout
-- Spark
-- Self Destruct
+Ability: Electric Surge
+Nature: Timid
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Air Slash
+- Snarl
 - Shock Wave
+- Light Screen
 
-Electrike
-Level: 20
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Shock Wave
-- Leer
-- Quick Attack
-- Howl
+Nosepass @ Punching Glove
+Level: 21
+Ability: Sturdy
+Nature: Impish
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Thunder Punch
+- Ice Punch
+- Fire Punch
+- Curse
 
-Magneton
+Luxio @ Flame Orb
+Level: 21
+Ability: Guts
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Thunder Fang
+- Play Rough
+- Trailblaze
+- Crunch
+
+Rotom-Frost @ Leftovers
 Level: 22
-IVs: 26 HP / 26 Atk / 26 Def / 26 SpA / 26 SpD / 26 Spe
-- Supersonic
-- Shock Wave
-- Thunder Wave
-- Sonic Boom
+Ability: Levitate
+Nature: Modest
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Thunderbolt
+- Substitute
+- Ice Beam
+- Nasty Plot
 
-Manectric @ Sitrus Berry
-Level: 24
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Quick Attack
-- Thunder Wave
-- Shock Wave
-- Howl
+Raichu @ Expert Belt
+Level: 22
+Ability: Cute Charm
+Nature: Timid
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Thunderbolt
+- Surf
+- Grass Knot
+- Alluring Voice
 
 === TRAINER_FLANNERY_1 ===
 Name: FLANNERY
@@ -12412,23 +12453,47 @@ Pic: Battle Girl
 Gender: Female
 Music: Intense
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
-Meditite
-Level: 17
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Bide
-- Detect
-- Confusion
-- Thunder Punch
+Meditite @ Black Belt
+Level: 20
+Ability: Pure Power
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Force Palm
+- Ice Punch
+- Feint
+- Counter
 
-Meditite
-Level: 17
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Thunder Punch
-- Detect
-- Confusion
-- Meditate
+Swadloon @ Berry Juice
+Level: 20
+Ability: Leaf Guard
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Skitter Smack
+- Razor Leaf
+- Light Screen
+- Charm
+
+Floette @ Expert Belt
+Level: 20
+Ability: Flower Veil
+Nature: Timid
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Wish
+- Magical Leaf
+- Fairy Wind
+- Chilling Water
+
+Noctowl @ Quick Claw
+Level: 19
+Ability: Tinted Lens
+Nature: Modest
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Air Slash
+- Extrasensory
+- Earth Power
+- Nasty Plot
 
 === TRAINER_DANIELLE ===
 Name: DANIELLE
