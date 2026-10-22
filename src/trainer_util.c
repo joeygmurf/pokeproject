@@ -214,8 +214,19 @@ void GenerateMonFromTrainerMon(struct Pokemon *mon, const struct TrainerMon *tra
         data = trainerMon->teraType;
         SetMonData(mon, MON_DATA_TERA_TYPE, &data);
     }
-    else if (!trainer->smartTera)
+    else
     {
+        // Hack change: upstream only stamped this sentinel when the trainer
+        // LACKED AI_FLAG_SMART_TERA ("else if (!trainer->smartTera)"), so a
+        // trainer carrying that flag fell through with teraType TYPE_NONE.
+        // MON_DATA_TERA_TYPE then derives a real type from the species, which
+        // is not TYPE_MYSTERY, so ShouldTrainerBattlerUseGimmick let them
+        // Terastallize. Since AI_FLAG_SMART_TERA is bundled into
+        // AI_FLAG_SMART_TRAINER, every smart trainer gained the gimmick.
+        //
+        // Terastal is not a mechanic in this hack - Mega Evolution is the only
+        // gimmick - so the sentinel is now unconditional. Trainers Terastallize
+        // only if given an explicit "Tera Type:" line in trainers.party.
         data = TYPE_MYSTERY;
         SetMonData(mon, MON_DATA_TERA_TYPE, &data);
     }
