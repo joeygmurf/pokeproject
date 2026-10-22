@@ -47,7 +47,26 @@
 
 // The following options are enough to have a basic/smart trainer. Any other addtion could make the trainer worse/better depending on the flag
 #define AI_FLAG_BASIC_TRAINER         (AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY)
-#define AI_FLAG_SMART_TRAINER         (AI_FLAG_BASIC_TRAINER | AI_FLAG_OMNISCIENT | AI_FLAG_SMART_SWITCHING | AI_FLAG_SMART_MON_CHOICES | AI_FLAG_PP_STALL_PREVENTION | AI_FLAG_SMART_TERA | AI_FLAG_RANDOMIZE_SWITCHIN)
+// Hack change: AI_FLAG_SMART_SWITCHING removed from this composite.
+//
+// It gates the "this matchup is bad, I'm leaving" reads - ShouldSwitchIfHasBadOdds
+// and ShouldSwitchIfAllScoresBad above all - which made every smart trainer pivot
+// constantly on damage math. What remains is the default switching logic, which
+// only fires on a concrete reason: Wonder Guard, Truant, no move affects the
+// target, a dead Choice lock, or Perish Song.
+//
+// AI_FLAG_SMART_MON_CHOICES is kept deliberately. SMART_SWITCHING used to pull it
+// in automatically, and it governs a SEPARATE decision - which mon to send in
+// after a KO - which is still worth having.
+//
+// AI_FLAG_SMART_TERA is inert here: Terastal is not a mechanic in this hack, and
+// GenerateMonFromTrainerMon in src/trainer_util.c stamps TYPE_MYSTERY on every
+// trainer mon that has no explicit Tera Type. Left in place so the composite
+// still matches upstream if Tera is ever wanted.
+//
+// TODO: AI_FLAG_PIVOT_TRAINER - this composite with SMART_SWITCHING added back,
+// for trainers that should pivot deliberately.
+#define AI_FLAG_SMART_TRAINER         (AI_FLAG_BASIC_TRAINER | AI_FLAG_OMNISCIENT | AI_FLAG_SMART_MON_CHOICES | AI_FLAG_PP_STALL_PREVENTION | AI_FLAG_SMART_TERA | AI_FLAG_RANDOMIZE_SWITCHIN)
 #define AI_FLAG_PREDICTION            (AI_FLAG_PREDICT_SWITCH | AI_FLAG_PREDICT_INCOMING_MON | AI_FLAG_PREDICT_MOVE)
 #define AI_FLAG_ASSUMPTIONS           (AI_FLAG_ASSUME_STAB | AI_FLAG_ASSUME_STATUS_MOVES | AI_FLAG_WEIGH_ABILITY_PREDICTION)
 
