@@ -529,6 +529,13 @@ def main():
     ap.add_argument("--out", default="build/calc", help="output directory")
     ap.add_argument("--title", default="PokeProject", help="calc title for this data source")
     ap.add_argument("--slug", default="pokeproject", help="output file basename")
+    ap.add_argument(
+        "--install",
+        nargs="?",
+        const="~/decomps/dynamic-calc",
+        help="also copy the generated files into a Dynamic Calc checkout "
+             "(default ~/decomps/dynamic-calc)",
+    )
     args = ap.parse_args()
 
     out_dir = (ROOT / args.out) if not Path(args.out).is_absolute() else Path(args.out)
@@ -634,6 +641,21 @@ def main():
         encoding="utf-8",
     )
     print(f"Wrote {json_path}, {js_path} and {order_path}")
+
+    if args.install:
+        calc = Path(args.install).expanduser()
+        if not (calc / "index.html").is_file():
+            sys.exit(f"--install: {calc} does not look like a Dynamic Calc checkout")
+        targets = [
+            (js_path, calc / "backups" / f"{args.slug}.js"),
+            (order_path, calc / "backups" / "trainer_orders" / f"{args.slug}.js"),
+            (save_path, calc / "js" / "savereaders" / "save_constants" / save_path.name),
+        ]
+        for src, dst in targets:
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            dst.write_bytes(src.read_bytes())
+            print(f"  installed {dst.relative_to(calc)}")
+        print(f"Installed into {calc} - hard-refresh the calc tab (Ctrl+Shift+R).")
 
 
 if __name__ == "__main__":
