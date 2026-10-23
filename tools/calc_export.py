@@ -295,7 +295,9 @@ def parse_species(flat: str, dex_numbers: dict, ability_names: dict) -> tuple:
             "num": num,
             "bs": stats,
             "types": types,
-            "abilities": abilities,
+            # The calc reads abilities as an index-keyed object, not an array -
+            # matching the existing backups in that fork.
+            "abilities": {str(i): a for i, a in enumerate(abilities)},
             "weightkg": (eval_c_expr(weight.group(1), f"{constant}.weight") / 10) if weight else 0,
             "heightm": (eval_c_expr(height.group(1), f"{constant}.height") / 10) if height else 0,
             "learnset_info": {"learnset": [], "tms": [], "tutors": [], "eggMoves": []},
@@ -326,6 +328,64 @@ def parse_learnsets(flat: str, move_names: dict) -> dict:
             moves.append([int(level), pretty])
         out[match.group(1)] = moves
     return out
+
+
+def parse_moves(flat: str) -> dict:
+    """Parse the flattened gMovesInfo into the calc's `moves` table.
+
+    Same ternary problem as the species stats: `.power` is routinely written
+    `B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 95`, so every field goes through
+    eval_c_expr rather than a bare integer match.
+    """
+    categories = {
+        "DAMAGE_CATEGORY_PHYSICAL": "Physical",
+        "DAMAGE_CATEGORY_SPECIAL": "Special",
+        "DAMAGE_CATEGORY_STATUS": "Status",
+    }
+    out = {}
+    for constant, body in iter_named_blocks(flat, "MOVE_"):
+        name = re.search(r"\.name\s*=\s*(?:COMPOUND_STRING|_)\(\s*\"((?:[^\"\\]|\\.)*)\"", body)
+        if not name:
+            continue
+        move_type = re.search(r"\.type\s*=\s*(TYPE_[A-Z_]+)", body)
+        category = re.search(r"\.category\s*=\s*(DAMAGE_CATEGORY_[A-Z]+)", body)
+
+        def number(field, default=0):
+            found = re.search(r"\.%s\s*=\s*([^,\n]+)" % field, body)
+            if not found:
+                return default
+            try:
+                return eval_c_expr(found.group(1), f"{constant}.{field}")
+            except ValueError:
+                return default
+
+        out[name.group(1)] = {
+            "basePower": number("power"),
+            "type": constant_to_name(move_type.group(1), "TYPE_") if move_type else "Normal",
+            "category": categories.get(category.group(1), "Status") if category else "Status",
+            "pp": number("pp", 5),
+            "accuracy": number("accuracy", 100),
+            "priority": number("priority"),
+        }
+    return out
+
+
+def iter_named_blocks(flat: str, prefix: str):
+    """Yield (constant, body) for `[PREFIX_X] = { ... }` entries, brace-matched."""
+    for match in re.finditer(r"\[(" + prefix + r"[A-Z0-9_]+)\]\s*=\s*", flat):
+        start = flat.find("{", match.end())
+        if start == -1:
+            continue
+        depth, i, n = 0, start, len(flat)
+        while i < n:
+            if flat[i] == "{":
+                depth += 1
+            elif flat[i] == "}":
+                depth -= 1
+                if depth == 0:
+                    break
+            i += 1
+        yield match.group(1), flat[start + 1:i]
 
 
 def natural_moveset(learnset, level):
@@ -423,7 +483,7 @@ def parse_trainers(poks, learnsets, learnset_symbol):
             entry = {
                 "level": level,
                 "nature": mon_field("Nature", "Hardy"),
-                "ability": mon_field("Ability", (poks[species]["abilities"] or [""])[0]),
+                "ability": mon_field("Ability", poks[species]["abilities"].get("0", "")),
                 "moves": moves,
                 "evs": stat_spread(mon_field("EVs"), 0),
                 "ivs": stat_spread(mon_field("IVs"), 31),
@@ -489,12 +549,34 @@ def main():
         for name in sorted(unknown)[:20]:
             print(f"    {name}")
 
+    print("Preprocessing move data...")
+    moves_flat = preprocess('#include "global.h"\n#include "src/data/moves_info.h"\n')
+    moves = parse_moves(moves_flat)
+    print(f"  {len(moves)} moves")
+
     bundle = {
         "title": args.title,
         "poks": poks,
+        "moves": moves,
         "formatted_sets": sets,
         "species_indices": {str(i): name for i, (_, name) in enumerate(order)},
     }
+
+    # The calc wants a prev/next chain so its trainer previews can step through
+    # the game. Default to trainer record order; a story order would have to be
+    # curated by hand.
+    used_ids = sorted({entry["tr_id"] for species in sets.values() for entry in species.values()})
+    orders = {}
+    for i, tr_id in enumerate(used_ids):
+        orders[str(tr_id)] = {
+            "id": tr_id,
+            "next": used_ids[i + 1] if i + 1 < len(used_ids) else used_ids[0],
+            "prev": used_ids[i - 1] if i else used_ids[-1],
+        }
+    order_path = out_dir / f"{args.slug}.order.js"
+    order_path.write_text(
+        "trainerOrders = " + json.dumps(orders, indent=2) + ";\n", encoding="utf-8"
+    )
 
     json_path = out_dir / f"{args.slug}.json"
     js_path = out_dir / f"{args.slug}.js"
@@ -503,7 +585,7 @@ def main():
         "var backup_data = " + json.dumps(bundle, ensure_ascii=False, indent=2) + ";\n",
         encoding="utf-8",
     )
-    print(f"Wrote {json_path} and {js_path}")
+    print(f"Wrote {json_path}, {js_path} and {order_path}")
 
 
 if __name__ == "__main__":
