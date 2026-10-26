@@ -635,7 +635,7 @@ Double Battle: No
 AI: Smart Trainer
 
 Stunky
-Level: 14
+Level: 13
 Ability: Stench
 Nature: Jolly
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -644,7 +644,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Astonish
 
 Trubbish
-Level: 14
+Level: 13
 Ability: Stench
 Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -653,7 +653,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Headbutt
 
 Eevee
-Level: 14
+Level: 12
 Ability: Adaptability
 Nature: Jolly
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -3404,8 +3404,8 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Counter
 - Recover
 
-Jolteon @ Wise Glasses
-Level: 19
+Jolteon @ Lum Berry
+Level: 17
 Ability: Volt Absorb
 Nature: Timid
 IVs: 30 HP / 31 Atk / 30 Def / 30 SpA / 31 SpD / 31 Spe
@@ -3415,7 +3415,7 @@ IVs: 30 HP / 31 Atk / 30 Def / 30 SpA / 31 SpD / 31 Spe
 - Hidden Power
 
 Ninjask @ Berry Juice
-Level: 20
+Level: 18
 Ability: Speed Boost
 Nature: Careful
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -3799,11 +3799,27 @@ Pic: Camper
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move
+AI: Smart Trainer
 
-Nuzleaf
-Level: 18
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Skarmory @ Lum Berry
+Level: 25
+Ability: Lightning Rod
+Nature: Impish
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Tailwind
+- Spikes
+- Steel Wing
+- Growl
+
+Throh @ Wide Lens
+Level: 25
+Ability: Inner Focus
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Ice Punch
+- Seed Bomb
+- Stone Edge
+- Zen Headbutt
 
 === TRAINER_SHANE ===
 Name: SHANE
@@ -3872,11 +3888,47 @@ Pic: Camper
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move
+AI: Smart Trainer
 
-Sandshrew
-Level: 18
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Sandslash @ Focus Sash
+Level: 25
+Ability: Scrappy
+Nature: Careful
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bulldoze
+- Spikes
+- Protect
+- Toxic
+
+Aromatisse @ Lum Berry
+Level: 25
+Ability: Aroma Veil
+Nature: Modest
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Wish
+- Energy Ball
+- Dazzling Gleam
+- Thunderbolt
+
+Magmar @ Passho Berry
+Level: 25
+Ability: Flame Body
+Nature: Timid
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Scorching Sands
+- Lava Plume
+- Will-o-wisp
+- Aura Sphere
+
+Delibird @ Berry Juice
+Level: 25
+Ability: Rocky Payload
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Rock Slide
+- Rock Tomb
+- Ice Shard
+- Aerial Ace
 
 === TRAINER_ETHAN_2 ===
 Name: ETHAN
@@ -4193,7 +4245,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Chilling Water
 
 Cubone @ Thick Club
-Level: 16
+Level: 15
 Ability: Battle Armor
 Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -4203,7 +4255,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Iron Head
 
 Kadabra @ Expert Belt
-Level: 17
+Level: 16
 Ability: Magic Guard
 Nature: Timid
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -4983,7 +5035,7 @@ Double Battle: No
 AI: Smart Trainer
 
 Emolga @ Terrain Extender
-Level: 20
+Level: 19
 Ability: Electric Surge
 Nature: Timid
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -5003,7 +5055,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Curse
 
 Luxio @ Flame Orb
-Level: 21
+Level: 19
 Ability: Guts
 Nature: Jolly
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -5012,24 +5064,24 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Trailblaze
 - Crunch
 
-Rotom-Frost @ Leftovers
+Electrike @ Shuca Berry
 Level: 22
-Ability: Levitate
-Nature: Modest
+Ability: Static
+Nature: Timid
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Thunderbolt
-- Substitute
-- Ice Beam
-- Nasty Plot
+- Thunder Fang
+- Fire Fang
+- Crunch
+- Sleep Talk
 
-Raichu @ Expert Belt
+Raichu @ Lum Berry
 Level: 22
 Ability: Cute Charm
 Nature: Timid
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Thunderbolt
+- Shock Wave
 - Surf
-- Grass Knot
+- Quick Attack
 - Alluring Voice
 
 === TRAINER_FLANNERY_1 ===
@@ -5528,7 +5580,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Water Pulse
 - Icy Wind
 
-Patrat @ Berry Juice
+Patrat @ Lum Berry
 Level: 16
 Ability: Fur Coat
 Nature: Timid
@@ -6461,7 +6513,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Buneary @ Oran Berry
-Level: 13
+Level: 12
 Ability: Limber
 Nature: Jolly
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -6479,7 +6531,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Ancient Power
 
 Joltik @ Silver Powder
-Level: 13
+Level: 12
 Ability: Compound Eyes
 Nature: Timid
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -8902,15 +8954,27 @@ Pic: Picnicker
 Gender: Female
 Music: Girl
 Double Battle: No
-AI: Check Bad Move
+AI: Smart Trainer
 
-Taillow
-Level: 17
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Croconaw @ Eviolite
+Level: 25
+Ability: Sheer Force
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bulldoze
+- Ice Fang
+- Aqua Jet
+- Brick Break
 
-Lombre
-Level: 17
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Misdreavus @ Leftovers
+Level: 25
+Ability: Levitate
+Nature: Calm
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Imprison
+- Psychic
+- Psybeam
+- Will-o-wisp
 
 === TRAINER_NANCY ===
 Name: NANCY
@@ -8991,15 +9055,54 @@ Pic: Picnicker
 Gender: Female
 Music: Girl
 Double Battle: No
-AI: Check Bad Move
+AI: Smart Trainer
 
-Shroomish
-Level: 17
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Blissey @ Leftovers
+Level: 30
+Ability: Serene Grace
+Nature: Sassy
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Metronome
+- Soft-Boiled
+- Ice Beam
+- Thunderbolt
 
-Marill
-Level: 17
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Voltorb @ Choice Band
+Level: 30
+Ability: Static
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Explosion
+
+Machoke @ Eviolite
+Level: 30
+Ability: No Guard
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Dynamic Punch
+- Stone Edge
+- Dragon Rush
+- Supercell Slam
+
+Wobbuffet @ Focus Sash
+Level: 30
+Ability: Shadow Tag
+Nature: Impish
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Destiny Bond
+- Counter
+- Mirror Coat
+- Encore
+
+Dusclops @ Sticky Barb
+Level: 30
+Ability: Pressure
+Nature: Docile
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Destiny Bond
+- Will-o-wisp
+- Hex
+- Pain Split
 
 === TRAINER_DIANA_2 ===
 Name: DIANA
@@ -9095,7 +9198,7 @@ Double Battle: Yes
 AI: Smart Trainer
 
 Elekid @ Punching Glove
-Level: 14
+Level: 12
 Ability: Static
 Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -9105,7 +9208,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Swift
 
 Magby
-Level: 14
+Level: 12
 Ability: Flame Body
 Nature: Bold
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -9671,7 +9774,7 @@ Double Battle: No
 AI: Smart Trainer
 
 Solosis
-Level: 16
+Level: 15
 Ability: Magic Guard
 Nature: Relaxed
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -9681,7 +9784,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Reflect
 
 Gulpin
-Level: 16
+Level: 15
 Ability: Innards Out
 Nature: Serious
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -9690,7 +9793,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Fire Punch
 
 Duskull
-Level: 16
+Level: 15
 Ability: Levitate
 Nature: Modest
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -9879,7 +9982,7 @@ Double Battle: No
 AI: Smart Trainer
 
 Axew @ Berry Juice
-Level: 13
+Level: 12
 Ability: Mold Breaker
 Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -9889,7 +9992,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Counter
 
 Taillow @ Flame Orb
-Level: 14
+Level: 13
 Ability: Guts
 Nature: Jolly
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -9899,7 +10002,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Quick Attack
 
 Froakie @ Berry Juice
-Level: 15
+Level: 14
 Ability: Torrent
 Nature: Timid
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -9961,7 +10064,7 @@ Double Battle: No
 AI: Smart Trainer
 
 Axew @ Berry Juice
-Level: 13
+Level: 12
 Ability: Mold Breaker
 Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -9971,7 +10074,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Counter
 
 Taillow @ Flame Orb
-Level: 14
+Level: 13
 Ability: Guts
 Nature: Jolly
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -9981,7 +10084,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Quick Attack
 
 Chespin @ Berry Juice
-Level: 15
+Level: 14
 Ability: Overgrow
 Nature: Jolly
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -10043,7 +10146,7 @@ Double Battle: No
 AI: Smart Trainer
 
 Axew @ Berry Juice
-Level: 13
+Level: 12
 Ability: Mold Breaker
 Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -10053,7 +10156,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Counter
 
 Taillow @ Flame Orb
-Level: 14
+Level: 13
 Ability: Guts
 Nature: Jolly
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -10063,7 +10166,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Quick Attack
 
 Fennekin @ Berry Juice
-Level: 15
+Level: 14
 Ability: Blaze
 Nature: Timid
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -10125,7 +10228,7 @@ Double Battle: No
 AI: Smart Trainer
 
 Axew @ Berry Juice
-Level: 13
+Level: 12
 Ability: Mold Breaker
 Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -10135,7 +10238,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Counter
 
 Taillow @ Flame Orb
-Level: 14
+Level: 13
 Ability: Guts
 Nature: Jolly
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -10145,7 +10248,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Quick Attack
 
 Froakie @ Berry Juice
-Level: 15
+Level: 14
 Ability: Torrent
 Nature: Timid
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -10207,7 +10310,7 @@ Double Battle: No
 AI: Smart Trainer
 
 Axew @ Berry Juice
-Level: 13
+Level: 12
 Ability: Mold Breaker
 Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -10217,7 +10320,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Counter
 
 Taillow @ Flame Orb
-Level: 14
+Level: 13
 Ability: Guts
 Nature: Jolly
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -10227,7 +10330,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Quick Attack
 
 Chespin @ Berry Juice
-Level: 15
+Level: 14
 Ability: Overgrow
 Nature: Jolly
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -10289,7 +10392,7 @@ Double Battle: No
 AI: Smart Trainer
 
 Axew @ Berry Juice
-Level: 13
+Level: 12
 Ability: Mold Breaker
 Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -10299,7 +10402,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Counter
 
 Taillow @ Flame Orb
-Level: 14
+Level: 13
 Ability: Guts
 Nature: Jolly
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -10309,7 +10412,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Quick Attack
 
 Fennekin @ Berry Juice
-Level: 15
+Level: 14
 Ability: Blaze
 Nature: Timid
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -10591,7 +10694,7 @@ Double Battle: No
 AI: Smart Trainer
 
 Riolu @ Focus Sash
-Level: 18
+Level: 17
 Ability: Inner Focus
 Nature: Jolly
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -10601,7 +10704,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Brick Break
 
 Zangoose @ Toxic Orb
-Level: 18
+Level: 16
 Ability: Toxic Boost
 Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -12040,19 +12143,47 @@ Pic: Hiker
 Gender: Male
 Music: Hiker
 Double Battle: No
-AI: Check Bad Move
+AI: Smart Trainer
 
-Geodude
-Level: 16
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Boldore @ Chople Berry
+Level: 25
+Ability: Sturdy
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bulldoze
+- Rock Tomb
+- Curse
+- Headbutt
 
-Geodude
-Level: 17
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Charmeleon @ Life Orb
+Level: 25
+Ability: Blaze
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Slash
+- Fire Fang
+- Brick Break
+- Dragon Claw
 
-Geodude
-Level: 16
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Pancham @ Black Glasses
+Level: 25
+Ability: Mold Breaker
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Beat Up
+- Knock Off
+- Facade
+- Brick Break
+
+Whirlipede @ Leftovers
+Level: 25
+Ability: Speed Boost
+Nature: Relaxed
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Pin Missile
+- Venoshock
+- Toxic
+- Protect
 
 === TRAINER_LENNY ===
 Name: LENNY
@@ -12466,7 +12597,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Counter
 
 Swadloon @ Berry Juice
-Level: 19
+Level: 17
 Ability: Leaf Guard
 Nature: Jolly
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -12476,7 +12607,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Charm
 
 Floette @ Expert Belt
-Level: 19
+Level: 18
 Ability: Flower Veil
 Nature: Timid
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -12486,7 +12617,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Chilling Water
 
 Noctowl @ Quick Claw
-Level: 18
+Level: 17
 Ability: Tinted Lens
 Nature: Modest
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -12655,7 +12786,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Wish
 
 Kirlia @ Expert Belt
-Level: 18
+Level: 19
 Ability: Trace
 Nature: Timid
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -12665,7 +12796,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Vacuum Wave
 
 Carnivine @ Loaded Dice
-Level: 19
+Level: 17
 Ability: Levitate
 Nature: Jolly
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -13666,7 +13797,7 @@ Double Battle: No
 AI: Smart Trainer
 
 Blitzle
-Level: 16
+Level: 15
 Ability: Sap Sipper
 Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -13675,7 +13806,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Spark
 
 Slowpoke
-Level: 16
+Level: 15
 Ability: Own Tempo
 Nature: Bold
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -13685,7 +13816,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Mud Shot
 
 Herdier
-Level: 16
+Level: 15
 Ability: Scrappy
 Nature: Jolly
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -13704,7 +13835,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Flaaffy @ Magnet
-Level: 17
+Level: 16
 Ability: Fluffy
 Nature: Modest
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -13713,7 +13844,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Thunder Wave
 
 Vigoroth
-Level: 18
+Level: 16
 Ability: Vital Spirit
 Nature: Jolly
 IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
@@ -14404,15 +14535,27 @@ Pic: Kindler
 Gender: Male
 Music: Hiker
 Double Battle: No
-AI: Check Bad Move
+AI: Smart Trainer
 
-Numel
-Level: 18
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Fletchinder @ Eviolite
+Level: 25
+Ability: Gale Wings
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Fly
+- Aerial Ace
+- U-Turn
+- Flame Charge
 
-Slugma
-Level: 18
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Murkrow @ Rocky Helmet
+Level: 25
+Ability: Prankster
+Nature: Bold
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Thunder Wave
+- Calm Mind
+- Icy Wind
+- Air Cutter
 
 === TRAINER_SHAYLA ===
 Name: SHAYLA
@@ -14421,15 +14564,27 @@ Pic: Aroma Lady
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Check Bad Move
+AI: Smart Trainer
 
-Shroomish
-Level: 18
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Roselia @ Occa Berry
+Level: 25
+Ability: Poison Point
+Nature: Timid
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Toxic Spikes
+- Charm
+- Synthesis
+- Swift
 
-Roselia
-Level: 18
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Weepinbell @ Leftovers
+Level: 25
+Ability: Chlorophyll
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Razor Leaf
+- Lunge
+- Knock Off
+- Substitute
 
 === TRAINER_KYRA ===
 Name: KYRA

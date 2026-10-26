@@ -160,6 +160,51 @@ def eval_c_expr(text: str, field: str):
         raise ValueError(f"unparseable {field}: {text!r} ({exc})") from exc
 
 
+_TYPE_TOKEN = re.compile(r"TYPE_[A-Z_0-9]+")
+
+
+def split_top_level(text: str, sep: str = ",") -> list:
+    """Split on `sep` at paren/brace depth zero."""
+    parts, depth, start = [], 0, 0
+    for i, char in enumerate(text):
+        if char in "({[":
+            depth += 1
+        elif char in ")}]":
+            depth -= 1
+        elif char == sep and depth == 0:
+            parts.append(text[start:i])
+            start = i + 1
+    parts.append(text[start:])
+    return [p.strip() for p in parts if p.strip()]
+
+
+def eval_c_type(text: str, field: str) -> str:
+    """Resolve a type slot that may be a constant or a ternary over constants.
+
+    Several families pick their second type by generation through a macro:
+    `MON_TYPES(TYPE_ELECTRIC, MAGNEMITE_FAMILY_TYPE2)` flattens to
+    `{ TYPE_ELECTRIC, (8 >= 1 ? TYPE_STEEL : TYPE_ELECTRIC) }`. Matching only
+    bare TYPE_ tokens silently produced an empty type list, and a Pokemon with
+    no types makes every damage roll NaN. Ralts, Magnemite and the Togepi and
+    Cottonee lines all hit this.
+    """
+    text = text.strip()
+    if _TYPE_TOKEN.fullmatch(text):
+        return constant_to_name(text, "TYPE_")
+    names = set(_TYPE_TOKEN.findall(text))
+    if not names:
+        raise ValueError(f"no type constant in {field}: {text!r}")
+    python = c_ternary_to_python(text)
+    python = python.replace("!=", "\x00")
+    python = python.replace("||", " or ").replace("&&", " and ").replace("!", " not ")
+    python = python.replace("\x00", "!=")
+    env = {name: constant_to_name(name, "TYPE_") for name in names}
+    try:
+        return eval(python, {"__builtins__": {}}, env)
+    except Exception as exc:  # noqa: BLE001
+        raise ValueError(f"unparseable {field}: {text!r} ({exc})") from exc
+
+
 def parse_enum(path: str, prefix: str) -> dict:
     """Parse a C enum into {CONSTANT: value}, honouring explicit assignments.
 
@@ -263,11 +308,11 @@ def parse_species(flat: str, dex_numbers: dict, ability_names: dict) -> tuple:
         display = re.search(r"\.speciesName\s*=\s*(?:COMPOUND_STRING|_)\(\s*\"((?:[^\"\\]|\\.)*)\"", body)
         name = display.group(1) if display else constant_to_name(constant, "SPECIES_")
 
-        types_found = re.search(r"\.types\s*=\s*\{\s*(TYPE_[A-Z_]+)\s*,\s*(TYPE_[A-Z_]+)\s*\}", body)
+        types_found = re.search(r"\.types\s*=\s*\{([^}]*)\}", body)
         types = []
         if types_found:
-            for raw in types_found.groups():
-                pretty = constant_to_name(raw, "TYPE_")
+            for slot in split_top_level(types_found.group(1)):
+                pretty = eval_c_type(slot, f"{constant}.types")
                 if pretty not in types:
                     types.append(pretty)
 
@@ -565,6 +610,14 @@ def main():
     for name, entry in poks.items():
         symbol = learnset_symbol.get(name)
         entry["learnset_info"]["learnset"] = learnsets.get(symbol, [])
+
+    # A species with no types makes every damage roll in the calc NaN, and a
+    # species with no stats is worse. Neither is ever intentional, so say so
+    # loudly rather than shipping data that looks fine until someone calcs it.
+    typeless = [n for n, v in poks.items() if not v["types"]]
+    if typeless:
+        print(f"  WARNING: {len(typeless)} species exported with NO types "
+              f"(damage will read NaN): {', '.join(typeless[:12])}")
 
     sets, unknown = parse_trainers(poks, learnsets, learnset_symbol)
     total_sets = sum(len(v) for v in sets.values())
