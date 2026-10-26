@@ -5562,7 +5562,7 @@ Double Battle: Yes
 AI: Smart Trainer
 
 Pidove @ Scope Lens
-Level: 16
+Level: 15
 Ability: Super Luck
 Nature: Timid
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -5572,7 +5572,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Twister
 
 Goldeen @ Quick Claw
-Level: 16
+Level: 15
 Ability: Lightning Rod
 Nature: Timid
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -5581,7 +5581,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Icy Wind
 
 Patrat @ Lum Berry
-Level: 16
+Level: 15
 Ability: Fur Coat
 Nature: Timid
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -12617,7 +12617,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Chilling Water
 
 Noctowl @ Quick Claw
-Level: 17
+Level: 16
 Ability: Tinted Lens
 Nature: Modest
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -12795,15 +12795,15 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Shock Wave
 - Vacuum Wave
 
-Carnivine @ Loaded Dice
-Level: 17
-Ability: Levitate
+Pachirisu @ Muscle Band
+Level: 18
+Ability: Volt Absorb
 Nature: Jolly
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Rock Blast
-- Bullet Seed
-- Dual Wingbeat
-- Leech Seed
+- Spark
+- Nuzzle
+- Quick Attack
+- Bite
 
 === TRAINER_WALLY_VR_2 ===
 Name: WALLY
