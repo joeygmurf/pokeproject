@@ -1443,21 +1443,59 @@ Class: Cooltrainer
 Pic: Cooltrainer M
 Gender: Male
 Music: Cool
-Items: Super Potion
 Double Battle: No
 AI: Smart Trainer
 
-Electrike
-Level: 17
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Elgyem @ Light Clay
+Level: 27
+Ability: Analytic
+Nature: Bold
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Light Screen
+- Reflect
+- Psybeam
+- Energy Ball
 
-Wailmer
-Level: 17
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Croagunk @ Berry Juice
+Level: 27
+Ability: Tinted Lens
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Encore
+- Brick Break
+- Poison Jab
+- Bulk Up
 
-Makuhita
-Level: 17
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Gligar
+Level: 26
+Ability: Hyper Cutter
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Acrobatics
+- Thief
+- Stomping Tantrum
+- Poison Jab
+
+Heliolisk @ Big Root
+Level: 27
+Ability: Dry Skin
+Nature: Docile
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bulldoze
+- Parabolic Charge
+- Giga Drain
+- Surf
+
+Tropius @ Sitrus Berry
+Level: 26
+Ability: Harvest
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Dragon Dance
+- Aerial Ace
+- Leaf Blade
+- Synthesis
+
 
 === TRAINER_EDGAR ===
 Name: EDGAR
@@ -1778,21 +1816,58 @@ Class: Cooltrainer
 Pic: Cooltrainer F
 Gender: Female
 Music: Cool
-Items: Super Potion
 Double Battle: No
 AI: Smart Trainer
 
-Wingull
-Level: 17
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Chimecho @ Focus Sash
+Level: 26
+Ability: Levitate
+Nature: Timid
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Trick Room
+- Charge Beam
+- Fake Tears
+- Psybeam
 
-Numel
-Level: 17
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Shieldon @ Shuca Berry
+Level: 27
+Ability: Sturdy
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Earthquake
+- Iron Head
+- Facade
+- Sandstorm
 
-Roselia
-Level: 17
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Shellos @ Leftovers
+Level: 27
+Ability: Sand Force
+Nature: Modest
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Earth Power
+- Water Pulse
+- Ice Beam
+- Whirlpool
+
+Wormadam-Sandy @ White Herb
+Level: 27
+Ability: Overcoat
+Nature: Modest
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Earth Power
+- Quiver Dance
+- Confusion
+- Bug Buzz
+
+Ariados @ Safety Goggles
+Level: 26
+Ability: Sniper
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Shadow Sneak
+- Pin Missile
+- Swords Dance
+- Poison Jab
 
 === TRAINER_JENNIFER ===
 Name: JENNIFER
@@ -3891,7 +3966,7 @@ Double Battle: No
 AI: Smart Trainer
 
 Sandslash @ Focus Sash
-Level: 25
+Level: 27
 Ability: Scrappy
 Nature: Careful
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -3901,7 +3976,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Toxic
 
 Aromatisse @ Lum Berry
-Level: 25
+Level: 26
 Ability: Aroma Veil
 Nature: Modest
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -3921,7 +3996,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Aura Sphere
 
 Delibird @ Berry Juice
-Level: 25
+Level: 27
 Ability: Rocky Payload
 Nature: Jolly
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -5030,7 +5105,6 @@ Class: Leader
 Pic: Leader Wattson
 Gender: Male
 Music: Male
-Items: Super Potion / Super Potion
 Double Battle: No
 AI: Smart Trainer
 
@@ -6360,11 +6434,47 @@ Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move
+AI: Smart Trainer
 
-Trapinch
-Level: 19
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Sudowoodo @ Babiri Berry
+Level: 27
+Ability: Seed Sower
+Nature: Careful
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Tearful Look
+- Stealth Rock
+- Grassy Glide
+- Rock Slide
+
+Sneasel @ Focus Sash
+Level: 27
+Ability: Inner Focus
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Fake Out
+- Triple Axel
+- Knock Off
+- Dig
+
+Azumarill @ Sitrus Berry
+Level: 27
+Ability: Huge Power
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Play Rough
+- Belly Drum
+- Aqua Tail
+- Ice Punch
+
+Purugly @ Leftovers
+Level: 27
+Ability: Defiant
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Shadow Claw
+- Fake Out
+- Sucker Punch
+- Swagger
 
 === TRAINER_DILLON ===
 Name: DILLON
@@ -8349,15 +8459,55 @@ Pic: Parasol Lady
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Check Bad Move
+AI: Smart Trainer
 
-Numel
-Level: 19
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Ember
-- Tackle
-- Magnitude
-- Sunny Day
+Basculin @ Choice Band
+Level: 25
+Ability: Reckless
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Wave Crash
+- Double-Edge
+
+Furfrou @ Expert Belt
+Level: 27
+Ability: Fur Coat
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Crunch
+- Take Down
+- Thunder Fang
+- Ice Fang
+
+Braixen @ Lum Berry
+Level: 28
+Ability: Blaze
+Nature: Modest
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Flamethrower
+- Psyshock
+- Grass Knot
+- Copycat
+
+Lilligant @ Focus Sash
+Level: 26
+Ability: Chlorophyll
+Nature: Timid
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Giga Drain
+- Quiver Dance
+- Pollen Puff
+- Air Slash
+
+Zebstrika @ Assault Vest
+Level: 28
+Ability: Sap Sipper
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Wild Charge
+- Flame Charge
+- High Horsepower
+- Smart Strike
 
 === TRAINER_CLARISSA ===
 Name: CLARISSA
@@ -8967,7 +9117,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Brick Break
 
 Misdreavus @ Leftovers
-Level: 25
+Level: 26
 Ability: Levitate
 Nature: Calm
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -12146,7 +12296,7 @@ Double Battle: No
 AI: Smart Trainer
 
 Boldore @ Chople Berry
-Level: 25
+Level: 27
 Ability: Sturdy
 Nature: Jolly
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -12156,7 +12306,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Headbutt
 
 Charmeleon @ Life Orb
-Level: 25
+Level: 26
 Ability: Blaze
 Nature: Jolly
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -12166,7 +12316,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Dragon Claw
 
 Pancham @ Black Glasses
-Level: 25
+Level: 26
 Ability: Mold Breaker
 Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -13338,15 +13488,47 @@ Pic: Twins
 Gender: Male
 Music: Twins
 Double Battle: Yes
-AI: Check Bad Move
+AI: Smart Trainer
 
-Spinda
-Level: 19
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Golett @ Leftovers
+Level: 28
+Ability: No Guard
+Nature: Impish
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Curse
+- Pain Split
+- Dynamic Punch
+- Rock Slide
 
-Spinda
-Level: 19
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Audino @ Light Clay
+Level: 26
+Ability: Healer
+Nature: Bold
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Life Dew
+- Reflect
+- Light Screen
+- Dazzling Gleam
+
+Maractus @ Lum Berry
+Level: 26
+Ability: Storm Drain
+Nature: Quirky
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Giga Drain
+- Leech Seed
+- Pin Missile
+- Sucker Punch
+
+Numel @ Eviolite
+Level: 28
+Ability: Simple
+Nature: Modest
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Nasty Plot
+- Flamethrower
+- Earth Power
+- Flash Cannon
 
 === TRAINER_KIM_AND_IRIS ===
 Name: KIM & IRIS
@@ -14537,8 +14719,8 @@ Music: Hiker
 Double Battle: No
 AI: Smart Trainer
 
-Fletchinder @ Eviolite
-Level: 25
+Fletchinder @ Charti Berry
+Level: 27
 Ability: Gale Wings
 Nature: Jolly
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -14547,8 +14729,8 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - U-Turn
 - Flame Charge
 
-Murkrow @ Rocky Helmet
-Level: 25
+Murkrow @ Eviolite
+Level: 27
 Ability: Prankster
 Nature: Bold
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -14567,17 +14749,17 @@ Double Battle: No
 AI: Smart Trainer
 
 Roselia @ Occa Berry
-Level: 25
+Level: 27
 Ability: Poison Point
 Nature: Timid
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Toxic Spikes
 - Charm
-- Synthesis
+- Giga Drain
 - Swift
 
 Weepinbell @ Leftovers
-Level: 25
+Level: 27
 Ability: Chlorophyll
 Nature: Jolly
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
