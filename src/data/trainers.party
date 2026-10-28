@@ -6483,11 +6483,57 @@ Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move
+AI: Smart Trainer
 
-Aron
-Level: 19
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Dustox @ Expert Belt
+Level: 28
+Ability: Shield Dust
+Nature: Modest
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Sludge Bomb
+- Energy Ball
+- Moonlight
+- Extrasensory
+
+Cranidos @ Lum Berry
+Level: 27
+Ability: Sheer Force
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Thunder Punch
+- Zen Headbutt
+- Crunch
+- Stomping Tantrum
+
+Pikachu @ Light Ball
+Level: 28
+Ability: Lightning Rod
+Nature: Serious
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Iron Tail
+- Spark
+- Swift
+- Draining Kiss
+
+Sawk @ Sitrus Berry
+Level: 27
+Ability: Stakeout
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Power-Up Punch
+- Wicked Blow
+- Rock Tomb
+- Ice Punch
+
+Haunter @ Life Orb
+Level: 28
+Ability: Levitate
+Nature: Timid
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Hex
+- Hypnosis
+- Venoshock
+- Giga Drain
 
 === TRAINER_CALVIN_2 ===
 Name: CALVIN
@@ -13511,7 +13557,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Dazzling Gleam
 
 Maractus @ Lum Berry
-Level: 26
+Level: 28
 Ability: Storm Drain
 Nature: Quirky
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe

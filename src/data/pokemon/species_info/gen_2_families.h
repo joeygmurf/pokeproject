@@ -1467,7 +1467,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 #if P_FAMILY_CHINCHOU
     [SPECIES_CHINCHOU] =
     {
-        .baseHP        = 75,
+        .baseHP        = 60,
         .baseAttack    = 38,
         .baseDefense   = 38,
         .baseSpeed     = 67,
@@ -1483,7 +1483,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_2),
-        .abilities = { ABILITY_VOLT_ABSORB, ABILITY_ILLUMINATE, ABILITY_WATER_ABSORB },
+        .abilities = { ABILITY_VOLT_ABSORB, ABILITY_WATER_ABSORB, ABILITY_PLUS },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Chinchou"),
         .cryId = CRY_CHINCHOU,
@@ -1539,7 +1539,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 
     [SPECIES_LANTURN] =
     {
-        .baseHP        = 125,
+        .baseHP        = 115,
         .baseAttack    = 58,
         .baseDefense   = 58,
         .baseSpeed     = 67,
@@ -1555,7 +1555,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_2),
-        .abilities = { ABILITY_VOLT_ABSORB, ABILITY_ILLUMINATE, ABILITY_WATER_ABSORB },
+        .abilities = { ABILITY_VOLT_ABSORB, ABILITY_WATER_ABSORB, ABILITY_PLUS },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Lanturn"),
         .cryId = CRY_LANTURN,
@@ -6598,10 +6598,10 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
     {
         .baseHP        = P_UPDATED_STATS >= GEN_7 ? 65 : 55,
         .baseAttack    = 55,
-        .baseDefense   = P_UPDATED_STATS >= GEN_7 ? 95 : 85,
+        .baseDefense   = P_UPDATED_STATS >= GEN_7 ? 105 : 85,
         .baseSpeed     = 35,
         .baseSpAttack  = 65,
-        .baseSpDefense = P_UPDATED_STATS >= GEN_7 ? 95 : 85,
+        .baseSpDefense = P_UPDATED_STATS >= GEN_7 ? 105 : 85,
         .types = MON_TYPES(TYPE_WATER, TYPE_ROCK),
         .catchRate = 60,
     #if P_UPDATED_EXP_YIELDS >= GEN_7
@@ -6619,7 +6619,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_WATER_3),
-        .abilities = { ABILITY_HUSTLE, ABILITY_NATURAL_CURE, ABILITY_REGENERATOR },
+        .abilities = { ABILITY_SOLID_ROCK, ABILITY_REGENERATOR, ABILITY_NATURAL_CURE },
         .bodyColor = BODY_COLOR_PINK,
         .speciesName = _("Corsola"),
         .cryId = CRY_CORSOLA,
