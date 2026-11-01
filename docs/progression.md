@@ -143,6 +143,19 @@ The cap therefore holds at 24 after Wattson until the next milestone is
 designed. Fine while only the opening is reordered; revisit before extending
 play past Mauville.
 
+**Every cap-raising fight announces itself.** Each of the three calls
+`Common_EventScript_LevelCapIncreased` (`data/scripts/level_cap.inc`) at the end
+of its sequence, after all NPC dialogue. The number is read back from
+`GetCurrentLevelCap` through a `callnative` rather than written per site, so it
+cannot drift from the table — which matters, because **inserting a rung changes
+the value every later milestone reports**. The call must therefore come *after*
+the milestone flag is set.
+
+**Adding a rung is not a plain insert.** Slotting Wally's 22 in moved the 19
+onto the new `FLAG_CAP_WALLY_VERDANTURF` row and made `FLAG_CAP_WATTSON` the 22.
+The number beside a flag is the cap *while it is still pending*, so every row
+below an insertion shifts meaning.
+
 Constraint: flags must be set in list order, which holds as long as the spine is
 linear. If a stretch ever becomes non-linear, switch to `LEVEL_CAP_VARIABLE`
 (`B_LEVEL_CAP_TYPE` in `include/config/caps.h`) and have each milestone

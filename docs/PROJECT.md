@@ -90,6 +90,7 @@ git rev-list --count origin/master..master   # confirm it moved, THEN ask
 | `tools/mapview.py` | ASCII map: collision, grass, ledges with jump arrows, NPCs, and each trainer's computed sight line. Read-only. |
 | `tools/maprender.py` | Renders a map region to **PNG using the real tiles/palettes/metatiles**. Use this to *check map edits by looking* rather than inferring from metatile IDs. |
 | `tools/porymap_cleanup.py` | Repairs Porymap's partial writes and drops its formatting churn. The Makefile runs `--repair-only` automatically before generating map sources. |
+| `tools/calc_export.py` | Exports this hack's species, moves, trainer parties and save-reader tables for the damage calculator. See §4b. |
 
 **In-game: the `Hack…` debug menu** (R + START, first entry), defined in
 `data/scripts/debug_hack.inc` + the tables in `src/debug.c`.
@@ -100,6 +101,28 @@ git rev-list --count origin/master..master   # confirm it moved, THEN ask
   already do that, and mixing them makes the state hard to reason about.
 - **Warp…** lands a short walk from each custom event, so the trigger still
   has to fire normally. Adding one is two lines; the pattern is commented.
+
+Two entries set state *and* warp: **`Mauville pre-Wattson`** and
+**`Verdanturf pre-Wally`**, both landing outside the respective Pokémon Center
+at `STORY_RIVAL_ROUTE110` with the Wally errand rewound. They share flags —
+talking to the uncle sets nothing, so the two differ only in where you stand.
+Both route through `Debug_Hack_Rewind_WallyErrand`, which must clear
+`FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLY` itself: Mauville's
+`ON_TRANSITION` is what normally reveals him, so warping straight to Verdanturf
+would find Wanda's House empty and the errand unfinishable.
+
+**AI flags.** Trainer AI is one `AI:` line in `trainers.party`; `trainerproc`
+uppercases the slash-separated names and prefixes `AI_FLAG_`. This hack
+**removes `SMART_SWITCHING` from the `AI_FLAG_SMART_TRAINER` composite** — it
+gates the generic "this matchup is bad, I'm leaving" reads
+(`ShouldSwitchIfHasBadOdds`, `ShouldSwitchIfAllScoresBad`) and made every smart
+trainer pivot constantly on damage math. What remains only switches for a
+concrete reason: Wonder Guard, Truant, no move affects the target, a dead Choice
+lock, Perish Song. `SMART_MON_CHOICES` is kept explicitly, because
+`SMART_SWITCHING` used to pull it in implicitly and it governs the separate
+post-KO send-in decision. A `AI_FLAG_PIVOT_TRAINER` TODO marks where to add it
+back for trainers that *should* pivot. **This edits an upstream macro, so expect
+a merge conflict there.**
 
 Other stock debug entries worth knowing: **Party… → Set Party** loads the
 party from `src/data/debug_trainers.party` (Showdown syntax, same as
@@ -114,6 +137,52 @@ python3 tools/mapview.py Route103 --range 18,8,52,14
 python3 tools/maprender.py Route103 --range 18,8,52,14 --scale 4 -o /tmp/a.png
 python3 tools/porymap_cleanup.py --apply      # before committing, to drop churn
 ```
+
+---
+
+---
+
+## 4b. Damage calculator
+
+A local instance of **hzla's Dynamic Calc** (the `decomp` fork) runs against this
+hack's own data — species, trainer parties and `.sav` import. The calculator
+lives **outside this repo**, cloned at `~/decomps/dynamic-calc`; only the
+exporter is ours.
+
+```bash
+python3 tools/calc_export.py --install        # regenerate + copy into the calc
+cd ~/decomps/dynamic-calc && python3 -m http.server 8777
+```
+
+Then open, and **hard-refresh (Ctrl+Shift+R)** after every re-export — the data
+file is served without a cache-busting query, so a normal reload serves a stale
+2.5 MB bundle and it looks like the export failed:
+
+```
+http://localhost:8777/index.html?data=pokeproject&dmgGen=8&gen=8&types=6&noSwitch=1&evs=0
+```
+
+`--install` places three files; they must move together, because updating the
+data without the save constants leaves the save reader resolving species
+against a stale table, which **misreports Pokémon rather than failing**.
+
+**The exporter preprocesses rather than scrapes.** Species data hides behind
+`#if P_FAMILY_*`, fields behind `#if P_UPDATED_STATS` branches, and some values
+are bare macros (`CHARIZARD_SP_ATK`, `MAGNEMITE_FAMILY_TYPE2`). It runs the real
+`arm-none-eabi-cpp` and parses the flattened output, so it cannot disagree with
+the ROM. Four bugs during its construction all produced *plausible but wrong*
+output — a stat of `8` read out of `8 >= 6 ? 80 : 70`, empty learnsets, a
+species block swallowing the hundred after it, and typeless Pokémon making
+every damage roll `NaN`. It now fails loudly instead of guessing.
+
+**Four edits were made to the calc clone** (not version-controlled by us): a
+catalog entry, a title→backup mapping, a settings branch forcing
+`sourceType = "full"`, and widening the save reader's `TITLE.includes("Imperium")`
+gate. `sourceType` is the subtle one — the default `onlyTrainers` loads trainer
+sets but **silently ignores species and move data**, so the calc appears to work
+while using the vanilla dex. Fork the repo before investing further.
+
+Known gap: `tms`, `tutors` and `eggMoves` are empty — level-up learnsets only.
 
 ---
 
@@ -198,6 +267,29 @@ Surf. Check the metatile behaviour for `WATER`/`DEEP` as well as collision, and
 remember NPC-occupied tiles block too — the Route 110 cut point only holds
 because the Team Aqua grunts stand on (8..11, 73).
 
+**Obedience keys off badge numbers too, and the reorder broke it.**
+`GetAttackerObedienceForAction` (`src/battle_util.c`) derives its level ceiling
+from badges: 10 with none, 20 at badge 1, 30 at badge 2. Wattson being first
+means the player holds **no badge at all** until Mauville while the cap is
+already 19, so a Pokémon *caught at 19* disobeyed — while one caught at 5 and
+raised to 19 did not, because the check reads **met level**, not current level.
+Fixed by holding `B_OBEDIENCE_MECHANICS` at `GEN_7`, which restricts obedience
+to traded Pokémon and leaves `src/caps.c` the sole authority on levels.
+
+This is the same shape as the `sLevelCapFlagMap` problem, in a second system.
+**Anything keyed to badge *number* rather than a specific flag is suspect** —
+`sEvCapFlagMap` has the identical flaw and is only dormant because
+`B_EV_CAP_TYPE` is `EV_CAP_NO_GAIN`.
+
+**`AI_FLAG_SMART_TERA` grants Terastal, despite what its comment says.**
+`GenerateMonFromTrainerMon` stamps `TYPE_MYSTERY` — the sentinel that denies the
+gimmick — only on trainers *lacking* that flag. With it, the mon keeps
+`TYPE_NONE`, `MON_DATA_TERA_TYPE` then derives a real type from the species, and
+the gate opens. Since `SMART_TERA` is bundled inside `AI_FLAG_SMART_TRAINER`,
+moving trainers onto that composite silently enabled Terastal everywhere. The
+sentinel is now unconditional in `src/trainer_util.c`: trainers Terastallize
+only with an explicit `Tera Type:` line.
+
 **`trainerproc` does not validate move legality.** A species can be given a move
 it could never learn and the build will accept it silently.
 
@@ -222,6 +314,8 @@ straight to the PC. Re-enable if upstream fixes it.
 | Trainer parties | `src/data/trainers.party` (Showdown syntax, 855 trainers) |
 | Debug test parties | `src/data/debug_trainers.party` — player + AI side for *Set Party* / *Start Debug Battle* |
 | Hack debug menu | `data/scripts/debug_hack.inc` + tables in `src/debug.c` |
+| Level-cap announcement | `data/scripts/level_cap.inc` (`Common_EventScript_LevelCapIncreased`) |
+| Calc exporter | `tools/calc_export.py` — see §4b |
 | Held-item restore | `TryRestoreHeldItems` in `src/battle_util.c` |
 | AI flag composites | `include/constants/battle_ai.h` |
 | Wild encounters | `src/data/wild_encounters.json` |
@@ -247,13 +341,21 @@ rebuilt · Route 102/103/104 NPC and terrain work · Norman's advice points east
 to Wattson and on to Lucy · Scott leaves Petalburg eastward instead of walking
 through the Aqua blockade · **Birch hands over the PokéNav on Route 110** ·
 `Hack…` debug menu · 99 Poké Balls from the rival · held consumables are never
-spent.
+spent · **Wally's uncle blocks the Mauville Gym** and the Wally battle moved to
+Wanda's House · **Gate D (Verdanturf Aqua grunt)** · level cap 22 for beating
+Wally, announced on screen after every cap-raising fight · obedience restricted
+to traded Pokémon · Terastal suppressed · `Smart Trainer` no longer mid-battle
+pivots · **damage calculator with save import** (§4b).
 
 **Open:**
-- **Gate D (Rusturf Tunnel)** — highest risk. Wattson-first means Rock Smash
-  arrives first, so the tunnel's rock barrier gates nothing.
+- **Gate D's opening condition** — the blockade is built, but nothing sets
+  `STORY_GATE_D_OPEN`, so the grunt never leaves.
 - **Gate C (Slateport)** — condition undefined.
-- Wally's Mauville scene, Scott dialogue.
+- **Scott's Mauville cameo is orphaned.** It lived in
+  `MauvilleCity_EventScript_DefeatedWally`, which no longer runs; it also owned
+  `VAR_SCOTT_STATE`. Wanda's introduction and Wally's first Match Call were
+  re-homed into the Wanda's House battle, but Scott still needs somewhere to go.
+- Scott's Petalburg dialogue (his movement is done).
 - **Gym 2: Lucy in Fallarbor** — named in Norman's dialogue, nothing built.
   See `progression.md` §7.
 - Birch's farewell line on Route 110 is still vanilla, and still asks the
