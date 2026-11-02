@@ -254,13 +254,31 @@ Decided so far. Everything past gym 2 is still vanilla ordering by default.
 | # | Leader | Town | Badge flag | Status |
 |---|---|---|---|---|
 | 1 | **Wattson** | Mauville | `FLAG_BADGE03_GET` | built (vanilla gym, reached first) |
-| 2 | **Lucy** | **Fallarbor** | TBD | **named in dialogue only — nothing built** |
+| 2 | **Lucy** | **Fallarbor** | **TBD** | leader scene built; **no badge yet** |
+
+**Built.** The gym is `FallarborTown_BattleTentLobby`, reskinned to the Battle
+Pike. Lucy runs a real leader script — intro, defeat line, a post-battle TM
+Sludge Bomb hand-over that re-offers itself on a full bag, and a terse repeat
+line — and sets `FLAG_DEFEATED_FALLARBOR_GYM`. Her three gym trainers are
+existing route trainers moved in rather than new entries: **Sophie and Coby
+from Route 113, Claude from Route 114**, so their `trainers.party` entries and
+their text (still under `Route113_*`/`Route114_*` labels in
+`data/text/trainers.inc`) are unchanged.
+
+> The map still points at `LAYOUT_BATTLE_FRONTIER_BATTLE_PIKE_LOBBY`, **shared
+> with the real Pike lobby**. Accepted deliberately — there are no Battle
+> Frontier plans — but tile edits here change both maps.
 
 **Lucy, open questions:**
-- She already exists as the Pike Queen (`TRAINER_PIKE_QUEEN_LUCY`,
-  `FRONTIER_BRAIN_PIKE`) with her own pic and Frontier dialogue. Decide whether
-  gym-Lucy reuses that trainer entry or gets a separate one. Separate is
-  cleaner if the Battle Frontier stays in the game.
+- **No badge is granted yet**, and that is the blocking decision: the
+  `FLAG_BADGE0X_GET` she sets decides **which HM she unlocks**, because
+  `src/field_move.c` maps HMs by badge *number*, not by leader. If she takes
+  `FLAG_BADGE02_GET` she hands out Flash. She also needs a level-cap rung in
+  `src/caps.c` — remember §4's warning that inserting one shifts every later
+  row's meaning.
+- She reuses `TRAINER_LUCY`, the Pike Queen's entry (dummy Beldum party, for
+  the user to fill in). `src/frontier_util.c` still lists it as the Pike brain;
+  harmless while the Frontier is unused, but it needs splitting if that changes.
 - **Gym map — user-owned, in progress.** A gym building has been added to
   Fallarbor; the interior is being reskinned to the Battle Pike. Dialogue and
   the gym's scripts are Claude's to write once the map settles.
