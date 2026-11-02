@@ -174,14 +174,28 @@ HM → badge mapping lives in one table in `src/field_move.c`:
 
 | HM | Badge | Gym | When, in this hack |
 |---|---|---|---|
-| Cut | 01 | Roxanne | late — keeps Petalburg Woods / Route 104 trees shut |
+| **Cut** | **—** | **Lucy** | **gym 2** — unlocked by `FLAG_BADGE_FALLARBOR`, not a badge number |
 | Flash | 02 | Brawly | late |
 | **Rock Smash** | **03** | **Wattson** | **first** — intended |
 | Strength | 04 | Flannery | |
 | Surf | 05 | Norman | **must stay late** — Surf trivialises Gates A and B |
 
-Rock Smash already sits on Wattson's badge, so it needs **no change**. Cut
-arriving late is convenient: it reinforces Gate A rather than fighting it.
+Rock Smash already sits on Wattson's badge, so it needs **no change**.
+
+**Cut no longer comes from a badge number.** This hack plans **eleven gyms
+against eight badge flags**, so the extra leaders hand out *cosmetic* badges
+with flags of their own and progress rides on `VAR_STORY_PROGRESS`. Lucy's
+VENOM BADGE is the first of those, and vanilla's HM table could not express it:
+`.arg` in `gFieldMoveInfo` is an index added to `FLAG_BADGE01_GET`, and it is
+an 8-bit bitfield, so it cannot hold a flag id. A `FLAG_UNLOCK` unlock type was
+added alongside `BADGE_UNLOCK`; its `.arg` indexes `sFieldMoveUnlockFlags`,
+letting a field move name the exact flag that frees it. Every other HM still
+uses `BADGE_UNLOCK` and is unchanged.
+
+> **Cut now arrives at gym 2, not late.** The old note said late Cut
+> "reinforces Gate A"; that is no longer true. Gate A and Gate D are NPCs, so
+> neither opens to Cut, but **no audit has been done of cuttable trees in the
+> eastern half**. Anything gated by a tree there is now open from Fallarbor.
 
 **Surf is the single most dangerous item in this design.** It bypasses Gate B
 entirely (Route 103's water) and reaches Route 104 from Route 105. Norman must

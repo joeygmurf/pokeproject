@@ -10,11 +10,18 @@ struct FieldMoveUnlock
    const u8 *lockedMessage;
 };
 
+// Indices into sFieldMoveUnlockFlags in src/field_move.c, for FLAG_UNLOCK.
+enum FieldMoveUnlockFlag
+{
+    FIELD_MOVE_UNLOCK_FALLARBOR_BADGE,
+};
+
 enum FieldMoveUnlockType
 {
     CANT_UNLOCK,
     ALWAYS_UNLOCKED,
     BADGE_UNLOCK,
+    FLAG_UNLOCK, // hack addition, see src/field_move.c
     FIELD_MOVE_UNLOCK_COUNT
 };
 

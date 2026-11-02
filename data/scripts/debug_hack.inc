@@ -23,7 +23,8 @@ Debug_Hack_ClearCapFlags::
 	clearflag FLAG_CAP_RIVAL_ROUTE110
 	clearflag FLAG_CAP_WALLY_VERDANTURF
 	clearflag FLAG_CAP_WATTSON
-	clearflag FLAG_CAP_TBD_AFTER_WATTSON
+	clearflag FLAG_CAP_LUCY
+	clearflag FLAG_CAP_TBD_AFTER_LUCY
 	return
 
 Debug_Hack_Done::

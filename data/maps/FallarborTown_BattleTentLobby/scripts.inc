@@ -252,8 +252,18 @@ FallarborTown_BattleTentLobby_EventScript_Lucy::
 
 FallarborTown_BattleTentLobby_EventScript_LucyDefeated::
 	msgbox FallarborTown_BattleTentLobby_Text_LucyTakeThis, MSGBOX_DEFAULT
+	message FallarborTown_BattleTentLobby_Text_ReceivedVenomBadge
+	waitmessage
+	call Common_EventScript_PlayGymBadgeFanfare
 	setflag FLAG_DEFEATED_FALLARBOR_GYM
+	setflag FLAG_BADGE_FALLARBOR
+	setflag FLAG_CAP_LUCY
+	setvar VAR_STORY_PROGRESS, STORY_LUCY_DEFEATED
+	msgbox FallarborTown_BattleTentLobby_Text_ExplainVenomBadge, MSGBOX_DEFAULT
 	call FallarborTown_BattleTentLobby_EventScript_GiveSludgeBomb
+	closemessage
+	@ Last, after the badge and the TM.
+	call Common_EventScript_LevelCapIncreased
 	release
 	end
 
@@ -294,6 +304,15 @@ FallarborTown_BattleTentLobby_Text_ExplainSludgeBomb:
 	.string "move that has a chance to poison\l"
 	.string "your target.\p"
 	.string "That's all. Disappear already…$"
+
+FallarborTown_BattleTentLobby_Text_ReceivedVenomBadge:
+	.string "{PLAYER} received the VENOM BADGE\n"
+	.string "from LUCY.$"
+
+FallarborTown_BattleTentLobby_Text_ExplainVenomBadge:
+	.string "That badge lets you use CUT outside\n"
+	.string "of battle.\p"
+	.string "Not that it concerns me.$"
 
 FallarborTown_BattleTentLobby_Text_LucyPostBattle:
 	.string "There is nothing else to be said\n"

@@ -23,6 +23,7 @@
 #define STORY_WALLY_TUTORIAL_DONE      10   // Wally catches his Ralts; Gate B (Route 103 crossing) opens
 #define STORY_RIVAL_ROUTE110           20   // rival beaten on Route 110
 #define STORY_WATTSON_DEFEATED         30   // first gym of this hack; Rock Smash becomes usable
+#define STORY_LUCY_DEFEATED            35   // second gym; Cut becomes usable (35, not 40: the gaps exist so inserts need no renumbering)
 
 // Reserved for milestones that are designed but not built yet, so gates can be
 // written against them now:

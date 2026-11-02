@@ -24,6 +24,22 @@ static bool32 HasBadgeForFieldMove(enum FieldMove fieldMove)
     return FlagGet(gFieldMoveInfo[fieldMove].arg + FLAG_BADGE01_GET);
 }
 
+// Hack addition. BADGE_UNLOCK keys off badge *number* - .arg is an index added
+// to FLAG_BADGE01_GET - which only works while gyms and badges map one to one.
+// This hack plans eleven gyms against eight contiguous badge flags, so the
+// extra leaders hand out cosmetic badges with flags of their own, and any HM
+// they unlock has to name its flag directly. .arg is an 8-bit bitfield and
+// cannot hold a flag id, so it indexes this table instead.
+static const u16 sFieldMoveUnlockFlags[] =
+{
+    [FIELD_MOVE_UNLOCK_FALLARBOR_BADGE] = FLAG_BADGE_FALLARBOR,
+};
+
+static bool32 HasFlagForFieldMove(enum FieldMove fieldMove)
+{
+    return FlagGet(sFieldMoveUnlockFlags[gFieldMoveInfo[fieldMove].arg]);
+}
+
 const struct FieldMoveUnlock gFieldMoveUnlocks[FIELD_MOVE_UNLOCK_COUNT] =
 {
     [CANT_UNLOCK] =
@@ -41,6 +57,11 @@ const struct FieldMoveUnlock gFieldMoveUnlocks[FIELD_MOVE_UNLOCK_COUNT] =
         .isUnlockedFunc = HasBadgeForFieldMove,
         .lockedMessage = gText_CantUseUntilNewBadge,
     },
+    [FLAG_UNLOCK] =
+    {
+        .isUnlockedFunc = HasFlagForFieldMove,
+        .lockedMessage = gText_CantUseUntilNewBadge,
+    },
 };
 
 #define FLAG_TO_BADGE(flag) flag - FLAG_BADGE01_GET
@@ -50,10 +71,12 @@ const struct FieldMoveInfo gFieldMoveInfo[FIELD_MOVES_COUNT] =
     [FIELD_MOVE_CUT] =
     {
         .fieldMoveFunc = SetUpFieldMove_Cut,
-        .unlockType = BADGE_UNLOCK,
         .moveID = MOVE_CUT,
         .partyMsgID = PARTY_MSG_NOTHING_TO_CUT,
-        .arg = IS_FRLG ? FLAG_TO_BADGE(FLAG_BADGE02_GET) : FLAG_TO_BADGE(FLAG_BADGE01_GET),
+        // Hack change: Cut comes from Lucy's VENOM BADGE (gym 2 here), not from
+        // Roxanne. Her badge is cosmetic, so this names the flag directly.
+        .unlockType = FLAG_UNLOCK,
+        .arg = FIELD_MOVE_UNLOCK_FALLARBOR_BADGE,
     },
 
     [FIELD_MOVE_FLASH] =

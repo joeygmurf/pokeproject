@@ -315,7 +315,7 @@ straight to the PC. Re-enable if upstream fixes it.
 | Feature flags | `include/config/*.h` — most "features" are a flag flip |
 | Story spine | `include/constants/story_progress.h` |
 | Level caps | `src/caps.c` + `include/config/caps.h` |
-| HM → badge gating | `src/field_move.c` (one table) |
+| HM gating | `src/field_move.c` — `BADGE_UNLOCK` keys off badge *number*; `FLAG_UNLOCK` (ours) names a flag instead, via `sFieldMoveUnlockFlags` |
 | Trainer parties | `src/data/trainers.party` (Showdown syntax, 855 trainers) |
 | Debug test parties | `src/data/debug_trainers.party` — player + AI side for *Set Party* / *Start Debug Battle* |
 | Hack debug menu | `data/scripts/debug_hack.inc` + tables in `src/debug.c` |
@@ -351,7 +351,7 @@ Wanda's House · **Gate D (Verdanturf Aqua grunt)** · level cap 22 for beating
 Wally, announced on screen after every cap-raising fight · obedience restricted
 to traded Pokémon · Terastal suppressed · `Smart Trainer` no longer mid-battle
 pivots · **damage calculator with save import** (§4b) · HMs are forgettable
-(`P_CAN_FORGET_HIDDEN_MOVE`) · debug box fill with every wild species.
+(`P_CAN_FORGET_HIDDEN_MOVE`) · debug box fill with every wild species · **Lucy's Fallarbor gym** (three relocated route trainers, VENOM BADGE, TM Sludge Bomb).
 
 **Open:**
 - **Gate D's opening condition** — the blockade is built, but nothing sets
@@ -362,8 +362,10 @@ pivots · **damage calculator with save import** (§4b) · HMs are forgettable
   `VAR_SCOTT_STATE`. Wanda's introduction and Wally's first Match Call were
   re-homed into the Wanda's House battle, but Scott still needs somewhere to go.
 - Scott's Petalburg dialogue (his movement is done).
-- **Gym 2: Lucy in Fallarbor** — named in Norman's dialogue, nothing built.
-  See `progression.md` §7.
+- **Badges past eight.** Eleven gyms are planned against eight contiguous
+  `FLAG_BADGE0X_GET` flags, so Lucy's VENOM BADGE is cosmetic and does not show
+  on the trainer card. Real support means more flags, card art and layout.
+- **Cut now arrives at gym 2**; cuttable trees in the east are unaudited.
 - Birch's farewell line on Route 110 is still vanilla, and still asks the
   player to look out for the rival.
 - Mr. Stone's Rustboro scene still hands out a second PokéNav.

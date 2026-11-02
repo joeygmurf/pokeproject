@@ -57,9 +57,17 @@
 // story beats as well as gyms. They must be set in ladder order.
 #define FLAG_CAP_RIVAL_ROUTE110  0x21 // Route 110 rival defeated
 #define FLAG_CAP_WATTSON         0x22 // Wattson defeated (first gym in this hack)
-#define FLAG_CAP_WALLY_VERDANTURF 0x27
-#define FLAG_DEFEATED_FALLARBOR_GYM 0x28 // Lucy beaten in the Fallarbor gym // Wally beaten in Wanda's House (out of numeric order; the ladder order is what counts)
-#define FLAG_CAP_TBD_AFTER_WATTSON 0x23 // placeholder: next milestone, not yet designed
+#define FLAG_CAP_WALLY_VERDANTURF 0x27 // Wally beaten in Wanda's House (out of numeric order; the ladder order is what counts)
+#define FLAG_CAP_LUCY            0x23 // Lucy beaten in the Fallarbor gym
+#define FLAG_CAP_TBD_AFTER_LUCY  0x29 // placeholder: next milestone, not yet designed
+
+// Lucy's gym. The badge is cosmetic - it is NOT a FLAG_BADGE0X_GET, because
+// this hack plans eleven gyms and there are only eight badge flags, which have
+// to stay contiguous for NUM_BADGES and the trainer card. Story progress rides
+// on VAR_STORY_PROGRESS and this flag instead. Consequence: the VENOM BADGE
+// does not appear on the trainer card until real badge support is built.
+#define FLAG_DEFEATED_FALLARBOR_GYM 0x28 // Lucy beaten
+#define FLAG_BADGE_FALLARBOR     0x2A // the VENOM BADGE; unlocks Cut (see src/field_move.c)
 #define FLAG_HIDE_PETALBURG_AQUA_BLOCKADE 0x24 // Gate A: hides the two Aqua grunts sealing Petalburg's west exit
 #define FLAG_CHEERED_UP_WALLY 0x25 // Talked to Wally in Wanda's House; his uncle stops blocking the Mauville Gym
 #define FLAG_HIDE_VERDANTURF_AQUA_GRUNT 0x26 // Gate D: hides the Aqua grunt sealing Verdanturf's Rusturf Tunnel entrance
