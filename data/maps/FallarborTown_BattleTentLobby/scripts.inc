@@ -223,16 +223,27 @@ FallarborTown_BattleTentLobby_Movement_PlayerEnterDoor:
 	set_invisible
 	step_end
 
-FallarborTown_BattleTentLobby_EventScript_Hiker::
-	msgbox FallarborTown_BattleTentLobby_Text_CameToCampOut, MSGBOX_NPC
+
+
+
+@ Lucy's gym trainers. Moved here from Route 113 (Sophie, Coby) and Route 114
+@ (Claude) rather than adding new trainer entries, so TRAINER_SOPHIE,
+@ TRAINER_COBY and TRAINER_CLAUDE in trainers.party are reused unchanged.
+@ Their text still lives under the old Route113_/Route114_ labels in
+@ data/text/trainers.inc; rename when the gym dialogue is written.
+FallarborTown_BattleTentLobby_EventScript_Coby::
+	trainerbattle_single TRAINER_COBY, Route113_Text_CobyIntro, Route113_Text_CobyDefeat
+	msgbox Route113_Text_CobyPostBattle, MSGBOX_AUTOCLOSE
 	end
 
-FallarborTown_BattleTentLobby_EventScript_LittleBoy::
-	msgbox FallarborTown_BattleTentLobby_Text_MakeThinkImJustKid, MSGBOX_NPC
+FallarborTown_BattleTentLobby_EventScript_Claude::
+	trainerbattle_single TRAINER_CLAUDE, Route114_Text_ClaudeIntro, Route114_Text_ClaudeDefeat
+	msgbox Route114_Text_ClaudePostBattle, MSGBOX_AUTOCLOSE
 	end
 
-FallarborTown_BattleTentLobby_EventScript_Lass::
-	msgbox FallarborTown_BattleTentLobby_Text_FallarborTentMyFavorite, MSGBOX_NPC
+FallarborTown_BattleTentLobby_EventScript_Sophie::
+	trainerbattle_single TRAINER_SOPHIE, Route113_Text_SophieIntro, Route113_Text_SophieDefeat
+	msgbox Route113_Text_SophiePostBattle, MSGBOX_AUTOCLOSE
 	end
 
 FallarborTown_BattleTentLobby_EventScript_Scott::
@@ -299,29 +310,8 @@ FallarborTown_BattleTentLobby_EventScript_ExitRules::
 	releaseall
 	end
 
-FallarborTown_BattleTentLobby_Text_MakeThinkImJustKid:
-	.string "Fufufufufu.\p"
-	.string "I'm going to make everyone think\n"
-	.string "I'm just a kid and let them play down.\p"
-	.string "Then, I'll shock them and grab\n"
-	.string "the title!$"
 
-FallarborTown_BattleTentLobby_Text_FallarborTentMyFavorite:
-	.string "You know how BATTLE TENTS offer\n"
-	.string "different events in different towns?\p"
-	.string "My favorite is definitely the BATTLE\n"
-	.string "TENT in FALLARBOR TOWN.\p"
-	.string "I think it's fantastic how TRAINERS\n"
-	.string "try to win with all their faith in\l"
-	.string "their POKéMON.$"
 
-FallarborTown_BattleTentLobby_Text_CameToCampOut:
-	.string "I heard something about some tent,\n"
-	.string "so I came to camp out.\p"
-	.string "I didn't know that tents these days\n"
-	.string "are so luxurious!\p"
-	.string "Since I'm here, I may as well try\n"
-	.string "my hand at battling!$"
 
 FallarborTown_BattleTentLobby_Text_ScottLookingForSomeone:
 	.string "SCOTT: Hi, {PLAYER}{KUN}!\n"

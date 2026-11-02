@@ -138,10 +138,6 @@ Route114_EventScript_RematchBernie::
 	msgbox Route114_Text_BerniePostRematch, MSGBOX_AUTOCLOSE
 	end
 
-Route114_EventScript_Claude::
-	trainerbattle_single TRAINER_CLAUDE, Route114_Text_ClaudeIntro, Route114_Text_ClaudeDefeat
-	msgbox Route114_Text_ClaudePostBattle, MSGBOX_AUTOCLOSE
-	end
 
 Route114_EventScript_Nolan::
 	trainerbattle_single TRAINER_NOLAN, Route114_Text_NolanIntro, Route114_Text_NolanDefeat
