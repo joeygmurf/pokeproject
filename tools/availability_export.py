@@ -103,8 +103,14 @@ def read_species(flat, dex_numbers):
     # cpp expands the EVOLUTION macro, so by this point the field reads
     # `.evolutions = (const struct Evolution[]) { {EVO_LEVEL, 16, SPECIES_X}, ... }`
     # on one line, terminated by a `{ 0xFFFF }` sentinel that holds no species.
+    #
+    # Do NOT anchor on the entry's closing brace. Conditional evolutions carry a
+    # nested `((const struct EvolutionParam[]) { ... })` after the species, so a
+    # `[^{}]*\}` tail cannot reach the end and the whole entry is skipped - which
+    # silently dropped Typhlosion and every other condition-gated evolution while
+    # leaving the plain ones working. Match forward to the species and stop.
     evo_re = re.compile(r"\.evolutions\s*=\s*(.*)")
-    target_re = re.compile(r"\{\s*EVO_[A-Z0-9_]+\s*,[^{}]*?(SPECIES_[A-Z0-9_]+)[^{}]*\}")
+    target_re = re.compile(r"\{\s*EVO_[A-Z0-9_]+\s*,[^{}]*?(SPECIES_[A-Z0-9_]+)")
 
     species = {}
     for constant, body in iter_species_blocks(flat):
@@ -116,6 +122,11 @@ def read_species(flat, dex_numbers):
         evo = evo_re.search(body)
         if evo:
             evolutions = target_re.findall(evo.group(1))
+            # A species that declares evolutions but parses to none means the
+            # pattern has lost touch with the data. Loud, not silent.
+            if not evolutions and "EVO_" in evo.group(1):
+                sys.exit(f"{constant}: .evolutions present but no targets parsed:\n"
+                         f"  {evo.group(1)[:300]}")
         species[constant] = {
             "dex": dex_numbers.get(dex_const.group(1), 0),
             "name": name.group(1),
