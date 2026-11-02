@@ -268,7 +268,7 @@ Decided so far. Everything past gym 2 is still vanilla ordering by default.
 | # | Leader | Town | Badge flag | Status |
 |---|---|---|---|---|
 | 1 | **Wattson** | Mauville | `FLAG_BADGE03_GET` | built (vanilla gym, reached first) |
-| 2 | **Lucy** | **Fallarbor** | **TBD** | leader scene built; **no badge yet** |
+| 2 | **Lucy** | **Fallarbor** | `FLAG_BADGE_FALLARBOR` (cosmetic) | **BUILT** |
 
 **Built.** The gym is `FallarborTown_BattleTentLobby`, reskinned to the Battle
 Pike. Lucy runs a real leader script — intro, defeat line, a post-battle TM
@@ -283,13 +283,26 @@ their text (still under `Route113_*`/`Route114_*` labels in
 > with the real Pike lobby**. Accepted deliberately — there are no Battle
 > Frontier plans — but tile edits here change both maps.
 
-**Lucy, open questions:**
-- **No badge is granted yet**, and that is the blocking decision: the
-  `FLAG_BADGE0X_GET` she sets decides **which HM she unlocks**, because
-  `src/field_move.c` maps HMs by badge *number*, not by leader. If she takes
-  `FLAG_BADGE02_GET` she hands out Flash. She also needs a level-cap rung in
-  `src/caps.c` — remember §4's warning that inserting one shifts every later
-  row's meaning.
+She hands over the **VENOM BADGE** and TM Sludge Bomb, sets
+`FLAG_DEFEATED_FALLARBOR_GYM`, `FLAG_BADGE_FALLARBOR` and `FLAG_CAP_LUCY`, and
+moves `VAR_STORY_PROGRESS` to `STORY_LUCY_DEFEATED`. The cap becomes **36**.
+
+**The badge is cosmetic, deliberately.** Eleven gyms are planned and there are
+only eight `FLAG_BADGE0X_GET` flags, which must stay **contiguous** because
+`NUM_BADGES` is derived from the range (`1 + FLAG_BADGE08_GET -
+FLAG_BADGE01_GET`) and the trainer card draws one slot per badge. Rather than
+renumber the whole system-flag block now — which would invalidate saves — the
+extra leaders get flags of their own and progress rides on `VAR_STORY_PROGRESS`.
+
+> **Consequence:** the VENOM BADGE does **not appear on the trainer card**, and
+> is invisible to the badge counts in `src/shop_criteria.c` and `src/tv.c`.
+> Fixing that means more badge flags, card art, and a layout that fits eleven —
+> a separate job. §5 covers how Cut was decoupled from badge numbers, which is
+> the reusable half of that work.
+
+**Lucy, remaining:**
+- Cuttable trees in the eastern half are **unaudited** now that Cut arrives at
+  gym 2 instead of late.
 - She reuses `TRAINER_LUCY`, the Pike Queen's entry (dummy Beldum party, for
   the user to fill in). `src/frontier_util.c` still lists it as the Pike brain;
   harmless while the Frontier is unused, but it needs splitting if that changes.
