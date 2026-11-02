@@ -27,6 +27,7 @@
 #include "main.h"
 #include "main_menu.h"
 #include "match_call.h"
+#include "caps.h"
 #include "malloc.h"
 #include "map_name_popup.h"
 #include "mass_outbreak.h"
@@ -300,6 +301,11 @@ static void DebugAction_DestroyFollowerNPC(u8 taskId);
 
 static void DebugAction_PCBag_Fill_PCBoxes_Fast(u8 taskId);
 static void DebugAction_PCBag_Fill_PCBoxes_Slow(u8 taskId);
+static void DebugAction_PCBag_Fill_WildMons_Cap(u8 taskId);
+static void DebugAction_PCBag_Fill_WildMons_Lv20(u8 taskId);
+static void DebugAction_PCBag_Fill_WildMons_Lv30(u8 taskId);
+static void DebugAction_PCBag_Fill_WildMons_Lv50(u8 taskId);
+static void DebugAction_PCBag_Fill_WildMons_Lv100(u8 taskId);
 static void DebugAction_PCBag_Fill_PCItemStorage(u8 taskId);
 static void DebugAction_PCBag_Fill_PocketItems(u8 taskId);
 static void DebugAction_PCBag_Fill_PocketPokeBalls(u8 taskId);
@@ -620,8 +626,20 @@ static const struct DebugMenuOption sDebugMenu_Actions_Utilities[] =
     { NULL }
 };
 
+// Hack addition: one of every wild-encounter species, for testing a level cap.
+static const struct DebugMenuOption sDebugMenu_Actions_PCBag_Fill_WildMons[] =
+{
+    { COMPOUND_STRING("At current cap"), DebugAction_PCBag_Fill_WildMons_Cap },
+    { COMPOUND_STRING("Lv. 20"),         DebugAction_PCBag_Fill_WildMons_Lv20 },
+    { COMPOUND_STRING("Lv. 30"),         DebugAction_PCBag_Fill_WildMons_Lv30 },
+    { COMPOUND_STRING("Lv. 50"),         DebugAction_PCBag_Fill_WildMons_Lv50 },
+    { COMPOUND_STRING("Lv. 100"),        DebugAction_PCBag_Fill_WildMons_Lv100 },
+    { NULL }
+};
+
 static const struct DebugMenuOption sDebugMenu_Actions_PCBag_Fill[] =
 {
+    { COMPOUND_STRING("Fill Boxes: Wild Mons…"),    DebugAction_OpenSubMenu, sDebugMenu_Actions_PCBag_Fill_WildMons },
     { COMPOUND_STRING("Fill PC Boxes Fast"),        DebugAction_PCBag_Fill_PCBoxes_Fast },
     { COMPOUND_STRING("Fill PC Boxes Slow (LAG!)"), DebugAction_PCBag_Fill_PCBoxes_Slow },
     { COMPOUND_STRING("Fill PC Items") ,            DebugAction_PCBag_Fill_PCItemStorage },
@@ -3744,6 +3762,115 @@ static void DebugAction_PCBag_Fill_PCBoxes_Slow(u8 taskId)
         PlayBGM(GetCurrentMapMusic());
 
     Debug_DestroyMenu_Full_Script(taskId, Debug_BoxFilledMessage);
+}
+
+// Hack addition: one of every species reachable in wild_encounters.json, at a
+// fixed level with random personality (so random nature/gender/ability) and
+// random IVs. Lets a test party be assembled at a level cap without catching
+// anything. Walks the compiled gWildMonHeaders rather than the JSON, so it
+// always matches the ROM.
+static const u8 sWildBoxSlotCounts[] =
+{
+    NUM_LAND_MONS_ENCOUNTER_SLOTS,
+    NUM_WATER_MONS_ENCOUNTER_SLOTS,
+    NUM_ROCK_SMASH_MONS_ENCOUNTER_SLOTS,
+    NUM_FISHING_MONS_ENCOUNTER_SLOTS,
+    NUM_HIDDEN_MONS_ENCOUNTER_SLOTS,
+};
+
+static void Debug_FillBoxesWithWildMons(u8 taskId, u32 level)
+{
+    struct BoxPokemon boxMon;
+    u8 *seen = AllocZeroed((NUM_SPECIES + 7) / 8);
+    u32 headerId, timeOfDay, area, slot;
+    u32 boxId = 0, boxPosition = 0;
+    bool32 full = FALSE;
+
+    if (seen == NULL)
+        return;
+
+    for (headerId = 0; gWildMonHeaders[headerId].mapGroup != MAP_GROUP(MAP_UNDEFINED) && !full; headerId++)
+    {
+        const struct WildEncounterTypes *types = gWildMonHeaders[headerId].encounterTypes;
+
+        for (timeOfDay = 0; timeOfDay < TIMES_OF_DAY_COUNT && !full; timeOfDay++)
+        {
+            const struct WildPokemonInfo *infos[ARRAY_COUNT(sWildBoxSlotCounts)] =
+            {
+                types[timeOfDay].landMonsInfo,
+                types[timeOfDay].waterMonsInfo,
+                types[timeOfDay].rockSmashMonsInfo,
+                types[timeOfDay].fishingMonsInfo,
+                types[timeOfDay].hiddenMonsInfo,
+            };
+
+            for (area = 0; area < ARRAY_COUNT(infos) && !full; area++)
+            {
+                if (infos[area] == NULL)
+                    continue;
+
+                for (slot = 0; slot < sWildBoxSlotCounts[area]; slot++)
+                {
+                    enum Species species = infos[area]->wildPokemon[slot].species;
+
+                    if (species == SPECIES_NONE || species >= NUM_SPECIES || !IsSpeciesEnabled(species))
+                        continue;
+                    if (seen[species / 8] & (1 << (species % 8)))
+                        continue;
+                    seen[species / 8] |= 1 << (species % 8);
+
+                    while (GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_SANITY_HAS_SPECIES))
+                    {
+                        if (++boxPosition >= IN_BOX_COUNT)
+                        {
+                            boxPosition = 0;
+                            if (++boxId >= TOTAL_BOXES_COUNT)
+                                break;
+                        }
+                    }
+                    if (boxId >= TOTAL_BOXES_COUNT)
+                    {
+                        full = TRUE;
+                        break;
+                    }
+
+                    CreateBoxMon(&boxMon, species, level, Random32(), OTID_STRUCT_PLAYER_ID);
+                    SetBoxMonIVs(&boxMon, USE_RANDOM_IVS);
+                    GiveBoxMonInitialMoveset(&boxMon);
+                    gPokemonStoragePtr->boxes[boxId][boxPosition] = boxMon;
+                }
+            }
+        }
+    }
+
+    Free(seen);
+    FlagSet(FLAG_SYS_POKEMON_GET);
+    Debug_DestroyMenu_Full_Script(taskId, Debug_BoxFilledMessage);
+}
+
+static void DebugAction_PCBag_Fill_WildMons_Cap(u8 taskId)
+{
+    Debug_FillBoxesWithWildMons(taskId, GetCurrentLevelCap());
+}
+
+static void DebugAction_PCBag_Fill_WildMons_Lv20(u8 taskId)
+{
+    Debug_FillBoxesWithWildMons(taskId, 20);
+}
+
+static void DebugAction_PCBag_Fill_WildMons_Lv30(u8 taskId)
+{
+    Debug_FillBoxesWithWildMons(taskId, 30);
+}
+
+static void DebugAction_PCBag_Fill_WildMons_Lv50(u8 taskId)
+{
+    Debug_FillBoxesWithWildMons(taskId, 50);
+}
+
+static void DebugAction_PCBag_Fill_WildMons_Lv100(u8 taskId)
+{
+    Debug_FillBoxesWithWildMons(taskId, 100);
 }
 
 static void DebugAction_PCBag_Fill_PCItemStorage(u8 taskId)
