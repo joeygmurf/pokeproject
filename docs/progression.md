@@ -261,7 +261,9 @@ Decided so far. Everything past gym 2 is still vanilla ordering by default.
   `FRONTIER_BRAIN_PIKE`) with her own pic and Frontier dialogue. Decide whether
   gym-Lucy reuses that trainer entry or gets a separate one. Separate is
   cleaner if the Battle Frontier stays in the game.
-- **Fallarbor has no gym map.** Needs building.
+- **Gym map — user-owned, in progress.** A gym building has been added to
+  Fallarbor; the interior is being reskinned to the Battle Pike. Dialogue and
+  the gym's scripts are Claude's to write once the map settles.
 - **Which badge flag she grants decides which HM she unlocks**, because the
   HM↔badge mapping in `src/field_move.c` is by badge number, not by leader. If
   she takes `FLAG_BADGE02_GET` she hands out Flash.

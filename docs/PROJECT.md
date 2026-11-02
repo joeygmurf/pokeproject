@@ -128,6 +128,11 @@ Other stock debug entries worth knowing: **Party… → Set Party** loads the
 party from `src/data/debug_trainers.party` (Showdown syntax, same as
 `trainers.party`), and **Start Debug Battle** loads both sides from that file
 and starts the fight — the fastest way to iterate a trainer's party.
+**PC/Bag… → Fill… → Fill Boxes: Wild Mons…** (ours) stores one of every species
+that appears anywhere in `wild_encounters.json` — all times of day, all five
+encounter areas — at the current level cap or a fixed 20/30/50/100, with random
+personality and IVs. ~288 species, so it fills about ten boxes. It walks the
+compiled `gWildMonHeaders`, not the JSON, so it cannot disagree with the ROM.
 **Flags & Vars… → All badges** is the quickest obedience override, because
 `FLAG_BADGE08_GET` short-circuits the check outright; *Trainer See OFF*,
 *Collision OFF* and *Encounter OFF* live in the same submenu.
@@ -345,7 +350,8 @@ spent · **Wally's uncle blocks the Mauville Gym** and the Wally battle moved to
 Wanda's House · **Gate D (Verdanturf Aqua grunt)** · level cap 22 for beating
 Wally, announced on screen after every cap-raising fight · obedience restricted
 to traded Pokémon · Terastal suppressed · `Smart Trainer` no longer mid-battle
-pivots · **damage calculator with save import** (§4b).
+pivots · **damage calculator with save import** (§4b) · HMs are forgettable
+(`P_CAN_FORGET_HIDDEN_MOVE`) · debug box fill with every wild species.
 
 **Open:**
 - **Gate D's opening condition** — the blockade is built, but nothing sets
