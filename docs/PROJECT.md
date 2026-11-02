@@ -295,6 +295,20 @@ moving trainers onto that composite silently enabled Terastal everywhere. The
 sentinel is now unconditional in `src/trainer_util.c`: trainers Terastallize
 only with an explicit `Tera Type:` line.
 
+**Fishing rod slots live in two places that drift apart silently.** The rods
+are **3 old / 3 good / 5 super** here, not vanilla's 2/3/5. Porymap edits the
+`groups` arrays in `src/data/wild_encounters.json`, which *generate* the
+`ENCOUNTER_CHANCE_FISHING_MONS_*_SLOT_n` defines - but the code that uses them,
+`ChooseWildMonIndex_Fishing` in `src/wild_encounter.c`, is hand-written against
+fixed slot numbers. Changing the split in Porymap therefore breaks the build
+with an undeclared `ENCOUNTER_CHANCE_*`, which is the lucky outcome.
+
+The quieter trap is the rates. `rand` is drawn against the **largest** of the
+three rod totals, so a rod summing to less than that has a dead band at the top
+where no slot matches and `wildMonIndex` keeps its initial `0` - a super rod
+handing out an old-rod Pokemon. Vanilla is safe only because all three sum to
+100. **Keep every rod's rates summing to the same number.**
+
 **`trainerproc` does not validate move legality.** A species can be given a move
 it could never learn and the build will accept it silently.
 

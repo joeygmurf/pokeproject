@@ -330,30 +330,41 @@ static u32 ChooseWildMonIndex_Fishing(u8 rod)
 
     switch (rod)
     {
+    // Hack change: the rods are 3 old / 3 good / 5 super here, not vanilla's
+    // 2 / 3 / 5. The slot numbers below have to match the `groups` arrays in
+    // src/data/wild_encounters.json, which is what generates these defines -
+    // Porymap edits that file, so the two drift apart silently and the only
+    // symptom is an undeclared ENCOUNTER_CHANCE_* at build time.
+    //
+    // Every rod's rates must also sum to the same total. `rand` is drawn
+    // against the LARGEST of the three, so a rod whose rates sum to less than
+    // that has a dead band at the top where no slot matches and wildMonIndex
+    // keeps its initial 0 - handing a super rod an old-rod Pokemon. All three
+    // sum to 100.
     case OLD_ROD:
         if (rand < ENCOUNTER_CHANCE_FISHING_MONS_OLD_ROD_SLOT_0)
             wildMonIndex = 0;
-        else
+        if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_OLD_ROD_SLOT_0 && rand < ENCOUNTER_CHANCE_FISHING_MONS_OLD_ROD_SLOT_1)
             wildMonIndex = 1;
+        if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_OLD_ROD_SLOT_1 && rand < ENCOUNTER_CHANCE_FISHING_MONS_OLD_ROD_SLOT_2)
+            wildMonIndex = 2;
 
         if (swap)
-            wildMonIndex = 1 - wildMonIndex;
+            wildMonIndex = 2 - wildMonIndex;
         break;
     case GOOD_ROD:
-        if (rand < ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_2)
-            wildMonIndex = 2;
-        if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_2 && rand < ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_3)
+        if (rand < ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_3)
             wildMonIndex = 3;
         if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_3 && rand < ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_4)
             wildMonIndex = 4;
+        if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_4 && rand < ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_5)
+            wildMonIndex = 5;
 
         if (swap)
-            wildMonIndex = 6 - wildMonIndex;
+            wildMonIndex = 8 - wildMonIndex;
         break;
     case SUPER_ROD:
-        if (rand < ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_5)
-            wildMonIndex = 5;
-        if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_5 && rand < ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_6)
+        if (rand < ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_6)
             wildMonIndex = 6;
         if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_6 && rand < ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_7)
             wildMonIndex = 7;
@@ -361,9 +372,11 @@ static u32 ChooseWildMonIndex_Fishing(u8 rod)
             wildMonIndex = 8;
         if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_8 && rand < ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_9)
             wildMonIndex = 9;
+        if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_9 && rand < ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_10)
+            wildMonIndex = 10;
 
         if (swap)
-            wildMonIndex = 14 - wildMonIndex;
+            wildMonIndex = 16 - wildMonIndex;
         break;
     }
     return wildMonIndex;
