@@ -1,5 +1,4 @@
 FallarborTown_BattleTentLobby_MapScripts::
-	map_script MAP_SCRIPT_ON_FRAME_TABLE, FallarborTown_BattleTentLobby_OnFrame
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, FallarborTown_BattleTentLobby_OnWarp
 	.byte 0
 
@@ -11,14 +10,6 @@ FallarborTown_BattleTentLobby_EventScript_TurnPlayerNorth::
 	setvar VAR_TEMP_1, 1
 	turnobject LOCALID_PLAYER, DIR_NORTH
 	end
-
-FallarborTown_BattleTentLobby_OnFrame:
-	map_script_2 VAR_TEMP_CHALLENGE_STATUS, 0, FallarborTown_BattleTentLobby_EventScript_GetChallengeStatus
-	map_script_2 VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_SAVING, FallarborTown_BattleTentLobby_EventScript_QuitWithoutSaving
-	map_script_2 VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_PAUSED, FallarborTown_BattleTentLobby_EventScript_ResumeChallenge
-	map_script_2 VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_WON, FallarborTown_BattleTentLobby_EventScript_WonChallenge
-	map_script_2 VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_LOST, FallarborTown_BattleTentLobby_EventScript_LostChallenge
-	.2byte 0
 
 FallarborTown_BattleTentLobby_EventScript_GetChallengeStatus::
 	frontier_getstatus
@@ -188,12 +179,12 @@ FallarborTown_BattleTentLobby_EventScript_EndCancelChallenge::
 	end
 
 FallarborTown_BattleTentLobby_EventScript_WalkToDoor::
-	applymovement LOCALID_FALLARBOR_TENT_ATTENDANT, FallarborTown_BattleTentLobby_Movement_AttendantWalkToDoor
+	applymovement LOCALID_FALLARBOR_GYM_LUCY, FallarborTown_BattleTentLobby_Movement_AttendantWalkToDoor
 	applymovement LOCALID_PLAYER, FallarborTown_BattleTentLobby_Movement_PlayerWalkToDoor
 	waitmovement 0
 	opendoor 6, 1
 	waitdooranim
-	applymovement LOCALID_FALLARBOR_TENT_ATTENDANT, FallarborTown_BattleTentLobby_Movement_AttendantEnterDoor
+	applymovement LOCALID_FALLARBOR_GYM_LUCY, FallarborTown_BattleTentLobby_Movement_AttendantEnterDoor
 	applymovement LOCALID_PLAYER, FallarborTown_BattleTentLobby_Movement_PlayerEnterDoor
 	waitmovement 0
 	closedoor 6, 1
@@ -245,6 +236,68 @@ FallarborTown_BattleTentLobby_EventScript_Sophie::
 	trainerbattle_single TRAINER_SOPHIE, Route113_Text_SophieIntro, Route113_Text_SophieDefeat
 	msgbox Route113_Text_SophiePostBattle, MSGBOX_AUTOCLOSE
 	end
+
+@ Gym Leader Lucy. Reuses TRAINER_LUCY, the Pike Queen's existing entry -
+@ frontier_util.c still lists it as the Pike brain, which is harmless while the
+@ Battle Frontier is unused, but would need splitting if it ever returns.
+@ TODO: no badge is granted yet. Which FLAG_BADGE0X_GET she sets also decides
+@ which HM she unlocks, because src/field_move.c maps HMs by badge number, not
+@ by leader. She also needs a level-cap rung in src/caps.c once that is picked.
+FallarborTown_BattleTentLobby_EventScript_Lucy::
+	trainerbattle_single TRAINER_LUCY, FallarborTown_BattleTentLobby_Text_LucyIntro, FallarborTown_BattleTentLobby_Text_LucyDefeat, FallarborTown_BattleTentLobby_EventScript_LucyDefeated, NO_MUSIC
+	goto_if_unset FLAG_RECEIVED_TM_SLUDGE_BOMB, FallarborTown_BattleTentLobby_EventScript_LucyOfferTmAgain
+	msgbox FallarborTown_BattleTentLobby_Text_LucyPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+FallarborTown_BattleTentLobby_EventScript_LucyDefeated::
+	msgbox FallarborTown_BattleTentLobby_Text_LucyTakeThis, MSGBOX_DEFAULT
+	setflag FLAG_DEFEATED_FALLARBOR_GYM
+	call FallarborTown_BattleTentLobby_EventScript_GiveSludgeBomb
+	release
+	end
+
+@ Reached only if the bag was full when the TM was first offered.
+FallarborTown_BattleTentLobby_EventScript_LucyOfferTmAgain::
+	msgbox FallarborTown_BattleTentLobby_Text_LucyTakeThis, MSGBOX_DEFAULT
+	call FallarborTown_BattleTentLobby_EventScript_GiveSludgeBomb
+	release
+	end
+
+FallarborTown_BattleTentLobby_EventScript_GiveSludgeBomb::
+	giveitem ITEM_TM_SLUDGE_BOMB
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
+	msgbox FallarborTown_BattleTentLobby_Text_ExplainSludgeBomb, MSGBOX_DEFAULT
+	setflag FLAG_RECEIVED_TM_SLUDGE_BOMB
+	return
+
+FallarborTown_BattleTentLobby_Text_LucyIntro:
+	.string "I am LUCY…\p"
+	.string "I used to be the PIKE QUEEN, but\n"
+	.string "now I am the GYM LEADER here in\l"
+	.string "FALLARBOR.\p"
+	.string "I'm not one for idle chatter.\n"
+	.string "Hurry. Come on…\p"
+	.string "I hope you didn't use up all of\n"
+	.string "your luck on the way here.$"
+
+FallarborTown_BattleTentLobby_Text_LucyDefeat:
+	.string "……Urk.$"
+
+FallarborTown_BattleTentLobby_Text_LucyTakeThis:
+	.string "You're strong. I'll acknowledge\n"
+	.string "that.\p"
+	.string "Take this.$"
+
+FallarborTown_BattleTentLobby_Text_ExplainSludgeBomb:
+	.string "That contains SLUDGE BOMB, a strong\n"
+	.string "move that has a chance to poison\l"
+	.string "your target.\p"
+	.string "That's all. Disappear already…$"
+
+FallarborTown_BattleTentLobby_Text_LucyPostBattle:
+	.string "There is nothing else to be said\n"
+	.string "here…$"
 
 FallarborTown_BattleTentLobby_EventScript_Scott::
 	lock
