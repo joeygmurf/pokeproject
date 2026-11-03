@@ -860,11 +860,18 @@
 #define TRAINER_BRENDAN_PLACEHOLDER         853
 #define TRAINER_MAY_PLACEHOLDER             854
 
+// Hack addition: Aqua Admins Matt and Shelly as fought together on Route 114.
+// Separate entries from vanilla's TRAINER_MATT and TRAINER_SHELLY_*, so this
+// fight can be tuned without disturbing their later story battles. Appended at
+// the end so no existing trainer id shifts.
+#define TRAINER_MATT_ROUTE114               855
+#define TRAINER_SHELLY_ROUTE114             856
+
 // NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 9 additional trainers before trainer flag space overflows
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define TRAINERS_COUNT_EMERALD     855
+#define TRAINERS_COUNT_EMERALD     857
 #define MAX_TRAINERS_COUNT_EMERALD 864
 
 #if IS_FRLG

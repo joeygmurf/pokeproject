@@ -30,6 +30,7 @@
 #include "fieldmap.h"
 #include "follower_npc.h"
 #include "gpu_regs.h"
+#include "config/overworld.h"
 #include "item.h"
 #include "lilycove_lady.h"
 #include "main.h"
@@ -2291,6 +2292,19 @@ bool8 ScrCmd_setmonmove(struct ScriptContext *ctx)
     return FALSE;
 }
 
+// Hack addition: the HM item that teaches a given move, or ITEM_NONE. Used by
+// OW_FIELD_MOVE_NEEDS_PARTY_MOVE below; HMs are the only items whose field move
+// we let stand in for a party Pokemon knowing it.
+static enum Item GetHMItemForMove(enum Move move)
+{
+    for (enum Item item = ITEM_HM01; item <= ITEM_HM08; item++)
+    {
+        if (GetItemSecondaryId(item) == move)
+            return item;
+    }
+    return ITEM_NONE;
+}
+
 bool8 ScrCmd_checkfieldmove(struct ScriptContext *ctx)
 {
     enum FieldMove fieldMove = ScriptReadByte(ctx);
@@ -2314,6 +2328,33 @@ bool8 ScrCmd_checkfieldmove(struct ScriptContext *ctx)
             gSpecialVar_Result = i;
             gSpecialVar_0x8004 = species;
             break;
+        }
+    }
+
+    // Hack change: with OW_FIELD_MOVE_NEEDS_PARTY_MOVE off, holding the HM is
+    // enough - the badge check above still applies, so this cannot open a gate
+    // early. The lead Pokemon performs the move, which is what the field effect
+    // and the "used CUT!" message end up naming.
+    enum Item hmItem = OW_FIELD_MOVE_NEEDS_PARTY_MOVE ? ITEM_NONE : GetHMItemForMove(move);
+
+    // hmItem is ITEM_NONE for field moves that are not HMs - Secret Power and
+    // Rock Climb - which keeps them requiring a party Pokemon that knows them.
+    if (hmItem != ITEM_NONE
+     && gSpecialVar_Result == PARTY_SIZE
+     && IsFieldMoveUnlocked(fieldMove)
+     && CheckBagHasItem(hmItem, 1))
+    {
+        for (u32 i = 0; i < PARTY_SIZE; i++)
+        {
+            enum Species species = GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_SPECIES);
+            if (!species)
+                break;
+            if (!GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_IS_EGG))
+            {
+                gSpecialVar_Result = i;
+                gSpecialVar_0x8004 = species;
+                break;
+            }
         }
     }
 

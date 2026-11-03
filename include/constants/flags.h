@@ -59,7 +59,8 @@
 #define FLAG_CAP_WATTSON         0x22 // Wattson defeated (first gym in this hack)
 #define FLAG_CAP_WALLY_VERDANTURF 0x27 // Wally beaten in Wanda's House (out of numeric order; the ladder order is what counts)
 #define FLAG_CAP_LUCY            0x23 // Lucy beaten in the Fallarbor gym
-#define FLAG_CAP_TBD_AFTER_LUCY  0x29 // placeholder: next milestone, not yet designed
+#define FLAG_CAP_AQUA_ADMINS     0x29 // Matt and Shelly beaten on Route 114
+#define FLAG_CAP_TBD_AFTER_ADMINS 0x30 // placeholder: next milestone, not yet designed
 
 // Lucy's gym. The badge is cosmetic - it is NOT a FLAG_BADGE0X_GET, because
 // this hack plans eleven gyms and there are only eight badge flags, which have
@@ -68,6 +69,16 @@
 // does not appear on the trainer card until real badge support is built.
 #define FLAG_DEFEATED_FALLARBOR_GYM 0x28 // Lucy beaten
 #define FLAG_BADGE_FALLARBOR     0x2A // the VENOM BADGE; unlocks Cut (see src/field_move.c)
+
+// Route 114 - the Cut gate before the bridge, and the Aqua admins sealing the
+// Meteor Falls corridor. The cut trees carry permanent flags rather than
+// vanilla's FLAG_TEMP_11, which is cleared on every map change and lets them
+// grow back; `removeobject` sets whichever flag the object names.
+#define FLAG_HIDE_ROUTE114_CUT_TUTOR 0x2B // hidden once Lucy is beaten AND Cut has been handed over
+#define FLAG_CUT_TREE_ROUTE114_1 0x2C
+#define FLAG_CUT_TREE_ROUTE114_2 0x2D
+#define FLAG_CUT_TREE_ROUTE114_3 0x2E
+#define FLAG_DEFEATED_ROUTE114_AQUA_ADMINS 0x2F // Matt and Shelly beaten; they stop blocking Meteor Falls
 #define FLAG_HIDE_PETALBURG_AQUA_BLOCKADE 0x24 // Gate A: hides the two Aqua grunts sealing Petalburg's west exit
 #define FLAG_CHEERED_UP_WALLY 0x25 // Talked to Wally in Wanda's House; his uncle stops blocking the Mauville Gym
 #define FLAG_HIDE_VERDANTURF_AQUA_GRUNT 0x26 // Gate D: hides the Aqua grunt sealing Verdanturf's Rusturf Tunnel entrance

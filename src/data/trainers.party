@@ -6828,19 +6828,56 @@ Pic: Fisherman
 Gender: Male
 Music: Hiker
 Double Battle: No
-AI: Check Bad Move
+AI: Smart Trainer
 
-Magikarp
-Level: 16
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Kingler @ Damp Rock
+Level: 27
+Ability: Shell Armor
+Nature: Careful
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Rain Dance
+- Crabhammer
+- Rock Tomb
+- Metal Claw
 
-Goldeen
-Level: 17
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Binacle @ Muscle Band
+Level: 28
+Ability: Tough Claws
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Liquidation
+- Rock Tomb
+- X-Scissor
+- Brick Break
 
-Barboach
-Level: 18
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Sigilyph @ Leftovers
+Level: 27
+Ability: Wonder Skin
+Nature: Timid
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Weather Ball
+- Thunder Wave
+- Psychic
+- Hurricane
+
+Hariyama @ Black Belt
+Level: 27
+Ability: Thick Fat
+Nature: Careful
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bulk Up
+- Thunder Punch
+- Seismic Toss
+- Brick Break
+
+Ludicolo @ Coba Berry
+Level: 27
+Ability: Swift Swim
+Nature: Modest
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Giga Drain
+- Hydro Pump
+- Ice Beam
 
 === TRAINER_ELLIOT_1 ===
 Name: ELLIOT
@@ -14166,15 +14203,57 @@ Pic: Picnicker
 Gender: Female
 Music: Girl
 Double Battle: No
-AI: Check Bad Move
+AI: Smart Trainer
 
-Marill
-Level: 17
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Florges @ Focus Sash
+Level: 28
+Ability: Flower Veil
+Nature: Bold
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Grassy Terrain
+- Safeguard
+- Grass Knot
+- Dazzling Gleam
 
-Lombre
-Level: 19
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Mienfoo @ Shell Bell
+Level: 28
+Ability: Inner Focus
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Low Kick
+- Aerial Ace
+- Poison Jab
+- Knock Off
+
+Carbink @ Sitrus Berry
+Level: 27
+Ability: Sturdy
+Nature: Hardy
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Ancient Power
+- Light Screen
+- Iron Defense
+- Iron Head
+
+Granbull @ Grassy Seed
+Level: 27
+Ability: Intimidate
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Play Rough
+- Thunder Punch
+- Fire Punch
+- Bulldoze
+
+Swalot @ Lum Berry
+Level: 28
+Ability: Innards Out
+Nature: Bold
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Yawn
+- Rest
+- Sludge Bomb
+- Water Pulse
 
 === TRAINER_COBY ===
 Name: COBY
@@ -14183,15 +14262,57 @@ Pic: Bird Keeper
 Gender: Male
 Music: Cool
 Double Battle: No
-AI: Check Bad Move
+AI: Smart Trainer
 
-Skarmory
-Level: 17
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Golbat @ Wacan Berry
+Level: 27
+Ability: Infiltrator
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- U-Turn
+- Tailwind
+- Poison Fang
+- Dual Wingbeat
 
-Swellow
-Level: 19
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Donphan @ Muscle Band
+Level: 27
+Ability: Battle Armor
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Megahorn
+- Thunder Fang
+- Bulldoze
+- Take Down
+
+Absol @ Scope Lens
+Level: 27
+Ability: Super Luck
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Night Slash
+- Slash
+- Cross Poison
+- Shadow Claw
+
+Farfetch'd @ Leek
+Level: 27
+Ability: Defiant
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Leaf Blade
+- Swords Dance
+- Brutal Swing
+- Close Combat
+
+Staravia @ Yache Berry
+Level: 27
+Ability: Intimidate
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Razor Leaf
+- Pluck
+- Whirlwind
+- Endeavor
 
 === TRAINER_LAWRENCE ===
 Name: LAWRENCE
@@ -17050,16 +17171,72 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_LUCY ===
 Name: LUCY
-Class: Pike Queen
+Class: Leader
 Pic: Pike Queen Lucy
 Gender: Female
 Music: Male
 Double Battle: No
 AI: Smart Trainer
 
-Beldum
-Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Foongus @ Focus Sash
+Level: 28
+Ability: Effect Spore
+Nature: Calm
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Toxic
+- Spore
+- Giga Drain
+- Sludge Bomb
+
+Servine @ Eviolite
+Level: 29
+Ability: Contrary
+Nature: Timid
+IVs: 31 HP / 31 Atk / 30 Def / 31 SpA / 30 SpD / 30 Spe
+- Leaf Storm
+- Mirror Coat
+- Dragon Pulse
+- Hidden Power
+
+Arbok @ Wide Lens
+Level: 27
+Ability: Intimidate
+Nature: Impish
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Gunk Shot
+- Toxic Spikes
+- Dragon Tail
+- Seed Bomb
+
+Nidoqueen @ White Herb
+Level: 28
+Ability: Multiscale
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Superpower
+- Stone Edge
+- Earthquake
+- Thunder Punch
+
+Milotic @ Leftovers
+Level: 28
+Ability: Competitive
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Liquidation
+- Coil
+- Hypnosis
+- Body Slam
+
+Seviper @ Shuca Berry
+Level: 30
+Ability: Strong Jaw
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Thunder Fang
+- Ice Fang
+- Psychic Fangs
+- Crunch
 
 === TRAINER_BRANDON ===
 Name: BRANDON
@@ -17945,3 +18122,37 @@ Double Battle: No
 Kyogre
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+=== TRAINER_MATT_ROUTE114 ===
+Name: MATT
+Class: Aqua Admin
+Pic: Aqua Admin M
+Gender: Male
+Music: Aqua
+Double Battle: No
+AI: Smart Trainer
+
+Mightyena
+Level: 36
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+
+Golbat
+Level: 36
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+
+=== TRAINER_SHELLY_ROUTE114 ===
+Name: SHELLY
+Class: Aqua Admin
+Pic: Aqua Admin F
+Gender: Female
+Music: Aqua
+Double Battle: No
+AI: Smart Trainer
+
+Carvanha
+Level: 36
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+
+Grimer
+Level: 36
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe

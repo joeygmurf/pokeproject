@@ -31,7 +31,8 @@ u32 GetCurrentLevelCap(void)
         {FLAG_CAP_WALLY_VERDANTURF,  19}, // rival beaten, up to Wally in Wanda's House
         {FLAG_CAP_WATTSON,           22}, // Wally beaten, up to Wattson
         {FLAG_CAP_LUCY,              30}, // Wattson beaten, up to Lucy
-        {FLAG_CAP_TBD_AFTER_LUCY,    36}, // Lucy beaten - placeholder cap, never set yet
+        {FLAG_CAP_AQUA_ADMINS,       36}, // Lucy beaten, up to Matt and Shelly on Route 114
+        {FLAG_CAP_TBD_AFTER_ADMINS,  40}, // admins beaten - placeholder, never set yet
         {FLAG_IS_CHAMPION,           58},
     };
 

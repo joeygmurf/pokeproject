@@ -5,6 +5,7 @@ Route114_MapScripts::
 	.byte 0
 
 Route114_OnTransition:
+	call Route114_EventScript_SetUpCutTutor
 	call_if_eq VAR_SHOULD_END_ABNORMAL_WEATHER, 1, AbnormalWeather_EventScript_HideMapNamePopup
 	call_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_114_NORTH, AbnormalWeather_StartGroudonWeather
 	call_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_114_SOUTH, AbnormalWeather_StartGroudonWeather
@@ -18,6 +19,98 @@ Route114_OnLoad:
 Route114_OnFrame:
 	map_script_2 VAR_SHOULD_END_ABNORMAL_WEATHER, 1, AbnormalWeather_EventScript_EndEventAndCleanup_1
 	.2byte 0
+
+@ The Cut gate before the bridge. The three cuttable trees at (20..22,15) are a
+@ verified cut point: the channel either side is water, so with them standing
+@ only 194 tiles are reachable from the north and Meteor Falls is not among
+@ them. They carry permanent flags instead of vanilla's FLAG_TEMP_11, so they
+@ stay cut once cut.
+@
+@ He disappears once Cut has been handed over AND Lucy is beaten. Both halves
+@ matter: hiding him on the badge alone would strand a player who reached
+@ Fallarbor by another route and never collected the HM.
+Route114_EventScript_SetUpCutTutor::
+	goto_if_unset FLAG_RECEIVED_HM_CUT, Route114_EventScript_ShowCutTutor
+	goto_if_unset FLAG_DEFEATED_FALLARBOR_GYM, Route114_EventScript_ShowCutTutor
+	setflag FLAG_HIDE_ROUTE114_CUT_TUTOR
+	return
+
+Route114_EventScript_ShowCutTutor::
+	clearflag FLAG_HIDE_ROUTE114_CUT_TUTOR
+	return
+
+Route114_EventScript_CutTutor::
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_HM_CUT, Route114_EventScript_CutTutorBeatLucyYet
+	msgbox Route114_Text_CutTutorTakeThis, MSGBOX_DEFAULT
+	giveitem ITEM_HM_CUT
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
+	setflag FLAG_RECEIVED_HM_CUT
+	msgbox Route114_Text_CutTutorNeedLucy, MSGBOX_DEFAULT
+	release
+	end
+
+Route114_EventScript_CutTutorBeatLucyYet::
+	msgbox Route114_Text_CutTutorBeatLucyYet, MSGBOX_DEFAULT
+	release
+	end
+
+Route114_Text_CutTutorTakeThis:
+	.string "Hi there! If you ever run into trees\n"
+	.string "like this, you can have a POKéMON\l"
+	.string "cut them down!\p"
+	.string "……\p"
+	.string "Oh? You don't have HM CUT?\n"
+	.string "I have an extra one you can take,\l"
+	.string "here you go!$"
+
+Route114_Text_CutTutorNeedLucy:
+	.string "You need to beat LUCY in FALLARBOR\n"
+	.string "before you can have a POKéMON use\l"
+	.string "it out of battle.$"
+
+Route114_Text_CutTutorBeatLucyYet:
+	.string "Hey there! Beat LUCY yet?\n"
+	.string "You'll need to before passing\l"
+	.string "through here.$"
+
+@ Aqua Admins Matt and Shelly, fought as one double battle against two separate
+@ trainers. They stand on (8,68) and (9,68), which a flood fill confirms are the
+@ only two walkable tiles into the Meteor Falls corridor - so they are removed
+@ on a win, or they would wall it off for good.
+@
+@ TODO: placeholder dialogue, pending the user's own lines.
+Route114_EventScript_AquaAdmins::
+	lock
+	faceplayer
+	msgbox Route114_Text_AquaAdminsIntro, MSGBOX_DEFAULT
+	closemessage
+	trainerbattle OBJ_ID_NONE, TRAINER_MATT_ROUTE114, NULL, Route114_Text_MattDefeat, NULL, OBJ_ID_NONE, TRAINER_SHELLY_ROUTE114, NULL, Route114_Text_ShellyDefeat, NULL, NULL, NULL, FALSE, TRUE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE
+	msgbox Route114_Text_AquaAdminsDefeated, MSGBOX_DEFAULT
+	closemessage
+	setflag FLAG_CAP_AQUA_ADMINS
+	removeobject LOCALID_ROUTE114_MATT
+	removeobject LOCALID_ROUTE114_SHELLY
+	call Common_EventScript_LevelCapIncreased
+	release
+	end
+
+Route114_Text_AquaAdminsIntro:
+	.string "MATT: Far enough, kid.\n"
+	.string "Nobody goes up to METEOR FALLS.\p"
+	.string "SHELLY: Both of us, then.\n"
+	.string "Let's not drag this out.$"
+
+Route114_Text_MattDefeat:
+	.string "No way…$"
+
+Route114_Text_ShellyDefeat:
+	.string "Hmph. Not bad.$"
+
+Route114_Text_AquaAdminsDefeated:
+	.string "SHELLY: Fine. Go and look.\n"
+	.string "It won't change anything.$"
 
 Route114_EventScript_Man::
 	lock

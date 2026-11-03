@@ -86,6 +86,31 @@ opens after the Petalburg intro.
 > vars get reused across beats, so a numeric comparison can silently span a
 > gap you did not intend. Adopt it before Gate A.
 
+### Gate E — Route 114, the Cut trees — **BUILT**
+- **Blocks:** Route 114 north → the bridge, and everything south of it,
+  including Meteor Falls and Route 115.
+- **Opens:** cutting any of the three trees at **(20..22, 15)**, which needs the
+  VENOM BADGE from Lucy *and* HM Cut.
+- **Enforced by:** the trees themselves. The channel either side is water, so
+  with them standing only **194 tiles** are reachable from the north; cutting
+  opens **976** and Meteor Falls with it. Verified by flood fill.
+- **The HM is handed out at the gate.** A man at **(21,14)** gives HM Cut and
+  explains that Lucy's badge is still needed. He hides once **both**
+  `FLAG_RECEIVED_HM_CUT` and `FLAG_DEFEATED_FALLARBOR_GYM` are set — both
+  halves matter, since hiding him on the badge alone would strand a player who
+  never collected the HM.
+- The trees carry **permanent flags**, not vanilla's `FLAG_TEMP_11`, which is
+  cleared on every map change and lets them grow back.
+
+### Gate F — Route 114, Meteor Falls — **BUILT**
+- **Blocks:** the corridor to Meteor Falls.
+- **Opens:** beating **Aqua Admins Matt and Shelly** in one double battle.
+- **Enforced by:** the pair standing on **(8,68)** and **(9,68)** — a flood fill
+  confirms those are the only two walkable tiles in. They are therefore
+  `removeobject`-ed on a win; left standing they would wall the corridor off
+  permanently.
+- Raises the cap from 36 to **40**.
+
 ### Gate C — Slateport
 - **Blocks:** Route 110 → Slateport.
 - **Opens:** TBD.
@@ -129,7 +154,9 @@ Roxanne falls".
 | 15 | opening → Route 110 rival | `FLAG_CAP_RIVAL_ROUTE110` | `Route110_EventScript_RivalExit` |
 | 19 | rival beaten → Wally | `FLAG_CAP_WALLY_VERDANTURF` | `VerdanturfTown_WandasHouse_EventScript_WallyLostToWattson` |
 | 22 | Wally beaten → Wattson | `FLAG_CAP_WATTSON` | `MauvilleCity_Gym` badge block |
-| 24 | after Wattson | `FLAG_CAP_TBD_AFTER_WATTSON` | **nothing yet — placeholder** |
+| 30 | Wattson beaten → Lucy | `FLAG_CAP_LUCY` | `FallarborTown_BattleTentLobby_EventScript_LucyDefeated` |
+| 36 | Lucy beaten → the Aqua admins | `FLAG_CAP_AQUA_ADMINS` | `Route114_EventScript_AquaAdmins` |
+| 40 | after Matt and Shelly | `FLAG_CAP_TBD_AFTER_ADMINS` | **nothing yet — placeholder** |
 | 58 | post-Champion | `FLAG_IS_CHAMPION` | vanilla |
 
 > **Reading the table.** The number is the cap *while that flag is still

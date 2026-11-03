@@ -309,6 +309,18 @@ where no slot matches and `wildMonIndex` keeps its initial `0` - a super rod
 handing out an old-rod Pokemon. Vanilla is safe only because all three sum to
 100. **Keep every rod's rates summing to the same number.**
 
+**`include/constants/opponents.h` is NOT generated.** `trainerproc` emits
+`src/data/trainers.h` from `trainers.party`, but the `TRAINER_*` constants and
+`TRAINERS_COUNT` are hand-maintained, so a new trainer needs an entry in both
+files or the build fails with "undeclared here (not in a function)". **Append**
+new trainers rather than inserting, so no existing id shifts, and leave
+`MAX_TRAINERS_COUNT` alone unless the count actually exceeds it - it is the
+base for `TRAINER_PARTNER`, so raising it moves every partner id.
+
+**Cut trees respawn unless given a permanent flag.** Vanilla points them at
+`FLAG_TEMP_11`, which is cleared on every map change. `removeobject` sets
+whichever flag the object names, so naming a real flag makes the cut stick.
+
 **`trainerproc` does not validate move legality.** A species can be given a move
 it could never learn and the build will accept it silently.
 
@@ -365,7 +377,7 @@ Wanda's House · **Gate D (Verdanturf Aqua grunt)** · level cap 22 for beating
 Wally, announced on screen after every cap-raising fight · obedience restricted
 to traded Pokémon · Terastal suppressed · `Smart Trainer` no longer mid-battle
 pivots · **damage calculator with save import** (§4b) · HMs are forgettable
-(`P_CAN_FORGET_HIDDEN_MOVE`) · debug box fill with every wild species · **Lucy's Fallarbor gym** (three relocated route trainers, VENOM BADGE, TM Sludge Bomb).
+(`P_CAN_FORGET_HIDDEN_MOVE`) · debug box fill with every wild species · **Lucy's Fallarbor gym** (three relocated route trainers, VENOM BADGE, TM Sludge Bomb) · HM field moves need only the badge and the HM, not a party Pokemon that knows it (`OW_FIELD_MOVE_NEEDS_PARTY_MOVE`) · **Route 114**: the Cut gate and its HM giver, and Aqua Admins Matt and Shelly double-battling in front of Meteor Falls.
 
 **Open:**
 - **Gate D's opening condition** — the blockade is built, but nothing sets
@@ -380,6 +392,7 @@ pivots · **damage calculator with save import** (§4b) · HMs are forgettable
   `FLAG_BADGE0X_GET` flags, so Lucy's VENOM BADGE is cosmetic and does not show
   on the trainer card. Real support means more flags, card art and layout.
 - **Cut now arrives at gym 2**; cuttable trees in the east are unaudited.
+- **Matt and Shelly's parties are placeholders**, as is their dialogue.
 - Birch's farewell line on Route 110 is still vanilla, and still asks the
   player to look out for the rival.
 - Mr. Stone's Rustboro scene still hands out a second PokéNav.

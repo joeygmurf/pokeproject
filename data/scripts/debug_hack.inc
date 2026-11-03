@@ -24,7 +24,8 @@ Debug_Hack_ClearCapFlags::
 	clearflag FLAG_CAP_WALLY_VERDANTURF
 	clearflag FLAG_CAP_WATTSON
 	clearflag FLAG_CAP_LUCY
-	clearflag FLAG_CAP_TBD_AFTER_LUCY
+	clearflag FLAG_CAP_AQUA_ADMINS
+	clearflag FLAG_CAP_TBD_AFTER_ADMINS
 	return
 
 Debug_Hack_Done::
