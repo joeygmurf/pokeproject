@@ -2295,11 +2295,14 @@ bool8 ScrCmd_setmonmove(struct ScriptContext *ctx)
 // Hack addition: the HM item that teaches a given move, or ITEM_NONE. Used by
 // OW_FIELD_MOVE_NEEDS_PARTY_MOVE below; HMs are the only items whose field move
 // we let stand in for a party Pokemon knowing it.
+// NOTE: ItemIdToBattleMoveId, not GetItemSecondaryId. HM entries in
+// src/data/items.h set no `.secondaryId`, so that accessor returns 0 for every
+// one of them and nothing ever matched - the fallback below simply never fired.
 static enum Item GetHMItemForMove(enum Move move)
 {
     for (enum Item item = ITEM_HM01; item <= ITEM_HM08; item++)
     {
-        if (GetItemSecondaryId(item) == move)
+        if (ItemIdToBattleMoveId(item) == move)
             return item;
     }
     return ITEM_NONE;
