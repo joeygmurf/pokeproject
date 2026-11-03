@@ -536,11 +536,21 @@ def parse_trainers(poks, learnsets, learnset_symbol):
                 symbol = learnset_symbol.get(species)
                 moves = natural_moveset(learnsets.get(symbol, []), level)
 
+            # The calc reads IVs/EVs under its own legacy stat keys, the same
+            # ones STAT_KEYS uses for base stats. Writing Showdown's spellings
+            # here meant only `hp` ever matched and every other stat silently
+            # fell back to the default 31 - which hid, among other things, the
+            # imperfect IVs that pick a Hidden Power type.
+            SHOWDOWN_TO_CALC = {
+                "HP": "hp", "Atk": "at", "Def": "df",
+                "SpA": "sa", "SpD": "sd", "Spe": "sp",
+            }
+
             def stat_spread(raw, default):
-                spread = {k: default for k in ("hp", "atk", "def", "spa", "spd", "spe")}
+                spread = {k: default for k in SHOWDOWN_TO_CALC.values()}
                 if raw:
                     for value, stat in re.findall(r"(\d+)\s*(HP|Atk|Def|SpA|SpD|Spe)", raw):
-                        spread[stat.lower()] = int(value)
+                        spread[SHOWDOWN_TO_CALC[stat]] = int(value)
                 return spread
 
             entry = {
